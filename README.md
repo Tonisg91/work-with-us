@@ -1,4 +1,4 @@
-# Work With Us PWA
+# Work With Us Web APP
 
 # Developers:
 
@@ -76,7 +76,7 @@ GET | '/user/:userid'| render user profile (public)
   - Email
   - PWD
   - userType (client or professional)
-  - Reviews => [Model.type('Review')]
+  - Reviews => Rating media
   - Announcements => [Model.type('Announcement')]
   - Description (Professional user): {
     Sector,
@@ -97,7 +97,9 @@ GET | '/user/:userid'| render user profile (public)
   - Offers: [{
     - Model.type('Professional')
     - EstimatePrice
+    - Comments
       }]
+  - Reviews => [Model.type('Review')]
   - Finished (boolean)
     }
 
