@@ -1,0 +1,15 @@
+<main>
+  <form action="#" method="POST">
+    <input type="text" placeholder="Busca un anuncio...">
+    <button type="submit">Filtrar</button>
+  </form>
+  {{#each list}}
+  <a href="/announcement/{{this._id}}">
+    <div>
+      <img src="{{this.photos}}" alt="Imagen del anuncio">
+      <h4>{{this.title}}</h4>
+    </div>
+  </a>
+
+  {{/each}}
+</main>

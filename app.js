@@ -19,6 +19,7 @@ require("./configs/db.config");
 const index = require("./routes/index.routes");
 const auth = require("./routes/auth.routes");
 const user = require("./routes/user.routes");
+const announcement = require("./routes/announcements.routes");
 
 const app = express();
 
@@ -53,5 +54,6 @@ app.locals.title = "Express - Generated with IronGenerator";
 app.use("/", index);
 app.use("/", auth);
 app.use("/", user);
+app.use("/", announcement);
 
 module.exports = app;
