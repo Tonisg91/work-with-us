@@ -1,0 +1,43 @@
+<main>
+  <h1>User Profile</h1>
+  <section id="user-section-1">
+    <article id="user-info">
+      <img
+        src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
+        alt="Imagen de usuario">
+      <div>
+        <h2>{{name}}</h2>
+        <p>{{email}}</p>
+        <p>{{location.city}}</p>
+      </div>
+    </article>
+  </section>
+  <section id="user-section-2">
+    <article id="user-announcements">
+      <h3>Anuncios</h3>
+      {{#if announcements}}
+      {{#each announcements}}
+      <div>
+        <img src="{{this.photos}}" alt="Imagen de anuncio">
+        <div>
+          <h4>{{this.title}}</h4>
+        </div>
+      </div>
+      {{/each}}
+      {{else}}
+      <p>Este usuario no tiene anuncios</p>
+      {{/if}}
+    </article>
+    <article id="user-reviews">
+      <h3>Reviews</h3>
+      {{#if reviews}}
+      <div>
+        <h4>{{this.title}}</h4>
+        <p>{{this.description}}</p>
+      </div>
+      {{else}}
+      <p>Este usuario no ha sido valorado</p>
+      {{/if}}
+    </article>
+  </section>
+</main>
