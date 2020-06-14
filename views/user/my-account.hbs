@@ -1,3 +1,40 @@
-<h1>MY ACCOUNT</h1>
-
-<a href="/logout">Logout</a>
+<main>
+  <h1>Mi cuenta</h1>
+  <div>
+    <img
+      src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
+      alt="Imagen de usuario">
+  </div>
+  <article>
+    <form action="/editUser" id="edit" method="POST">
+      <label for="name">Nombre</label>
+      <input type="text" name="name" value="{{user.name}}">
+      <label for="#">Más sobre tí</label>
+      <label for="details">Sector</label>
+      <select name="sector" id="details" form="edit">
+        {{#if condition}}
+        <option value="selected" selected>{{user.sector}}</option>
+        {{/if}}
+        <option value="fontaneria">Fontanería</option>
+        <option value="carpinteria">Carpintería</option>
+        <option value="carpinteria_aluminio">Carpintería de aluminio</option>
+        <option value="paleteria">Paletería</option>
+        <option value="alabañileria">Albañilería</option>
+        <option value="electricidad">Electricidad</option>
+        <option value="jardineria">Jardinería</option>
+        <option value="reparacion_electrodom">Reparación electrodomésticos</option>
+        <option value="pintura">Pintura</option>
+        <option value="cristaleria">Cristalería</option>
+        <option value="cerrajeria">Cerrajería</option>
+        <option value="otros">Otros</option>
+      </select>
+      <label for="location">Localizacion</label>
+      <input type="text" name="address" placeholder="Direccion" value="{{user.address}}">
+      <input type="text" name="city" placeholder="Ciudad" value="{{user.city}}">
+      <label for="description">Descripcion</label>
+      <input type="textarea" name="description" value="{{user.description}}">
+      <button type="submit">Editar</button>
+    </form>
+  </article>
+  <a href="/logout">Logout</a>
+</main>
