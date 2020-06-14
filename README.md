@@ -28,44 +28,24 @@ Work With Us is an App for offer jobs.
 
 ## Routes
 
-| Method | URL              | Description                           |
-| ------ | ---------------- | ------------------------------------- |
-| GET    | '/'              | render index Homepage (public)        |
-| GET    | '/announcements' | render list of announcements (public) |
-
-GET | '/auth' | render Login & signup form (public)
-
-POST | '/login' | redirect to /user-profile (public)
-body:
-
-- email (unique)
-- PWD
-
-POST | '/signup' | redirect to /user-profile && create an instance of user on DB (public)
-body:
-
-- email (unique)
-- PWD
-
-GET | '/myaccount' | render account data (private)
-POST | '/myaccount' | Update data of user (private)
-body:
-User model fields
-
-GET | '/announcements' | render announcements list
-GET | '/announcements/:announcement id' | render announcement details
-
-POST | '/announcements/:announcement id/make-offer' | Make offer to client (professional user) (button hidden if professional user)
-
-GET | '/announcements/:announcement id/edit' | render announcement data form (private) (button on announcement)
-POST | '/announcements/:announcement id/edit' | update announcement data (private)
-
-POST | '/announcements/:announcement id/delete' | remove announcement from DB (private) (button on announcement)
-
-GET | '/new-announcement' | render new announcement form
-POST | '/new-announcement' | Create new announcement on DB & redirect to '/announcements/:announcement id'
-
-GET | '/user/:userid'| render user profile (public)
+| Method | URL                                          | Description                                                                   |
+| ------ | -------------------------------------------- | ----------------------------------------------------------------------------- |
+| GET    | '/'                                          | render index Homepage (public)                                                |
+| GET    | '/announcements'                             | render list of announcements (public)                                         |
+| GET    | '/auth'                                      | render Login & signup form (public)                                           |
+| POST   | '/login'                                     | redirect to /user-profile (public)                                            |
+| POST   | '/signup'                                    | redirect to /user-profile && create an instance of user on DB (public)        |
+| GET    | '/myaccount'                                 | render account data (private)                                                 |
+| POST   | '/myaccount'                                 | Update data of user (private)                                                 |
+| GET    | '/announcements'                             | render announcements list                                                     |
+| GET    | '/announcements/:announcement id'            | render announcement details                                                   |
+| POST   | '/announcements/:announcement id/make-offer' | Make offer to client (professional user) (button hidden if professional user) |
+| GET    | '/announcements/:announcement id/edit'       | render announcement data form (private) (button on announcement)              |
+| POST   | '/announcements/:announcement id/edit'       | update announcement data (private)                                            |
+| POST   | '/announcements/:announcement id/delete'     | remove announcement from DB (private) (button on announcement)                |
+| GET    | '/new-announcement'                          | render new announcement form                                                  |
+| POST   | '/new-announcement'                          | Create new announcement on DB & redirect to '/announcements/:announcement id' |
+| GET    | '/user/:userid'                              | render user profile (public)                                                  |
 
 ## Models
 

@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <!-- CUSTOM CSS -->
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <!-- FONT AWESOME ICONS -->
+  <script src="https://kit.fontawesome.com/760a985826.js" crossorigin="anonymous"></script>
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+  <div class="sidenav" id="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Anuncios</a>
+    {{#if currentUser}}
+    <a href="/myaccount">Mi cuenta</a>
+    <a href="/logout"><button class="btn logout-btn">Logout</button></a>
+    {{else}}
+    <a href="/auth"><button class="btn login-btn">Login</button></a>
+    {{/if}}
+  </div>
+
+
+  <nav>
+    <div>
+      <a href="/" id="home-nav">WorkWithUs</a>
+    </div>
+    <ul>
+      {{#if currentUser}}
+      <a href="/myaccount"><i class="fas fa-user"></i></a>
+      {{else}}
+      <li><a href="/auth">Entrar</a></li>
+      {{/if}}
+      <li class="separator">|</li>
+      <li>
+        <button onclick="openNav()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+
+
 
   {{{body}}}
 
+  <footer>
+    <p>FOOTER</p>
+  </footer>
+
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

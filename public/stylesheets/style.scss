@@ -1,8 +1,152 @@
+//COLOR PALETTE
+$red-btn: #e74c3c;
+$red-btn-active: #c0392b;
+$green-btn: #2ecc71;
+$green-btn-active: #27ae60;
+$btn-text: #ecf0f1;
+$general-text: #2c3e50;
+
+//MARGIN RESET
+html {
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+// MARGIN RESET END
+
+// TEXT COLOR
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: $general-text;
+}
+body a {
+  color: $general-text;
+}
+// TEXT COLOR END
+
+// NAVBAR
+nav {
+  display: flex;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 3.5rem;
+  font-weight: 600;
+}
+nav > * {
+  width: 50%;
+  margin: 0 1em;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
 }
 
-a {
-  color: #00B7FF;
+nav a {
+  text-decoration: none;
 }
+//Selecciona los dos primeros hijos
+ul li:nth-child(-n + 2) {
+  padding-right: 1em;
+}
+nav button {
+  border: none;
+  background-color: transparent;
+}
+i {
+  color: #1abc9c;
+}
+.separator {
+  color: rgba($color: $general-text, $alpha: 0.3);
+}
+//NAVBAR END
+
+//SIDENAV
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidenav a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181; //TEMPORAL
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  //margin-left: 50px;
+}
+.sidenav button {
+  padding: 1em 2em;
+}
+//SIDENAV END
+
+//BUTTONS
+.btn {
+  border: none;
+  color: $btn-text;
+  border-radius: 5px;
+}
+.logout-btn {
+  background-color: $red-btn;
+  box-shadow: 0 5px $red-btn-active;
+  outline: none;
+  font-weight: 600;
+}
+.logout-btn:active {
+  box-shadow: 0 1px $red-btn-active;
+  transform: translateY(4px);
+}
+.login-btn {
+  background-color: $green-btn;
+  box-shadow: 0 5px $green-btn-active;
+  outline: none;
+  font-weight: 600;
+}
+.login-btn:active {
+  box-shadow: 0 1px $green-btn-active;
+  transform: translateY(4px);
+}
+//BUTTONS END
+
+//ERRORS
+.error {
+  color: red;
+  text-transform: uppercase;
+}
+
+//FOOTER
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  text-align: center; //TEMPORAL
+}
+//FOOTER END
