@@ -20,10 +20,10 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">Anuncios</a>
     {{#if currentUser}}
-    <a href="#">Mi cuenta</a>
-    <a href="#"><button class="btn logout-btn">Logout</button></a>
+    <a href="/myaccount">Mi cuenta</a>
+    <a href="/logout"><button class="btn logout-btn">Logout</button></a>
     {{else}}
-    <a href="#"><button class="btn login-btn">Login</button></a>
+    <a href="/auth"><button class="btn login-btn">Login</button></a>
     {{/if}}
   </div>
 
@@ -34,7 +34,7 @@
     </div>
     <ul>
       {{#if currentUser}}
-      <a href="/my-account"><i class="fas fa-user"></i></a>
+      <a href="/myaccount"><i class="fas fa-user"></i></a>
       {{else}}
       <li><a href="/auth">Entrar</a></li>
       {{/if}}

@@ -109,6 +109,10 @@ i {
   box-shadow: 0 1px #27ae60;
   transform: translateY(4px); }
 
+.error {
+  color: red;
+  text-transform: uppercase; }
+
 footer {
   position: absolute;
   bottom: 0;

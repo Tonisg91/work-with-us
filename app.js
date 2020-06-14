@@ -8,24 +8,23 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-
-mongoose
-  .connect("mongodb://localhost/work-with-us", { useNewUrlParser: true })
-  .then((x) => {
-    console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].name}"`
-    );
-  })
-  .catch((err) => {
-    console.error("Error connecting to mongo", err);
-  });
-
 const app_name = require("./package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
+//DB CONFIGS
+require("./configs/db.config");
+
+//ROUTER
+const index = require("./routes/index.routes");
+const auth = require("./routes/auth.routes");
+const user = require("./routes/user.routes");
 
 const app = express();
+
+//Session
+const createSession = require("./configs/session.config");
+createSession(app);
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -51,7 +50,8 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index.routes");
 app.use("/", index);
+app.use("/", auth);
+app.use("/", user);
 
 module.exports = app;
