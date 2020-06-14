@@ -14,10 +14,12 @@ const announcementSchema = new Schema(
       maxlength: 5,
     },
     photos: {
-      type: [String], //ARRAY DE URL??
-      maxlength: 10,
+      type: String, //ARRAY DE URL??
     },
-    assigned: Boolean,
+    assigned: {
+      type: Boolean,
+      default: false,
+    },
     announcer: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -40,7 +42,10 @@ const announcementSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
-    finished: Boolean,
+    finished: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

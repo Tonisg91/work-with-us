@@ -21,29 +21,26 @@ const userSchema = new Schema(
         ref: "Announcement",
       },
     ],
-    description: {
-      sector: {
-        type: String,
-        enum: [
-          "Fontanería",
-          "Carpintería",
-          "Carpintería de aluminio",
-          "Paletería",
-          "Albañilería",
-          "Electricidad",
-          "Jardinería",
-          "Reparación electrodomésticos",
-          "Pintura",
-          "Cristalería",
-          "Cerrajería",
-        ], //AÑADIR LOS DIFERENTES SECTORES
-      },
-      location: {
-        address: String,
-        city: String,
-      },
-      description: String,
+    sector: {
+      type: String,
+      enum: [
+        "Fontanería",
+        "Carpintería",
+        "Carpintería de aluminio",
+        "Paletería",
+        "Albañilería",
+        "Electricidad",
+        "Jardinería",
+        "Reparación electrodomésticos",
+        "Pintura",
+        "Cristalería",
+        "Cerrajería",
+        "Otros",
+      ], //AÑADIR LOS DIFERENTES SECTORES
     },
+    address: String,
+    city: String,
+    description: String,
   },
   {
     timestamps: {
