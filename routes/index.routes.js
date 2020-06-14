@@ -9,8 +9,9 @@ router.get("/", (req, res, next) => {
 
 router.get("/userProfile/:id", async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.render("user-profile", user);
+    const user = await User.findById(req.params.id).populate("announcements");
+    const currentUser = req.session.currentUser;
+    res.render("user-profile", { user, currentUser });
   } catch (error) {
     next(error);
   }

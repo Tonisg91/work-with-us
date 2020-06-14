@@ -6,17 +6,17 @@
         src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
         alt="Imagen de usuario">
       <div>
-        <h2>{{name}}</h2>
-        <p>{{email}}</p>
-        <p>{{location.city}}</p>
+        <h2>{{user.name}}</h2>
+        <p>{{user.email}}</p>
+        <p>{{user.location.city}}</p>
       </div>
     </article>
   </section>
   <section id="user-section-2">
     <article id="user-announcements">
       <h3>Anuncios</h3>
-      {{#if announcements}}
-      {{#each announcements}}
+      {{#if user.announcements}}
+      {{#each user.announcements}}
       <div>
         <img src="{{this.photos}}" alt="Imagen de anuncio">
         <div>
@@ -30,11 +30,13 @@
     </article>
     <article id="user-reviews">
       <h3>Reviews</h3>
-      {{#if reviews}}
+      {{#if user.reviews}}
+      {{#each user.reviews}}
       <div>
         <h4>{{this.title}}</h4>
         <p>{{this.description}}</p>
       </div>
+      {{/each}}
       {{else}}
       <p>Este usuario no ha sido valorado</p>
       {{/if}}

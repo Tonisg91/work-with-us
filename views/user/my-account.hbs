@@ -12,21 +12,21 @@
       <label for="#">Más sobre tí</label>
       <label for="details">Sector</label>
       <select name="sector" id="details" form="edit">
-        {{#if condition}}
-        <option value="selected" selected>{{user.sector}}</option>
+        {{#if user.sector}}
+        <option value="{{user.sector}}" selected>{{user.sector}}</option>
         {{/if}}
-        <option value="fontaneria">Fontanería</option>
-        <option value="carpinteria">Carpintería</option>
-        <option value="carpinteria_aluminio">Carpintería de aluminio</option>
-        <option value="paleteria">Paletería</option>
-        <option value="alabañileria">Albañilería</option>
-        <option value="electricidad">Electricidad</option>
-        <option value="jardineria">Jardinería</option>
-        <option value="reparacion_electrodom">Reparación electrodomésticos</option>
-        <option value="pintura">Pintura</option>
-        <option value="cristaleria">Cristalería</option>
-        <option value="cerrajeria">Cerrajería</option>
-        <option value="otros">Otros</option>
+        <option value="Fontanería">Fontanería</option>
+        <option value="Carpintería">Carpintería</option>
+        <option value="Carpintería de aluminio">Carpintería de aluminio</option>
+        <option value="Paletería">Paletería</option>
+        <option value="Albañilería">Albañilería</option>
+        <option value="Electricidad">Electricidad</option>
+        <option value="Jardinería">Jardinería</option>
+        <option value="Reparacion electrodomésticos">Reparación electrodomésticos</option>
+        <option value="Pintura">Pintura</option>
+        <option value="Cristalería">Cristalería</option>
+        <option value="Cerrajería">Cerrajería</option>
+        <option value="Otros">Otros</option>
       </select>
       <label for="location">Localizacion</label>
       <input type="text" name="address" placeholder="Direccion" value="{{user.address}}">
@@ -36,5 +36,6 @@
       <button type="submit">Editar</button>
     </form>
   </article>
+  <a href="/addAnnouncement"><button>Añadir anuncio</button></a>
   <a href="/logout">Logout</a>
 </main>
