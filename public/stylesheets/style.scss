@@ -3,6 +3,8 @@ $red-btn: #e74c3c;
 $red-btn-active: #c0392b;
 $green-btn: #2ecc71;
 $green-btn-active: #27ae60;
+$blue-btn: #3498db;
+$blue-btn-active: #2980b9;
 $btn-text: #ecf0f1;
 $general-text: #2c3e50;
 
@@ -38,6 +40,7 @@ nav {
   top: 0;
   height: 3.5rem;
   font-weight: 600;
+  background-color: $btn-text;
 }
 nav > * {
   width: 50%;
@@ -102,9 +105,6 @@ i {
   font-size: 36px;
   //margin-left: 50px;
 }
-.sidenav button {
-  padding: 1em 2em;
-}
 //SIDENAV END
 
 //BUTTONS
@@ -112,25 +112,36 @@ i {
   border: none;
   color: $btn-text;
   border-radius: 5px;
+  padding: 1em 2em;
 }
-.logout-btn {
+.red-btn {
   background-color: $red-btn;
   box-shadow: 0 5px $red-btn-active;
   outline: none;
   font-weight: 600;
 }
-.logout-btn:active {
+.red-btn:active {
   box-shadow: 0 1px $red-btn-active;
   transform: translateY(4px);
 }
-.login-btn {
+.green-btn {
   background-color: $green-btn;
   box-shadow: 0 5px $green-btn-active;
   outline: none;
   font-weight: 600;
 }
-.login-btn:active {
+.green-btn:active {
   box-shadow: 0 1px $green-btn-active;
+  transform: translateY(4px);
+}
+.blue-btn {
+  background-color: $blue-btn;
+  box-shadow: 0 5px $blue-btn-active;
+  outline: none;
+  font-weight: 600;
+}
+.blue-btn:active {
+  box-shadow: 0 1px $blue-btn-active;
   transform: translateY(4px);
 }
 //BUTTONS END
@@ -140,13 +151,83 @@ i {
   color: red;
   text-transform: uppercase;
 }
+//ERRORS END
+
+//VIEWS
+section {
+  padding: 1.5em 2em;
+}
+//INDEX
+//SECTION 1 (INTRO)
+#index-section-1 {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#index-intro-article h1 {
+  font-size: 4rem;
+}
+#index-intro-article p {
+  padding: 1em 0;
+}
+//SECTION 2 (DATA)
+#index-data-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#index-data-article div {
+  text-align: center;
+  padding: 1em 0;
+}
+#index-data-article p {
+  font-weight: 600;
+  color: #1abc9c;
+}
+#index-data-article p:first-of-type {
+  font-size: 3em;
+}
+//SECTION 3 (SIGNUP)
+#index-section-3 {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#index-signup-article form {
+  display: flex;
+  flex-direction: column;
+}
+#index-signup-article input {
+  margin: 2em 0;
+  padding: 1em 0;
+  border-radius: 25px;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+#index-signup-article form button {
+}
+// INDEX END
 
 //FOOTER
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 3rem;
-  text-align: center; //TEMPORAL
+  background-color: $general-text;
+  color: $btn-text;
+  padding: 1em 2em;
+}
+footer a {
+  color: $btn-text;
+  text-decoration: none;
+  border-bottom: 1px dashed;
+}
+footer p {
+  font-weight: 600;
+  padding: 1em 0;
+}
+footer ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+footer li {
+  padding: 0.8em 0;
 }
 //FOOTER END

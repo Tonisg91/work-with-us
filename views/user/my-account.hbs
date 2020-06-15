@@ -8,12 +8,12 @@
   <article>
     <form action="/editUser" id="edit" method="POST">
       <label for="name">Nombre</label>
-      <input type="text" name="name" value="{{user.name}}">
+      <input type="text" name="name" value="{{currentUser.name}}">
       <label for="#">Más sobre tí</label>
       <label for="details">Sector</label>
       <select name="sector" id="details" form="edit">
-        {{#if user.sector}}
-        <option value="{{user.sector}}" selected>{{user.sector}}</option>
+        {{#if currentUser.sector}}
+        <option value="{{currentUser.sector}}" selected>{{currentUser.sector}}</option>
         {{/if}}
         <option value="Fontanería">Fontanería</option>
         <option value="Carpintería">Carpintería</option>
@@ -29,10 +29,10 @@
         <option value="Otros">Otros</option>
       </select>
       <label for="location">Localizacion</label>
-      <input type="text" name="address" placeholder="Direccion" value="{{user.address}}">
-      <input type="text" name="city" placeholder="Ciudad" value="{{user.city}}">
+      <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
+      <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
       <label for="description">Descripcion</label>
-      <input type="textarea" name="description" value="{{user.description}}">
+      <input type="textarea" name="description" value="{{currentUser.description}}">
       <button type="submit">Editar</button>
     </form>
   </article>
