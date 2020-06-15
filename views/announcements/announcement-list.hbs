@@ -1,15 +1,16 @@
-<main>
+<main id="announcements-main">
   <form action="#" method="POST">
     <input type="text" placeholder="Busca un anuncio...">
-    <button type="submit">Filtrar</button>
+    <button type="submit"><i class="fas fa-search"></i></button>
   </form>
-  {{#each list}}
-  <a href="/announcement/{{this._id}}">
-    <div>
+  <section id="announcements-list">
+    {{#each list}}
+    <div class="announce-card">
       <img src="{{this.photos}}" alt="Imagen del anuncio">
-      <h4>{{this.title}}</h4>
+      <div class="announce-title">
+        <h4><a href="/announcement/{{this._id}}">{{this.title}}</a></h4>
+      </div>
     </div>
-  </a>
-
-  {{/each}}
+    {{/each}}
+  </section>
 </main>
