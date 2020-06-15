@@ -15,19 +15,18 @@
 </head>
 
 <body>
-
+  <!-- SIDENAV -->
   <div class="sidenav" id="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/announcements">Anuncios</a>
     {{#if currentUser}}
     <a href="/myaccount">Mi cuenta</a>
-    <a href="/logout"><button class="btn logout-btn">Logout</button></a>
+    <a href="/logout"><button class="btn red-btn">Logout</button></a>
     {{else}}
-    <a href="/auth"><button class="btn login-btn">Login</button></a>
+    <a href="/auth"><button class="btn green-btn">Login</button></a>
     {{/if}}
   </div>
-
-
+  <!-- SIDENAV END-->
   <nav>
     <div>
       <a href="/" id="home-nav">WorkWithUs</a>
@@ -47,13 +46,19 @@
     </ul>
   </nav>
 
-
-
-
   {{{body}}}
 
   <footer>
-    <p>FOOTER</p>
+    <p>Sites</p>
+    <ul>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/announcements">Anuncios</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li>Hecho por
+        <a href="https://www.linkedin.com/in/toni-sanchez-garcia/">Toni Sanchez</a> y
+        <a href="https://www.linkedin.com/in/david-de-lamo-valverde-4315a598/">David de Lamo</a>
+      </li>
+    </ul>
   </footer>
 
   <script src="/javascripts/script.js"></script>
