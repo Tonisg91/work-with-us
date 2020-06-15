@@ -6,6 +6,9 @@ const User = require("../models/Users.model");
 router.get("/", (req, res, next) => {
   res.render("index", { currentUser: req.session.currentUser });
 });
+router.post("/", (req, res, next) => {
+  res.redirect(`/auth/${req.body.email}`);
+});
 
 router.get("/userProfile/:id", async (req, res, next) => {
   try {

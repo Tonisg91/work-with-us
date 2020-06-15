@@ -10,6 +10,9 @@ const saltRounds = 10;
 router.get("/auth", (req, res, next) => {
   res.render("auth/auth");
 });
+router.get("/auth/:email", (req, res, next) => {
+  res.render("auth/auth", { email: req.params.email });
+});
 
 router.post("/login", async (req, res, next) => {
   try {
