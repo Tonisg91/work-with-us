@@ -113,12 +113,12 @@ i {
   color: $btn-text;
   border-radius: 5px;
   padding: 1em 2em;
+  font-weight: 600;
+  outline: none;
 }
 .red-btn {
   background-color: $red-btn;
   box-shadow: 0 5px $red-btn-active;
-  outline: none;
-  font-weight: 600;
 }
 .red-btn:active {
   box-shadow: 0 1px $red-btn-active;
@@ -127,8 +127,6 @@ i {
 .green-btn {
   background-color: $green-btn;
   box-shadow: 0 5px $green-btn-active;
-  outline: none;
-  font-weight: 600;
 }
 .green-btn:active {
   box-shadow: 0 1px $green-btn-active;
@@ -148,8 +146,10 @@ i {
 
 //ERRORS
 .error {
-  color: red;
+  color: $btn-text;
   text-transform: uppercase;
+  padding: 1em 2em;
+  background-color: $red-btn;
 }
 //ERRORS END
 
@@ -203,9 +203,41 @@ section {
   font-weight: 600;
   font-size: 1rem;
 }
-#index-signup-article form button {
-}
 // INDEX END
+
+//AUTH
+#auth-main {
+  margin: 1em;
+}
+#auth-section hr {
+  width: 85%;
+  margin-bottom: 1em;
+  border-top: 1px solid rgba($color: $general-text, $alpha: 0.15);
+}
+#auth-section h3 {
+  font-size: 1.8em;
+}
+#auth-section {
+  background-color: rgba($color: $blue-btn, $alpha: 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#auth-section form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+#auth-section input {
+  margin: 1em 0;
+  padding: 1em 0;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1em;
+}
 
 //FOOTER
 footer {
@@ -217,6 +249,9 @@ footer a {
   color: $btn-text;
   text-decoration: none;
   border-bottom: 1px dashed;
+}
+footer a:hover {
+  font-weight: 600;
 }
 footer p {
   font-weight: 600;
