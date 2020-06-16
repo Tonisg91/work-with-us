@@ -1,16 +1,15 @@
 <main>
   <section id="announce-section">
+    <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
     <article id="announce-article">
-      <div>
-        <img src="{{announcement.photos}}" alt="">
-      </div>
+      <img src="{{announcement.photos}}" alt="">
       <div>
         <h2>{{announcement.title}}</h2>
         <p>{{announcement.description}}</p>
       </div>
     </article>
     {{#if announcer}}
-    <article id="offer-list">
+    <article class="offer-field">
       <h3>Ofertas</h3>
       <ul>
         <li class="offer">
@@ -41,8 +40,14 @@
       </ul>
     </article>
     {{else}}
-    <article id="guest-view">
-      <p>visitante</p>
+    <article id="guest-view" class="offer-field">
+      <h3>Hacer oferta</h3>
+      <form action="">
+        <input type="text" value="{{currentUser._id}}">
+        <textarea name="" id="offer-description" cols="32" rows="10"
+          placeholder="Escribe la descripcion de tu oferta"></textarea>
+        <button type="submit" class="btn blue-btn">Enviar oferta</button>
+      </form>
     </article>
     {{/if}}
 
