@@ -1,14 +1,50 @@
 <main>
-  <article>
-    <img src="{{this.photos}}" alt="">
-    <div>
-      <h3>{{this.title}}</h3>
-      <p>{{this.description}}</p>
-    </div>
+  <section id="announce-section">
+    <article id="announce-article">
+      <div>
+        <img src="{{announcement.photos}}" alt="">
+      </div>
+      <div>
+        <h2>{{announcement.title}}</h2>
+        <p>{{announcement.description}}</p>
+      </div>
+    </article>
     {{#if announcer}}
-    <p>anunciante</p>
+    <article id="offer-list">
+      <h3>Ofertas</h3>
+      <ul>
+        <li class="offer">
+          <div>
+            <a href="#">
+              <h6>Profesional random</h6>
+            </a>
+            <p>Hola! Puedo ir esta tarde antes de las 20h. Mi tarifa es de 15&euro;/hora.</p>
+          </div>
+          <div>
+            <button class="btn green-btn">Aceptar</button>
+            <button class="btn red-btn">Rechazar</button>
+          </div>
+        </li>
+        <li class="offer">
+          <div>
+            <a href="#">
+              <h6>Profesional random 2</h6>
+            </a>
+            <p>Buenas. Puedo ir ahora mismo. En mi empresa disponemos de servicio urgente. El precio de tarifa es
+              25&euro;/hora.</p>
+          </div>
+          <div>
+            <button class="btn green-btn">Aceptar</button>
+            <button class="btn red-btn">Rechazar</button>
+          </div>
+        </li>
+      </ul>
+    </article>
     {{else}}
-    <p>visitante</p>
+    <article id="guest-view">
+      <p>visitante</p>
+    </article>
     {{/if}}
-  </article>
+
+  </section>
 </main>
