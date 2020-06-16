@@ -36,6 +36,10 @@ const announcementSchema = new Schema(
         },
         estimatedPrice: Number,
         comments: String,
+        accepted: {
+          type: Boolean,
+          default: false
+        }
       },
     ],
     reviews: {

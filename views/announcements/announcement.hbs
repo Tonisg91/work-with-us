@@ -9,42 +9,54 @@
       </div>
     </article>
     {{#if announcer}}
+    {{#if announcement.assigned}}
+    <article class="offer-field">
+      <h3>Oferta aceptada</h3>
+      {{#each announcement.offers }}
+
+      <p>{{professional.name}}</p>
+      {{!-- {{#if this.accepted}}
+      <div>
+        <p>if ok</p>
+        <a href="#">
+          <h6>{{this.name}}</h6>
+        </a>
+        <p>{{estimatedPrice}}&euro;</p>
+        <p>{{comments}}</p>
+      </div>
+      {{/if}} --}}
+      {{/each}}
+    </article>
+    {{else}}
     <article class="offer-field">
       <h3>Ofertas</h3>
       <ul>
+        {{#each announcement.offers }}
         <li class="offer">
           <div>
             <a href="#">
-              <h6>Profesional random</h6>
+              <h6>{{professional.name}}</h6>
             </a>
-            <p>Hola! Puedo ir esta tarde antes de las 20h. Mi tarifa es de 15&euro;/hora.</p>
+            <p>{{estimatedPrice}}&euro;</p>
+            <p>{{comments}}</p>
           </div>
           <div>
-            <button class="btn green-btn">Aceptar</button>
-            <button class="btn red-btn">Rechazar</button>
+            <a href="/acceptOffer/{{../announcement._id}}/{{_id}}/{{professional._id}}"><button
+                class="btn green-btn">Aceptar</button></a>
+            <a href="/declineOffer/{{../announcement._id}}/{{_id}}"><button class="btn red-btn">Rechazar</button></a>
           </div>
         </li>
-        <li class="offer">
-          <div>
-            <a href="#">
-              <h6>Profesional random 2</h6>
-            </a>
-            <p>Buenas. Puedo ir ahora mismo. En mi empresa disponemos de servicio urgente. El precio de tarifa es
-              25&euro;/hora.</p>
-          </div>
-          <div>
-            <button class="btn green-btn">Aceptar</button>
-            <button class="btn red-btn">Rechazar</button>
-          </div>
-        </li>
+        {{/each}}
       </ul>
     </article>
+    {{/if}}
     {{else}}
     <article id="guest-view" class="offer-field">
       <h3>Hacer oferta</h3>
-      <form action="">
-        <input type="text" value="{{currentUser._id}}">
-        <textarea name="" id="offer-description" cols="32" rows="10"
+      <form action="/makeOffer/{{announcement._id}}" method="POST">
+        <input type="hidden" name="professional" value="{{currentUser._id}}">
+        <input type="number" name="estimatedPrice" placeholder="Precio estimado en euros" step="any">
+        <textarea name="comments" id="offer-description" cols="32" rows="10"
           placeholder="Escribe la descripcion de tu oferta"></textarea>
         <button type="submit" class="btn blue-btn">Enviar oferta</button>
       </form>
