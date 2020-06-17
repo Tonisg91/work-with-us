@@ -1,4 +1,5 @@
 const Announcements = require('../models/Announcement.model')
+const Offers = require('../models/Offers.model')
 
 const getAnnouncements = async (req, res, next) => {
   try {
@@ -12,9 +13,10 @@ const getAnnouncements = async (req, res, next) => {
 
 const getOneAnnouncement = async (req, res, next) => {
   try {
-    const announcement = await Announcements.findById(req.params.id).populate('offers.professional');
+    const announcement = await Announcements.findById(req.params.id).populate([{ path: 'offers.offerId', model: 'Offer' }, { path: 'offers.offerId.professional', model: 'User' }]);
     const user = req.session.currentUser;
     const announcer = req.session.currentUser._id;
+    console.log(announcement);
     //const offerAccepted = await Announcements.findById(req.params.id, { offers: { accepted: true } }).populate('offers.professional');
     //console.log(offerAccepted);
     const isUserTheAnnouncer = announcement.announcer == announcer;
@@ -39,7 +41,8 @@ const postMakeOffer = async (req, res, next) => {
   try {
     const announcementId = req.params.announcementId;
     const { professional, estimatedPrice, comments } = req.body;
-    await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: { professional, estimatedPrice, comments } } })
+    const newOffer = await Offers.create({ professional, announcementId, estimatedPrice, comments })
+    await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: { offerId: newOffer._id } } })
     res.redirect('/announcements');
   } catch (error) {
     next(error)
