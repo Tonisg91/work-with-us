@@ -10,13 +10,17 @@
     </article>
     <article class="offer-field">
       <h3>Oferta aceptada</h3>
+      {{#each announcement.offers}}
+      {{#if accepted}}
       <div class="offer">
         <a href="#">
-          <h6>{{offerAccepted.professional}}</h6>
+          <h6>{{professional.name}}</h6>
         </a>
-        <p>{{offerAccepted.estimatedPrice}}&euro;</p>
+        <p>{{estimatedPrice}}&euro;</p>
         <p>{{comments}}</p>
       </div>
+      {{/if}}
+      {{/each}}
     </article>
 
   </section>

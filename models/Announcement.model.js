@@ -28,20 +28,10 @@ const announcementSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    offers: [
-      {
-        professional: {
-          type: Schema.Types.ObjectId,
-          ref: "User",
-        },
-        estimatedPrice: Number,
-        comments: String,
-        accepted: {
-          type: Boolean,
-          default: false
-        }
-      },
-    ],
+    offers: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Offer'
+    }],
     reviews: {
       type: Schema.Types.ObjectId,
       ref: "Review",

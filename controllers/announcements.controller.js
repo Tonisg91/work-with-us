@@ -1,4 +1,5 @@
 const Announcements = require('../models/Announcement.model')
+const Offers = require('../models/Offers.model')
 
 const getAnnouncements = async (req, res, next) => {
   try {
@@ -12,18 +13,24 @@ const getAnnouncements = async (req, res, next) => {
 
 const getOneAnnouncement = async (req, res, next) => {
   try {
-    const announcement = await Announcements.findById(req.params.id).populate('offers.professional');
+    const announcement = await Announcements.findById(req.params.id).populate({path: 'offers', populate: {path: 'professional', model: 'User'}});
     const user = req.session.currentUser;
-    const announcer = req.session.currentUser._id;
-    //const offerAccepted = await Announcements.findById(req.params.id, { offers: { accepted: true } }).populate('offers.professional');
-    //console.log(offerAccepted);
-    const isUserTheAnnouncer = announcement.announcer == announcer;
+    const userId = req.session.currentUser._id;
+    //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
+    const isUserTheAnnouncer = announcement.announcer == userId;
+    const isAnnouncementAccepted = announcement.assigned == true;
     if (isUserTheAnnouncer) {
-      res.render("announcements/announce-user", {
-        announcement,
-        announcer,
-        currentUser: user
-      });
+      if (isAnnouncementAccepted) {
+        res.render("announcements/announce-accepted", {
+          announcement, 
+          currentUser: user
+        })
+      } else {
+        res.render("announcements/announce-user", {
+          announcement,
+          currentUser: user
+        });
+      }
     } else {
       res.render("announcements/announcement-guestUser", {
         announcement,
@@ -39,7 +46,9 @@ const postMakeOffer = async (req, res, next) => {
   try {
     const announcementId = req.params.announcementId;
     const { professional, estimatedPrice, comments } = req.body;
-    await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: { professional, estimatedPrice, comments } } })
+    const newOffer = await Offers.create({ professional, announcementId, estimatedPrice, comments })
+    const newOfferId = newOffer._id;
+    await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: newOfferId } })
     res.redirect('/announcements');
   } catch (error) {
     next(error)
@@ -50,7 +59,10 @@ const getDeclineOffer = async (req, res, next) => {
   try {
     const announcementId = req.params.announceId;
     const offerId = req.params.offerId;
-    await Announcements.findByIdAndUpdate(announcementId, { $pull: { offers: { _id: offerId } } });
+    //Promesas: borrar oferta del anuncio (1) y borrar oferta (2)
+    const Promise1 = Announcements.findByIdAndUpdate(announcementId, { $pull: { offers: { _id: offerId } } });
+    const Promise2 = Offers.findByIdAndDelete(offerId);
+    await Promise.all([Promise1, Promise2]);
     res.redirect(`/announcement/${announcementId}`)
   } catch (error) {
     next(error)
@@ -62,8 +74,11 @@ const getAcceptOffer = async (req, res, next) => {
     const announcementId = req.params.announceId;
     const offerId = req.params.offerId;
     const professionalId = req.params.professionalId;
-    await Announcements.findByIdAndUpdate(announcementId, { assigned: true, professional: professionalId })
-    res.redirect(`/announcement/${announcementId}`)
+    //Promesass: editar
+    const Promise1 = Offers.findByIdAndUpdate(offerId, {accepted: true});
+    const Promise2 = Announcements.findByIdAndUpdate(announcementId, {assigned: true, professional: professionalId});
+    await Promise.all([Promise1, Promise2]);
+    res.redirect(`/announcement/${announcementId}`);
   } catch (error) {
     next(error)
   }
