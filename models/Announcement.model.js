@@ -29,10 +29,8 @@ const announcementSchema = new Schema(
       ref: "User",
     },
     offers: [{
-      offerId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Offer'
-      }
+      type: Schema.Types.ObjectId,
+      ref: 'Offer'
     }],
     reviews: {
       type: Schema.Types.ObjectId,
