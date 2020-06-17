@@ -13,7 +13,7 @@ const getAnnouncements = async (req, res, next) => {
 
 const getOneAnnouncement = async (req, res, next) => {
   try {
-    const announcement = await Announcements.findById(req.params.id).populate([{ path: 'offers.offerId', model: 'Offer' }, { path: 'offers.offerId.professional', model: 'User' }]);
+    const announcement = await Announcements.findById(req.params.id).populate([{ path: 'offers.offerId', model: 'Offer' }, { path: 'offers.offerId.professional', model: 'User' }]); //aqui no consigo hacer el segundo populate
     const user = req.session.currentUser;
     const announcer = req.session.currentUser._id;
     console.log(announcement);
