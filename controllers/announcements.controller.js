@@ -15,15 +15,17 @@ const getOneAnnouncement = async (req, res, next) => {
     const announcement = await Announcements.findById(req.params.id).populate('offers.professional');
     const user = req.session.currentUser;
     const announcer = req.session.currentUser._id;
+    //const offerAccepted = await Announcements.findById(req.params.id, { offers: { accepted: true } }).populate('offers.professional');
+    //console.log(offerAccepted);
     const isUserTheAnnouncer = announcement.announcer == announcer;
     if (isUserTheAnnouncer) {
-      res.render("announcements/announcement", {
+      res.render("announcements/announce-user", {
         announcement,
         announcer,
         currentUser: user
       });
     } else {
-      res.render("announcements/announcement", {
+      res.render("announcements/announcement-guestUser", {
         announcement,
         currentUser: user,
       });
@@ -34,25 +36,38 @@ const getOneAnnouncement = async (req, res, next) => {
 }
 
 const postMakeOffer = async (req, res, next) => {
-  const announcementId = req.params.announcementId;
-  const { professional, estimatedPrice, comments } = req.body;
-  await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: { professional, estimatedPrice, comments } } })
-  res.redirect('/announcements');
+  try {
+    const announcementId = req.params.announcementId;
+    const { professional, estimatedPrice, comments } = req.body;
+    await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: { professional, estimatedPrice, comments } } })
+    res.redirect('/announcements');
+  } catch (error) {
+    next(error)
+  }
 }
 
 const getDeclineOffer = async (req, res, next) => {
-  const announcementId = req.params.announceId;
-  const offerId = req.params.offerId;
-  await Announcements.findByIdAndUpdate(announcementId, { $pull: { offers: { _id: offerId } } });
-  res.redirect(`/announcement/${announcementId}`)
+  try {
+    const announcementId = req.params.announceId;
+    const offerId = req.params.offerId;
+    await Announcements.findByIdAndUpdate(announcementId, { $pull: { offers: { _id: offerId } } });
+    res.redirect(`/announcement/${announcementId}`)
+  } catch (error) {
+    next(error)
+  }
 }
 
 const getAcceptOffer = async (req, res, next) => {
-  const announcementId = req.params.announceId;
-  const offerId = req.params.offerId;
-  const professionalId = req.params.professionalId;
-  await Announcements.findByIdAndUpdate(announcementId, { 'assigned': true, 'professional': professionalId, 'accepted': true })
-  res.redirect(`/announcement/${announcementId}`)
+  try {
+    const announcementId = req.params.announceId;
+    const offerId = req.params.offerId;
+    const professionalId = req.params.professionalId;
+    await Announcements.findByIdAndUpdate(announcementId, { assigned: true, professional: professionalId })
+    res.redirect(`/announcement/${announcementId}`)
+  } catch (error) {
+    next(error)
+  }
 }
 
 module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer }
+

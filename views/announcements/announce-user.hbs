@@ -1,0 +1,34 @@
+<main>
+  <section id="announce-section">
+    <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+    <article id="announce-article">
+      <img src="{{announcement.photos}}" alt="">
+      <div>
+        <h2>{{announcement.title}}</h2>
+        <p>{{announcement.description}}</p>
+      </div>
+    </article>
+    <article class="offer-field">
+      <h3>Ofertas</h3>
+      <ul>
+        {{#each announcement.offers }}
+        <li class="offer">
+          <div>
+            <a href="#">
+              <h6>{{professional.name}}</h6>
+            </a>
+            <p>{{estimatedPrice}}&euro;</p>
+            <p>{{comments}}</p>
+          </div>
+          <div>
+            <a href="/acceptOffer/{{../announcement._id}}/{{_id}}/{{professional._id}}"><button
+                class="btn green-btn">Aceptar</button></a>
+            <a href="/declineOffer/{{../announcement._id}}/{{_id}}"><button class="btn red-btn">Rechazar</button></a>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </article>
+
+  </section>
+</main>
