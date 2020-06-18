@@ -56,7 +56,7 @@ nav a {
   text-decoration: none;
 }
 //Selecciona los dos primeros hijos
-ul li:nth-child(-n + 2) {
+nav ul li:nth-child(-n + 2) {
   padding-right: 1em;
 }
 nav button {
@@ -65,12 +65,15 @@ nav button {
 }
 i {
   color: #1abc9c;
+  font-size: 1.5em;
+}
+#menu-button {
+  font-size: 1.9em;
 }
 .separator {
   color: rgba($color: $general-text, $alpha: 0.3);
 }
 //NAVBAR END
-
 //SIDENAV
 .sidenav {
   height: 100%;
@@ -103,7 +106,6 @@ i {
   top: 0;
   right: 25px;
   font-size: 36px;
-  //margin-left: 50px;
 }
 //SIDENAV END
 
@@ -266,18 +268,18 @@ section {
 #announcements-list {
   display: grid;
   grid-template-columns: 50% 50%;
-  gap: 10px;
+  gap: 12px;
 }
 //CARDS
 .announce-card {
   background-color: rgba($color: white, $alpha: 1);
   border-radius: 25px;
-  border: 2px solid rgba($color: $general-text, $alpha: 1);
   max-height: 200px;
   margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
 }
 .announce-title {
   margin-top: 0.5em;
@@ -293,11 +295,82 @@ section {
   width: 100%;
   max-height: 150px;
   border-radius: 22px 22px 0 0;
-  border-bottom: 1px solid $general-text;
+  border-bottom: 1px solid rgba($color: $general-text, $alpha: 0.3);
 }
 .announce-card a {
   text-decoration: none;
 }
+//CARDS END
+// ANNOUNCEMENT/:ID
+#announce-section {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2); 
+  padding: 1em 2em;
+}
+#announce-article > div {
+  margin: 1em 0;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+  width: 100%;
+  background-color: white;
+}
+#announce-article img {
+  width: 100%;
+  margin-top: 1em;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+#announce-article div:nth-child(2) {
+  margin-top: 1em;
+  padding: 1em;
+}
+#announce-article p {
+  padding-top: 1em;
+  font-size: small;
+}
+//OFFER LIST
+.offer-field {
+  list-style: none;
+  padding: 0.3em 1em;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+  width: 100%;
+  background-color: white;
+}
+.offer-field li{
+  list-style: none;
+  margin: 1em 0;
+  padding-bottom: 1.5em;
+  width: 100%;
+  border-bottom: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+.offer div:last-child {
+  padding-top: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+.offer h6 {
+  font-size: 0.9em;
+  padding-bottom: 0.5em;
+}
+.offer a{
+  text-decoration: none;
+}
+//OFFER LIST END
+//MAKE OFFER
+#guest-view form > * {
+  margin: 0.5em 0;
+}
+#guest-view input {
+  width: 100%;
+  padding: 0.5em;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+#offer-description {
+  padding: 0.5em;
+  outline: none;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  border-radius: 5px;
+}
+
 
 //FOOTER
 footer {

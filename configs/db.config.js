@@ -8,6 +8,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: true
   })
   .then((x) => {
     console.log(

@@ -33,14 +33,19 @@
     </div>
     <ul>
       {{#if currentUser}}
-      <a href="/myaccount"><i class="fas fa-user"></i></a>
+      <li>
+        <a href="/myaccount">
+          <i class="fas fa-user">
+          </i>
+        </a>
+      </li>
       {{else}}
       <li><a href="/auth">Entrar</a></li>
       {{/if}}
       <li class="separator">|</li>
       <li>
         <button onclick="openNav()">
-          <i class="fas fa-bars"></i>
+          <i id="menu-button" class="fas fa-bars"></i>
         </button>
       </li>
     </ul>
