@@ -8,16 +8,19 @@
         <p>{{announcement.description}}</p>
       </div>
     </article>
-    <article class="offer-field">
-      <h3>Oferta aceptada</h3>
+    <article class="offer-field" id="accepted-offer-article">
+      <h2>Oferta aceptada</h2>
       {{#each announcement.offers}}
       {{#if accepted}}
       <div class="offer">
-        <a href="#">
-          <h6>{{professional.name}}</h6>
+        <a href="/userProfile/{{professional._id}}">
+          <h3>{{professional.name}}</h3>
         </a>
         <p>{{estimatedPrice}}&euro;</p>
         <p>{{comments}}</p>
+        <br>
+        <h6>Contacto</h6>
+        <p>{{professional.email}}</p>
       </div>
       {{/if}}
       {{/each}}

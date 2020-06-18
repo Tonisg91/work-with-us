@@ -334,6 +334,12 @@ section {
   border: 1px solid rgba(44, 62, 80, 0.3);
   border-radius: 5px; }
 
+#accepted-offer-article h2 {
+  padding: 0.6em 0; }
+
+#accepted-offer-article .offer {
+  padding: 0.5em 0; }
+
 #my-account-main {
   background-color: rgba(52, 152, 219, 0.2); }
 
