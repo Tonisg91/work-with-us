@@ -1,34 +1,37 @@
-<main>
-  <h1>Usuario</h1>
-  <section id="user-section-1">
-    <article id="user-info">
-      <img
-        src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
-        alt="Imagen de usuario">
+<main id="my-account-main">
+  <section id="my-account-section">
+    <article id="my-data">
+      <img src="{{user.photo}}" alt="Imagen de usuario" id="user-img">
       <div>
-        <h2>{{user.name}}</h2>
-        <p>{{user.email}}</p>
-        <p>{{user.location.city}}</p>
+        <p><strong>Nombre:</strong> {{user.name}}</p>
+        <p><strong>Email:</strong> {{user.email}}</p>
+        <p><strong>Ciudad:</strong> {{user.city}}</p>
       </div>
     </article>
   </section>
-  <section id="user-section-2">
-    <article id="user-announcements">
-      <h3>Anuncios</h3>
+  <section id="my-announces">
+    <article>
+      <h2>Anuncios</h2>
       {{#if user.announcements}}
-      {{#each user.announcements}}
-      <div>
-        <img src="{{this.photos}}" alt="Imagen de anuncio">
-        <div>
-          <h4>{{this.title}}</h4>
+      <div id="my-list">
+        {{#each user.announcements}}
+        <div class="announce-card">
+          <img src="{{this.photos}}" alt="Imagen de anuncio">
+          <div class="announce-title">
+            <a href="/announcement/{{this._id}}">
+              <h4>{{this.title}}</h4>
+            </a>
+          </div>
         </div>
+        {{/each}}
       </div>
-      {{/each}}
       {{else}}
       <p>Este usuario no tiene anuncios</p>
       {{/if}}
     </article>
-    <article id="user-reviews">
+  </section>
+  <section id="user-reviews">
+    <article>
       <h3>Reviews</h3>
       {{#if user.reviews}}
       {{#each user.reviews}}
@@ -38,7 +41,7 @@
       </div>
       {{/each}}
       {{else}}
-      <p>Este usuario no ha sido valorado</p>
+      <p>Este usuario no tiene valoraciones</p>
       {{/if}}
     </article>
   </section>
