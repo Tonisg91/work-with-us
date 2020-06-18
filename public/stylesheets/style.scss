@@ -22,6 +22,12 @@ html {
 }
 // MARGIN RESET END
 
+//TOOLS
+.hidden {
+  display: none;
+}
+//TOOLS END
+
 // TEXT COLOR
 body {
   color: $general-text;
@@ -334,6 +340,10 @@ section {
 #announce-article p {
   padding-top: 1em;
   font-size: small;
+}
+#icon-container {
+  display: flex;
+  justify-content: space-between;
 }
 //OFFER LIST
 .offer-field {

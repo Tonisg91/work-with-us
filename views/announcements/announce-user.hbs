@@ -1,11 +1,23 @@
 <main>
   <section id="announce-section">
-    <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+    <div id="icon-container">
+      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+    </div>
     <article id="announce-article">
       <img src="{{announcement.photos}}" alt="">
       <div>
-        <h2>{{announcement.title}}</h2>
-        <p>{{announcement.description}}</p>
+        <div id="announce-data">
+          <h2 id="announce-title">{{announcement.title}}</h2>
+          <p id="description">{{announcement.description}}</p>
+        </div>
+        <form action="/edit/{{announcement._id}}" id="edit-announce-data" method="POST" class="hidden">
+          <input type="text" name="title" value="{{announcement.title}}">
+          <textarea name="description" id="" cols="30" rows="10">{{announcement.description}}</textarea>
+        </form>
+        <br>
+        <button id="edit-announcement" class="btn green-btn" onclick="editFunction()">Edit</button>
+        <button id="save-button" class="btn blue-btn hidden" form="edit-announce-data">Guardar</button>
       </div>
     </article>
     <article class="offer-field">
@@ -36,3 +48,15 @@
 
   </section>
 </main>
+
+
+
+<script>
+  const editFunction = () => {
+    const className = 'hidden'
+    document.getElementById('announce-data').classList.add(className);
+    document.getElementById('edit-announce-data').classList.remove(className);
+    document.getElementById('edit-announcement').classList.add(className)
+    document.getElementById('save-button').classList.remove(className)
+  }
+</script>
