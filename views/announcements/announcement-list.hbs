@@ -1,7 +1,13 @@
 <main id="announcements-main">
-  <form action="#" method="POST">
-    <input type="text" placeholder="Busca un anuncio...">
-    <button type="submit"><i class="fas fa-search"></i></button>
+  <form action="#" method="POST" id="searchbar-form">
+    <div>
+      <input type="text" placeholder="Busca un anuncio...">
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
+    </div>
+
   </form>
   <section id="announcements-list">
     {{#each list}}

@@ -1,20 +1,17 @@
-<main>
-  <section>
-    <h1>Mi cuenta</h1>
-    <div>
-      <img
-        src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
-        alt="Imagen de usuario">
-    </div>
+<main id="my-account-main">
+  <section id="my-account-section">
     <article id="my-data">
+      <h2>Mi cuenta</h2>
+      <div>
+        <img src="{{currentUser.photo}}" alt="Imagen de usuario" id="user-img">
+      </div>
       <form action="/editUser" id="edit-info-form" method="POST">
         <label for="name">Nombre</label>
         <input type="text" name="name" value="{{currentUser.name}}">
         <label for="email">Email</label>
         <input type="email" name="email" value="{{currentUser.email}}">
         <br>
-        <hr>
-        <h4 for="#">Más sobre tí</h4>
+        <h4>Más sobre tí</h4>
         <label for="details">Sector</label>
         <select name="sector" id="details" form="edit">
           {{#if currentUser.sector}}
@@ -33,17 +30,32 @@
           <option value="Cerrajería">Cerrajería</option>
           <option value="Otros">Otros</option>
         </select>
-        <label for="location">Localizacion</label>
         <label for="city">Ciudad</label>
         <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
-        <label for="address">Direccion</label>
+        <label for="address">Dirección</label>
         <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
-        <label for="description">Descripcion</label>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Escribe algo sobre ti"></textarea>
-        <button type="submit">Editar</button>
+        <label for="description">Descripción</label>
+        <textarea name="description" id="" cols="30" rows="7" placeholder="Escribe algo sobre ti"></textarea>
+        <button type="submit" class="btn blue-btn">Editar</button>
       </form>
     </article>
-    <a href="/addAnnouncement"><button>Añadir anuncio</button></a>
-    <a href="/logout">Logout</a>
+  </section>
+  <section id="my-announces">
+    <article>
+      <h2>Mis anuncios</h2>
+      <div id="my-list">
+        {{#each currentUser.announcements }}
+        <div class="announce-card">
+          <img src="{{photos}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <a href="/addAnnouncement"><button class="btn blue-btn">Añadir anuncio</button></a>
+    </article>
   </section>
 </main>
