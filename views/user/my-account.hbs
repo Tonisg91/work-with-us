@@ -1,0 +1,62 @@
+<main id="my-account-main">
+  <section id="my-account-section">
+    <article id="my-data">
+      <h2>Mi cuenta</h2>
+      <div>
+        <img src="{{currentUser.photo}}" alt="Imagen de usuario" id="user-img">
+      </div>
+      <form action="/editUser" id="edit-info-form" method="POST">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" value="{{currentUser.name}}">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{currentUser.email}}">
+        <br>
+        <h4>Más sobre tí</h4>
+        <label for="details">Sector</label>
+        <select name="sector" id="details" form="edit">
+          {{#if currentUser.sector}}
+          <option value="{{currentUser.sector}}" selected>{{currentUser.sector}}</option>
+          {{/if}}
+          <option value="Fontanería">Fontanería</option>
+          <option value="Carpintería">Carpintería</option>
+          <option value="Carpintería de aluminio">Carpintería de aluminio</option>
+          <option value="Paletería">Paletería</option>
+          <option value="Albañilería">Albañilería</option>
+          <option value="Electricidad">Electricidad</option>
+          <option value="Jardinería">Jardinería</option>
+          <option value="Reparacion electrodomésticos">Reparación electrodomésticos</option>
+          <option value="Pintura">Pintura</option>
+          <option value="Cristalería">Cristalería</option>
+          <option value="Cerrajería">Cerrajería</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <label for="city">Ciudad</label>
+        <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
+        <label for="address">Dirección</label>
+        <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
+        <label for="description">Descripción</label>
+        <textarea name="description" id="" cols="30" rows="7"
+          placeholder="Escribe algo sobre ti">{{currentUser.description}}</textarea>
+        <button type="submit" class="btn blue-btn">Editar</button>
+      </form>
+    </article>
+  </section>
+  <section id="my-announces">
+    <article>
+      <h2>Mis anuncios</h2>
+      <div id="my-list">
+        {{#each currentUser.announcements }}
+        <div class="announce-card">
+          <img src="{{photos}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <a href="/addAnnouncement"><button class="btn blue-btn">Añadir anuncio</button></a>
+    </article>
+  </section>
+</main>

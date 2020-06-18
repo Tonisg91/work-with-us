@@ -1,8 +1,512 @@
+//COLOR PALETTE
+$red-btn: #e74c3c;
+$red-btn-active: #c0392b;
+$green-btn: #2ecc71;
+$green-btn-active: #27ae60;
+$blue-btn: #3498db;
+$blue-btn-active: #2980b9;
+$btn-text: #ecf0f1;
+$general-text: #2c3e50;
+
+//MARGIN RESET
+html {
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+// MARGIN RESET END
+
+//TOOLS
+.hidden {
+  display: none;
+}
+//TOOLS END
+
+// TEXT COLOR
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: $general-text;
+}
+body a {
+  color: $general-text;
+}
+// TEXT COLOR END
+
+// NAVBAR
+nav {
+  display: flex;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 3.5rem;
+  font-weight: 600;
+  background-color: $btn-text;
+}
+nav > * {
+  width: 50%;
+  margin: 0 1em;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
 }
 
-a {
-  color: #00B7FF;
+nav a {
+  text-decoration: none;
 }
+//Selecciona los dos primeros hijos
+nav ul li:nth-child(-n + 2) {
+  padding-right: 1em;
+}
+nav button {
+  border: none;
+  background-color: transparent;
+}
+i {
+  color: #1abc9c;
+  font-size: 1.5em;
+}
+#menu-button {
+  font-size: 1.9em;
+}
+.separator {
+  color: rgba($color: $general-text, $alpha: 0.3);
+}
+//NAVBAR END
+//SIDENAV
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sidenav a {
+  padding: 0.5em;
+  text-decoration: none;
+  text-align: center;
+  font-size: 25px;
+  color: #818181; //TEMPORAL
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+//SIDENAV END
+
+//BUTTONS
+.btn {
+  border: none;
+  color: $btn-text;
+  border-radius: 5px;
+  padding: 1em 2em;
+  font-weight: 600;
+  outline: none;
+}
+.red-btn {
+  background-color: $red-btn;
+  box-shadow: 0 5px $red-btn-active;
+}
+.red-btn:active {
+  box-shadow: 0 1px $red-btn-active;
+  transform: translateY(4px);
+}
+.green-btn {
+  background-color: $green-btn;
+  box-shadow: 0 5px $green-btn-active;
+}
+.green-btn:active {
+  box-shadow: 0 1px $green-btn-active;
+  transform: translateY(4px);
+}
+.blue-btn {
+  background-color: $blue-btn;
+  box-shadow: 0 5px $blue-btn-active;
+  outline: none;
+  font-weight: 600;
+}
+.blue-btn:active {
+  box-shadow: 0 1px $blue-btn-active;
+  transform: translateY(4px);
+}
+//BUTTONS END
+
+//ERRORS
+.error {
+  color: $btn-text;
+  text-transform: uppercase;
+  padding: 1em 2em;
+  background-color: $red-btn;
+}
+//ERRORS END
+
+//VIEWS
+section {
+  padding: 1.5em 2em;
+}
+//INDEX
+//SECTION 1 (INTRO)
+#index-section-1 {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#index-intro-article h1 {
+  font-size: 4rem;
+}
+#index-intro-article p {
+  padding: 1em 0;
+}
+//SECTION 2 (DATA)
+#index-data-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#index-data-article div {
+  text-align: center;
+  padding: 1em 0;
+}
+#index-data-article p {
+  font-weight: 600;
+  color: #1abc9c;
+}
+#index-data-article p:first-of-type {
+  font-size: 3em;
+}
+//SECTION 3 (SIGNUP)
+#index-section-3 {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#index-signup-article form {
+  display: flex;
+  flex-direction: column;
+}
+#index-signup-article input {
+  margin: 2em 0;
+  padding: 1em 0;
+  border-radius: 25px;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+// INDEX END
+
+//AUTH
+#auth-main {
+  margin: 1em;
+}
+#auth-section hr {
+  width: 85%;
+  margin-bottom: 1em;
+  border-top: 1px solid rgba($color: $general-text, $alpha: 0.15);
+}
+#auth-section h3 {
+  font-size: 1.8em;
+}
+#auth-section {
+  background-color: rgba($color: $blue-btn, $alpha: 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#auth-section form {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2em;
+}
+#auth-section input {
+  margin: 1em 0;
+  padding: 1em 0;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1em;
+}
+//AUTH END
+
+//ANNOUNCEMENTS
+#announcements-main {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#announcements-main input {
+  padding: 1em;
+  border-radius: 25px 0 0 25px;
+  border: none;
+  outline: none;
+}
+#announcements-main button {
+  border-radius: 0 25px 25px 0;
+  background-color: white;
+  padding: 0 1em;
+  border: none;
+  outline: none;
+}
+#announcements-main form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#announcements-main form div {
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+}
+#add-button {
+  padding-left: 1em;
+}
+#announcements-list {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 12px;
+}
+//CARDS
+.announce-card {
+  background-color: rgba($color: white, $alpha: 1);
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.2);
+  max-height: 200px;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+.announce-title {
+  margin-top: 0.5em;
+  padding-bottom: 1em;
+  border-radius: 0 0 22px 22px;
+  width: 100%;
+}
+.announce-card h4 {
+  font-size: 0.9em;
+  text-align: center;
+}
+.announce-card img {
+  width: 100%;
+  max-height: 150px;
+  border-radius: 22px 22px 0 0;
+  border-bottom: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+.announce-card a {
+  text-decoration: none;
+}
+//CARDS END
+// ANNOUNCEMENT/:ID
+#announce-section {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2); 
+  padding: 1em 2em;
+}
+#announce-article > div {
+  margin: 1em 0;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+  width: 100%;
+  background-color: white;
+}
+#announce-article img {
+  width: 100%;
+  margin-top: 1em;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+#announce-article div:nth-child(2) {
+  margin-top: 1em;
+  padding: 1em;
+}
+#announce-article p {
+  padding-top: 1em;
+  font-size: small;
+}
+#icon-container {
+  display: flex;
+  justify-content: space-between;
+}
+//OFFER LIST
+.offer-field {
+  list-style: none;
+  padding: 0.3em 1em;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+  width: 100%;
+  background-color: white;
+}
+.offer-field li{
+  list-style: none;
+  margin: 1em 0;
+  padding-bottom: 1.5em;
+  width: 100%;
+  border-bottom: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+.offer div:last-child {
+  padding-top: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+.offer h6 {
+  font-size: 0.9em;
+  padding-bottom: 0.5em;
+}
+.offer a{
+  text-decoration: none;
+}
+//OFFER LIST END
+//MAKE OFFER
+#guest-view form > * {
+  margin: 0.5em 0;
+}
+#guest-view input {
+  width: 100%;
+  padding: 0.5em;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+#offer-description {
+  padding: 0.5em;
+  outline: none;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  border-radius: 5px;
+}
+//MAKE OFFER END
+
+//OFFER ACCEPTED
+#accepted-offer-article h2{
+  padding: 0.6em 0;
+}
+#accepted-offer-article .offer {
+  padding: 0.5em 0;
+}
+//ANNOUNCEMENT/:ID END
+
+// MY ACCOUNT
+#my-account-main {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#user-img {
+  width: 35%;
+  border-radius: 50%;
+}
+#my-account-main article {
+  background-color: white;
+  padding: 1em;
+  border-radius: 25px;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+#my-account-section h2 {
+  text-align: center;
+  padding-bottom: 1em;
+}
+//FORM
+#edit-info-form {
+  display: flex;
+  flex-direction: column;
+}
+#edit-info-form > *{
+  outline: none;
+  margin: 0.3em 0;
+}
+#edit-info-form input,select,textarea {
+  font-weight: 600;
+  font-style: italic;
+  color: $general-text;
+}
+#edit-info-form input {
+  margin: 0.5em 0;
+  padding: 0.7em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+#edit-info-form select {
+  padding: 0.7em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  background-color: white;
+}
+#edit-info-form textarea {
+  padding: 1em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+//MY ANNOUNCE-LIST
+#my-announces h2 {
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+#my-list {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  padding: 0.5em 0.3em 0.8em 0;
+}
+//MY ACCOUNT END
+
+//ADD ANNOUNCE
+#add-announce-section {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#add-announce-section h2 {
+  padding-bottom: 0.7em;
+}
+#add-announce-article {
+  background-color: white;
+  padding: 1em;
+  border-radius: 25px;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+#add-announce-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+//FOOTER
+footer {
+  background-color: $general-text;
+  color: $btn-text;
+  padding: 1em 2em;
+}
+footer a {
+  color: $btn-text;
+  text-decoration: none;
+  border-bottom: 1px dashed;
+}
+footer a:hover {
+  font-weight: 600;
+}
+footer p {
+  font-weight: 600;
+  padding: 1em 0;
+}
+footer ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+footer li {
+  padding: 0.8em 0;
+}
+//FOOTER END

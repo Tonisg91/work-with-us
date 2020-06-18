@@ -1,0 +1,62 @@
+<main>
+  <section id="announce-section">
+    <div id="icon-container">
+      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+    </div>
+    <article id="announce-article">
+      <img src="{{announcement.photos}}" alt="">
+      <div>
+        <div id="announce-data">
+          <h2 id="announce-title">{{announcement.title}}</h2>
+          <p id="description">{{announcement.description}}</p>
+        </div>
+        <form action="/edit/{{announcement._id}}" id="edit-announce-data" method="POST" class="hidden">
+          <input type="text" name="title" value="{{announcement.title}}">
+          <textarea name="description" id="" cols="30" rows="10">{{announcement.description}}</textarea>
+        </form>
+        <br>
+        <button id="edit-announcement" class="btn green-btn" onclick="editFunction()">Edit</button>
+        <button id="save-button" class="btn blue-btn hidden" form="edit-announce-data">Guardar</button>
+      </div>
+    </article>
+    <article class="offer-field">
+      <h3>Ofertas</h3>
+      <ul>
+        {{#if announcement.offers}}
+        {{#each announcement.offers }}
+        <li class="offer">
+          <div>
+            <a href="#">
+              <h6>{{professional.name}}</h6>
+            </a>
+            <p>{{estimatedPrice}}&euro;</p>
+            <p>{{comments}}</p>
+          </div>
+          <div>
+            <a href="/acceptOffer/{{../announcement._id}}/{{_id}}/{{professional._id}}"><button
+                class="btn green-btn">Aceptar</button></a>
+            <a href="/declineOffer/{{../announcement._id}}/{{_id}}"><button class="btn red-btn">Rechazar</button></a>
+          </div>
+        </li>
+        {{/each}}
+        {{else}}
+        <li>Aún no tienes ofertas</li>
+        {{/if}}
+      </ul>
+    </article>
+
+  </section>
+</main>
+
+
+
+<script>
+  const editFunction = () => {
+    const className = 'hidden'
+    document.getElementById('announce-data').classList.add(className);
+    document.getElementById('edit-announce-data').classList.remove(className);
+    document.getElementById('edit-announcement').classList.add(className)
+    document.getElementById('save-button').classList.remove(className)
+  }
+</script>
