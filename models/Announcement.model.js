@@ -6,6 +6,23 @@ const announcementSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
     },
+    sector: {
+      type: String,
+      enum: [
+        "Fontanería",
+        "Carpintería",
+        "Carpintería de aluminio",
+        "Paletería",
+        "Albañilería",
+        "Electricidad",
+        "Jardinería",
+        "Reparación electrodomésticos",
+        "Pintura",
+        "Cristalería",
+        "Cerrajería",
+        "Otros",
+      ]
+    },
     description: {
       type: String,
     },

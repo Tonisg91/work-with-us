@@ -1,13 +1,31 @@
 <main>
-  <h2>Añade un nuevo anuncio</h2>
-
-  <form action="/addAnnouncement" method="POST">
-    <label for="title">Título del anuncio:</label>
-    <input type="text" name="title" placeholder="Añade un título">
-    <label for="description">Descripción del anuncio:</label>
-    <input type="textarea" name="description">
-    <label for="photos">Fotos:</label>
-    <input type="text" name="photos" placeholder="Añade la dirección de tu foto">
-    <button type="submit">Crear anuncio</button>
-  </form>
+  <section id="add-announce-section">
+    <article id="add-announce-article">
+      <h2>Añadir un anuncio</h2>
+      <form action="/addAnnouncement" method="POST" id="edit-info-form">
+        <label for="title">Título del anuncio</label>
+        <input type="text" name="title" placeholder="Añade un título">
+        <label for="description">Descripción del anuncio</label>
+        <textarea name="description" cols="30" rows="10" placeholder="Describe la tarea a realizar"></textarea>
+        <label for="sector">Categoria</label>
+        <select name="sector" id="details" form="edit">
+          <option value="Fontanería">Fontanería</option>
+          <option value="Carpintería">Carpintería</option>
+          <option value="Carpintería de aluminio">Carpintería de aluminio</option>
+          <option value="Paletería">Paletería</option>
+          <option value="Albañilería">Albañilería</option>
+          <option value="Electricidad">Electricidad</option>
+          <option value="Jardinería">Jardinería</option>
+          <option value="Reparacion electrodomésticos">Reparación electrodomésticos</option>
+          <option value="Pintura">Pintura</option>
+          <option value="Cristalería">Cristalería</option>
+          <option value="Cerrajería">Cerrajería</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <label for="photos">Fotos:</label>
+        <input type="text" name="photos" placeholder="Añade la dirección de tu foto">
+        <button type="submit" class="btn blue-btn">Crear anuncio</button>
+      </form>
+    </article>
+  </section>
 </main>
