@@ -13,7 +13,7 @@ const getAnnouncements = async (req, res, next) => {
 
 const getOneAnnouncement = async (req, res, next) => {
   try {
-    const announcement = await Announcements.findById(req.params.id).populate({path: 'offers', populate: {path: 'professional', model: 'User'}});
+    const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
     const userId = req.session.currentUser._id;
     //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
@@ -22,7 +22,7 @@ const getOneAnnouncement = async (req, res, next) => {
     if (isUserTheAnnouncer) {
       if (isAnnouncementAccepted) {
         res.render("announcements/announce-accepted", {
-          announcement, 
+          announcement,
           currentUser: user
         })
       } else {
@@ -57,13 +57,12 @@ const postMakeOffer = async (req, res, next) => {
 
 const getDeclineOffer = async (req, res, next) => {
   try {
-    const announcementId = req.params.announceId;
-    const offerId = req.params.offerId;
+    const { announceId, offerId } = req.params
     //Promesas: borrar oferta del anuncio (1) y borrar oferta (2)
-    const Promise1 = Announcements.findByIdAndUpdate(announcementId, { $pull: { offers: { _id: offerId } } });
-    const Promise2 = Offers.findByIdAndDelete(offerId);
-    await Promise.all([Promise1, Promise2]);
-    res.redirect(`/announcement/${announcementId}`)
+    const removeOfferAnnounce = Announcements.findByIdAndUpdate(announceId, { $pull: { offers: { _id: offerId } } });
+    const removeOffer = Offers.findByIdAndDelete(offerId);
+    await Promise.all([removeOfferAnnounce, removeOffer]);
+    res.redirect(`/announcement/${announceId}`)
   } catch (error) {
     next(error)
   }
@@ -71,18 +70,35 @@ const getDeclineOffer = async (req, res, next) => {
 
 const getAcceptOffer = async (req, res, next) => {
   try {
-    const announcementId = req.params.announceId;
-    const offerId = req.params.offerId;
-    const professionalId = req.params.professionalId;
-    //Promesass: editar
-    const Promise1 = Offers.findByIdAndUpdate(offerId, {accepted: true});
-    const Promise2 = Announcements.findByIdAndUpdate(announcementId, {assigned: true, professional: professionalId});
-    await Promise.all([Promise1, Promise2]);
-    res.redirect(`/announcement/${announcementId}`);
+    const { announceId, offerId, professionalId } = req.params;
+    //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
+    const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });
+    const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId });
+    await Promise.all([offersAcceptedTrue, announceAssignedTrue]);
+    res.redirect(`/announcement/${announceId}`);
+  } catch (error) {
+    next(error);
+  }
+}
+
+const editAnnouncement = async (req, res, next) => {
+  try {
+    const { title, description } = req.body;
+    await Announcements.findByIdAndUpdate(req.params.announceId, { title, description });
+    res.redirect(`/announcement/${req.params.announceId}`);
   } catch (error) {
     next(error)
   }
 }
 
-module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer }
+const deleteAnnouncement = async (req, res, next) => {
+  try {
+    await Announcements.findByIdAndDelete(req.params.announceId);
+    res.redirect('/myaccount');
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement }
 

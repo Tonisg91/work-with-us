@@ -9,6 +9,9 @@ html {
   margin: 0;
   padding: 0; }
 
+.hidden {
+  display: none; }
+
 body {
   color: #2c3e50; }
 
@@ -291,6 +294,10 @@ section {
 #announce-article p {
   padding-top: 1em;
   font-size: small; }
+
+#icon-container {
+  display: flex;
+  justify-content: space-between; }
 
 .offer-field {
   list-style: none;
