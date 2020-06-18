@@ -91,8 +91,9 @@ i {
   align-items: center;
 }
 .sidenav a {
-  padding: 8px;
+  padding: 0.5em;
   text-decoration: none;
+  text-align: center;
   font-size: 25px;
   color: #818181; //TEMPORAL
   display: block;
@@ -260,10 +261,18 @@ section {
   outline: none;
 }
 #announcements-main form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#announcements-main form div {
   padding-top: 1em;
   display: flex;
   justify-content: center;
   padding-top: 1em;
+}
+#add-button {
+  padding-left: 1em;
 }
 #announcements-list {
   display: grid;
@@ -274,6 +283,7 @@ section {
 .announce-card {
   background-color: rgba($color: white, $alpha: 1);
   border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.2);
   max-height: 200px;
   margin: auto 0;
   display: flex;
@@ -374,10 +384,64 @@ section {
 //CARDS END
 
 // MY ACCOUNT
+#my-account-main {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#user-img {
+  width: 35%;
+  border-radius: 50%;
+}
+#my-account-main article {
+  background-color: white;
+  padding: 1em;
+  border-radius: 25px;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+#my-account-section h2 {
+  text-align: center;
+  padding-bottom: 1em;
+}
 //FORM
 #edit-info-form {
   display: flex;
   flex-direction: column;
+}
+#edit-info-form > *{
+  outline: none;
+  margin: 0.3em 0;
+}
+#edit-info-form input,select,textarea {
+  font-weight: 600;
+  font-style: italic;
+  color: $general-text;
+}
+#edit-info-form input {
+  margin: 0.5em 0;
+  padding: 0.7em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+#edit-info-form select {
+  padding: 0.7em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  background-color: white;
+}
+#edit-info-form textarea {
+  padding: 1em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+}
+//MY ANNOUNCE-LIST
+#my-announces h2 {
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+#my-list {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+  padding: 0.5em 0.3em 0.8em 0;
 }
 
 //FOOTER

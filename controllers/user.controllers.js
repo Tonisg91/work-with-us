@@ -4,7 +4,7 @@ const Announcement = require("../models/Announcement.model");
 const getMyAccount = async (req, res, next) => {
   try {
     const userId = req.session.currentUser._id;
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).populate('announcements');
     res.render("user/my-account", { currentUser: user });
   } catch (error) {
     next(error);
