@@ -370,7 +370,15 @@ section {
   border: 1px solid rgba($color: $general-text, $alpha: 0.3);
   border-radius: 5px;
 }
+//MAKE OFFER END
+//CARDS END
 
+// MY ACCOUNT
+//FORM
+#edit-info-form {
+  display: flex;
+  flex-direction: column;
+}
 
 //FOOTER
 footer {

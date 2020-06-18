@@ -1,41 +1,49 @@
 <main>
-  <h1>Mi cuenta</h1>
-  <div>
-    <img
-      src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
-      alt="Imagen de usuario">
-  </div>
-  <article>
-    <form action="/editUser" id="edit" method="POST">
-      <label for="name">Nombre</label>
-      <input type="text" name="name" value="{{currentUser.name}}">
-      <label for="#">Más sobre tí</label>
-      <label for="details">Sector</label>
-      <select name="sector" id="details" form="edit">
-        {{#if currentUser.sector}}
-        <option value="{{currentUser.sector}}" selected>{{currentUser.sector}}</option>
-        {{/if}}
-        <option value="Fontanería">Fontanería</option>
-        <option value="Carpintería">Carpintería</option>
-        <option value="Carpintería de aluminio">Carpintería de aluminio</option>
-        <option value="Paletería">Paletería</option>
-        <option value="Albañilería">Albañilería</option>
-        <option value="Electricidad">Electricidad</option>
-        <option value="Jardinería">Jardinería</option>
-        <option value="Reparacion electrodomésticos">Reparación electrodomésticos</option>
-        <option value="Pintura">Pintura</option>
-        <option value="Cristalería">Cristalería</option>
-        <option value="Cerrajería">Cerrajería</option>
-        <option value="Otros">Otros</option>
-      </select>
-      <label for="location">Localizacion</label>
-      <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
-      <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
-      <label for="description">Descripcion</label>
-      <input type="textarea" name="description" value="{{currentUser.description}}">
-      <button type="submit">Editar</button>
-    </form>
-  </article>
-  <a href="/addAnnouncement"><button>Añadir anuncio</button></a>
-  <a href="/logout">Logout</a>
+  <section>
+    <h1>Mi cuenta</h1>
+    <div>
+      <img
+        src="https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9"
+        alt="Imagen de usuario">
+    </div>
+    <article id="my-data">
+      <form action="/editUser" id="edit-info-form" method="POST">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" value="{{currentUser.name}}">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{currentUser.email}}">
+        <br>
+        <hr>
+        <h4 for="#">Más sobre tí</h4>
+        <label for="details">Sector</label>
+        <select name="sector" id="details" form="edit">
+          {{#if currentUser.sector}}
+          <option value="{{currentUser.sector}}" selected>{{currentUser.sector}}</option>
+          {{/if}}
+          <option value="Fontanería">Fontanería</option>
+          <option value="Carpintería">Carpintería</option>
+          <option value="Carpintería de aluminio">Carpintería de aluminio</option>
+          <option value="Paletería">Paletería</option>
+          <option value="Albañilería">Albañilería</option>
+          <option value="Electricidad">Electricidad</option>
+          <option value="Jardinería">Jardinería</option>
+          <option value="Reparacion electrodomésticos">Reparación electrodomésticos</option>
+          <option value="Pintura">Pintura</option>
+          <option value="Cristalería">Cristalería</option>
+          <option value="Cerrajería">Cerrajería</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <label for="location">Localizacion</label>
+        <label for="city">Ciudad</label>
+        <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
+        <label for="address">Direccion</label>
+        <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
+        <label for="description">Descripcion</label>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="Escribe algo sobre ti"></textarea>
+        <button type="submit">Editar</button>
+      </form>
+    </article>
+    <a href="/addAnnouncement"><button>Añadir anuncio</button></a>
+    <a href="/logout">Logout</a>
+  </section>
 </main>
