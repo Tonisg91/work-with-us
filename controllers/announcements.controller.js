@@ -1,5 +1,7 @@
 const Announcements = require('../models/Announcement.model')
 const Offers = require('../models/Offers.model')
+const User = require('../models/Users.model')
+
 
 const getAnnouncements = async (req, res, next) => {
   try {
@@ -15,9 +17,8 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
-    const userId = req.session.currentUser._id;
     //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
-    const isUserTheAnnouncer = announcement.announcer == userId;
+    const isUserTheAnnouncer = announcement.announcer == user._id;
     const isAnnouncementAccepted = announcement.assigned == true;
     if (isUserTheAnnouncer) {
       if (isAnnouncementAccepted) {
@@ -94,11 +95,40 @@ const editAnnouncement = async (req, res, next) => {
 const deleteAnnouncement = async (req, res, next) => {
   try {
     await Announcements.findByIdAndDelete(req.params.announceId);
-    res.redirect('/myaccount');
+    res.redirect('/myaccount#my-announces');
   } catch (error) {
     next(error);
   }
 }
 
-module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement }
+const getAddAnnouncement = async (req, res, next) => {
+  try {
+    const user = req.session.currentUser;
+    res.render("announcements/add-announcement", { currentUser: user });
+  } catch (error) {
+    next(error);
+  }
+}
+
+const postAddAnnouncement = async (req, res, next) => {
+  try {
+    const announcerId = req.session.currentUser._id;
+    const { title, description, photos } = req.body;
+    const newAnnouncement = await Announcements.create({
+      title: title,
+      description: description,
+      photos: req.file.path,
+      announcer: announcerId,
+    });
+    const newAnnouncementId = newAnnouncement._id;
+    await User.findByIdAndUpdate(announcerId, {
+      $push: { announcements: newAnnouncementId },
+    });
+    res.redirect("/myaccount#my-announces");
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement, getAddAnnouncement, postAddAnnouncement }
 
