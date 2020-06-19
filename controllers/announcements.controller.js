@@ -17,26 +17,30 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
-    //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
-    const isUserTheAnnouncer = announcement.announcer == user._id;
-    const isAnnouncementAccepted = announcement.assigned == true;
-    if (isUserTheAnnouncer) {
-      if (isAnnouncementAccepted) {
-        res.render("announcements/announce-accepted", {
-          announcement,
-          currentUser: user
-        })
+    if (!user) {
+      res.redirect("/auth");
+    } else {
+      //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
+      const isUserTheAnnouncer = announcement.announcer == user._id;
+      const isAnnouncementAccepted = announcement.assigned == true;
+      if (isUserTheAnnouncer) {
+        if (isAnnouncementAccepted) {
+          res.render("announcements/announce-accepted", {
+            announcement,
+            currentUser: user
+          })
+        } else {
+          res.render("announcements/announce-user", {
+            announcement,
+            currentUser: user
+          });
+        }
       } else {
-        res.render("announcements/announce-user", {
+        res.render("announcements/announcement-guestUser", {
           announcement,
-          currentUser: user
+          currentUser: user,
         });
       }
-    } else {
-      res.render("announcements/announcement-guestUser", {
-        announcement,
-        currentUser: user,
-      });
     }
   } catch (error) {
     next(error);
@@ -130,5 +134,15 @@ const postAddAnnouncement = async (req, res, next) => {
   }
 }
 
-module.exports = { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement, getAddAnnouncement, postAddAnnouncement }
+module.exports = { 
+  getAnnouncements, 
+  getOneAnnouncement, 
+  postMakeOffer, 
+  getDeclineOffer, 
+  getAcceptOffer, 
+  editAnnouncement, 
+  deleteAnnouncement, 
+  getAddAnnouncement, 
+  postAddAnnouncement 
+};
 
