@@ -1,15 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const fileUploader = require('../configs/cloudinary.config')
 
-const { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement } = require('../controllers/announcements.controller')
+const { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement, getAddAnnouncement, postAddAnnouncement } = require('../controllers/announcements.controller')
 
 router
   .get("/announcements", getAnnouncements)
   .get("/announcement/:id", getOneAnnouncement)
-  .post('/makeOffer/:announcementId', postMakeOffer)
+  .get('/delete/:announceId', deleteAnnouncement)
   .get('/declineOffer/:announceId/:offerId', getDeclineOffer)
   .get('/acceptOffer/:announceId/:offerId/:professionalId', getAcceptOffer)
+  .get("/addAnnouncement", getAddAnnouncement)
+  .post("/addAnnouncement", fileUploader.single('photos'), postAddAnnouncement)
   .post('/edit/:announceId', editAnnouncement)
-  .get('/delete/:announceId', deleteAnnouncement);
+  .post('/makeOffer/:announcementId', postMakeOffer);
+
 
 module.exports = router;

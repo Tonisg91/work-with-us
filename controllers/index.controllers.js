@@ -12,7 +12,7 @@ const getUserProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).populate("announcements");
     const currentUser = req.session.currentUser;
-    res.render("user-profile", { user, currentUser });
+    res.render("user/user-profile", { user, currentUser });
   } catch (error) {
     next(error);
   }

@@ -31,7 +31,8 @@ const announcementSchema = new Schema(
       maxlength: 5,
     },
     photos: {
-      type: String, //ARRAY DE URL??
+      type: [String],
+      default: ['https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png']
     },
     assigned: {
       type: Boolean,

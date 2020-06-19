@@ -2,7 +2,7 @@
   <section id="add-announce-section">
     <article id="add-announce-article">
       <h2>Añadir un anuncio</h2>
-      <form action="/addAnnouncement" method="POST" id="edit-info-form">
+      <form action="/addAnnouncement" method="POST" id="edit-info-form" enctype="multipart/form-data">
         <label for="title">Título del anuncio</label>
         <input type="text" name="title" placeholder="Añade un título">
         <label for="description">Descripción del anuncio</label>
@@ -23,7 +23,7 @@
           <option value="Otros">Otros</option>
         </select>
         <label for="photos">Fotos:</label>
-        <input type="text" name="photos" placeholder="Añade la dirección de tu foto">
+        <input type="file" name="photos" placeholder="Añade la dirección de tu foto" id="image-input">
         <button type="submit" class="btn blue-btn">Crear anuncio</button>
       </form>
     </article>

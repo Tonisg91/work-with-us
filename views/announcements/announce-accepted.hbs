@@ -1,6 +1,9 @@
 <main>
   <section id="announce-section">
-    <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+    <div id="icon-container">
+      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+    </div>
     <article id="announce-article">
       <img src="{{announcement.photos}}" alt="">
       <div>
