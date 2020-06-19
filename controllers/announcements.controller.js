@@ -95,7 +95,7 @@ const editAnnouncement = async (req, res, next) => {
 const deleteAnnouncement = async (req, res, next) => {
   try {
     await Announcements.findByIdAndDelete(req.params.announceId);
-    res.redirect('/myaccount');
+    res.redirect('/myaccount#my-announces');
   } catch (error) {
     next(error);
   }
@@ -124,7 +124,7 @@ const postAddAnnouncement = async (req, res, next) => {
     await User.findByIdAndUpdate(announcerId, {
       $push: { announcements: newAnnouncementId },
     });
-    res.redirect("/myAccount");
+    res.redirect("/myaccount#my-announces");
   } catch (error) {
     next(error);
   }
