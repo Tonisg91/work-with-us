@@ -1,8 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const fileUploader = require('../configs/cloudinary.config')
+const fileUploader = require('../configs/cloudinary.config');
 
-const { getAnnouncements, getOneAnnouncement, postMakeOffer, getDeclineOffer, getAcceptOffer, editAnnouncement, deleteAnnouncement, getAddAnnouncement, postAddAnnouncement } = require('../controllers/announcements.controller')
+const { 
+  getAnnouncements, 
+  getOneAnnouncement, 
+  postMakeOffer, 
+  getDeclineOffer, 
+  getAcceptOffer, 
+  editAnnouncement, 
+  deleteAnnouncement, 
+  getAddAnnouncement, 
+  postAddAnnouncement 
+} = require('../controllers/announcements.controller');
 
 router
   .get("/announcements", getAnnouncements)
