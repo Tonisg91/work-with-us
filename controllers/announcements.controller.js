@@ -116,16 +116,18 @@ const getAddAnnouncement = async (req, res, next) => {
 
 const postAddAnnouncement = async (req, res, next) => {
   try {
-    const announcerId = req.session.currentUser._id;
-    const { title, description, photos } = req.body;
+    const announcer = req.session.currentUser._id;
+    const { title, description } = req.body;
+    let photos;
+    req.file ? photos = req.file.path : photos = undefined;
     const newAnnouncement = await Announcements.create({
-      title: title,
-      description: description,
-      photos: req.file.path,
-      announcer: announcerId,
+      title,
+      description,
+      photos,
+      announcer,
     });
     const newAnnouncementId = newAnnouncement._id;
-    await User.findByIdAndUpdate(announcerId, {
+    await User.findByIdAndUpdate(announcer, {
       $push: { announcements: newAnnouncementId },
     });
     res.redirect("/myaccount#my-announces");
@@ -134,15 +136,15 @@ const postAddAnnouncement = async (req, res, next) => {
   }
 }
 
-module.exports = { 
-  getAnnouncements, 
-  getOneAnnouncement, 
-  postMakeOffer, 
-  getDeclineOffer, 
-  getAcceptOffer, 
-  editAnnouncement, 
-  deleteAnnouncement, 
-  getAddAnnouncement, 
-  postAddAnnouncement 
+module.exports = {
+  getAnnouncements,
+  getOneAnnouncement,
+  postMakeOffer,
+  getDeclineOffer,
+  getAcceptOffer,
+  editAnnouncement,
+  deleteAnnouncement,
+  getAddAnnouncement,
+  postAddAnnouncement
 };
 
