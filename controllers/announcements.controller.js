@@ -17,6 +17,7 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
+    const offersByTheUser = await Offers.find({professional: user._id, announcement: announcement._id});
     if (!user) {
       res.redirect("/auth");
     } else {
@@ -38,11 +39,8 @@ const getOneAnnouncement = async (req, res, next) => {
       } else {
         res.render("announcements/announcement-guestUser", {
           announcement,
-          currentUser: user,// #my-works {
-          //   display: grid;
-          //   grid-template-columns: 50% 50%;
-          //   gap: 10px;
-          // }
+          currentUser: user,
+          offersByTheUser
         });
       }
     }
@@ -55,7 +53,7 @@ const postMakeOffer = async (req, res, next) => {
   try {
     const announcementId = req.params.announcementId;
     const { professional, estimatedPrice, comments } = req.body;
-    const newOffer = await Offers.create({ professional, announcementId, estimatedPrice, comments })
+    const newOffer = await Offers.create({ professional, announcement: announcementId, estimatedPrice, comments })
     const newOfferId = newOffer._id;
     await Announcements.findByIdAndUpdate(announcementId, { $push: { offers: newOfferId } })
     res.redirect('/announcements');
@@ -85,6 +83,7 @@ const getAcceptOffer = async (req, res, next) => {
     const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId });
     const professionalAssigned = User.findByIdAndUpdate(professionalId, { $push: { workInProgress: announceId } });
     await Promise.all([offersAcceptedTrue, announceAssignedTrue, professionalAssigned]);
+    await Offers.deleteMany({announcement: announceId, accepted: false});
     res.redirect(`/announcement/${announceId}`);
   } catch (error) {
     next(error);
@@ -151,6 +150,18 @@ const getFinishWork = async (req, res, next) => {
   }
 }
 
+const getDeleteOffer = async (req, res, next) => {
+  try {
+    const deleteOffer = Offers.findByIdAndDelete(req.params.offerId);
+    //REVISAR, NO BORRA
+    const removeOfferFromAnnounce = Announcements.findByIdAndUpdate(req.params.announceId, {$pull: { offers: { _id: req.params.offerId }}});
+    await Promise.all([deleteOffer, removeOfferFromAnnounce]);
+    res.redirect(`/announcement/${req.params.announceId}`)
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   getAnnouncements,
   getOneAnnouncement,
@@ -161,6 +172,7 @@ module.exports = {
   deleteAnnouncement,
   getAddAnnouncement,
   postAddAnnouncement,
-  getFinishWork
+  getFinishWork,
+  getDeleteOffer
 };
 

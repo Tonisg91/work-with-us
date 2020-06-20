@@ -12,20 +12,22 @@ const {
   deleteAnnouncement,
   getAddAnnouncement,
   postAddAnnouncement,
-  getFinishWork
+  getFinishWork,
+  getDeleteOffer
 } = require('../controllers/announcements.controller');
 
 router
   .get("/announcements", getAnnouncements)
   .get("/announcement/:id", getOneAnnouncement)
-  .get('/delete/:announceId', deleteAnnouncement)
-  .get('/declineOffer/:announceId/:offerId', getDeclineOffer)
-  .get('/acceptOffer/:announceId/:offerId/:professionalId', getAcceptOffer)
+  .get("/delete/:announceId", deleteAnnouncement)
+  .get("/declineOffer/:announceId/:offerId", getDeclineOffer)
+  .get("/acceptOffer/:announceId/:offerId/:professionalId", getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
-  .get('/finish/:announceId', getFinishWork)
-  .post("/addAnnouncement", fileUploader.single('photos'), postAddAnnouncement)
-  .post('/edit/:announceId', editAnnouncement)
-  .post('/makeOffer/:announcementId', postMakeOffer);
+  .get("/finish/:announceId", getFinishWork)
+  .get("/deleteOffer/:announceId/:offerId", getDeleteOffer)
+  .post("/addAnnouncement", fileUploader.single("photos"), postAddAnnouncement)
+  .post("/edit/:announceId", editAnnouncement)
+  .post("/makeOffer/:announcementId", postMakeOffer);
 
 
 

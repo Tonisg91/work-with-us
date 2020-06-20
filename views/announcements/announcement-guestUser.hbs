@@ -8,6 +8,19 @@
         <p>{{announcement.description}}</p>
       </div>
     </article>
+    {{#if offersByTheUser}}
+    <article class="offer-field">
+      <h3>Ofertas previas</h3>
+      {{#each offersByTheUser}}
+        <div>
+          <p>{{estimatedPrice}}&euro;</p>
+          <p>{{comments}}</p>
+        </div>
+        <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
+      {{/each}}
+    </article>
+    <br>
+    {{/if}}
     <article id="guest-view" class="offer-field">
       <h3>Hacer oferta</h3>
       <form action="/makeOffer/{{announcement._id}}" method="POST">
@@ -18,6 +31,5 @@
         <button type="submit" class="btn blue-btn">Enviar oferta</button>
       </form>
     </article>
-
   </section>
 </main>
