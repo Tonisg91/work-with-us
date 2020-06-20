@@ -79,7 +79,8 @@ const getAcceptOffer = async (req, res, next) => {
     //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
     const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });
     const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId });
-    await Promise.all([offersAcceptedTrue, announceAssignedTrue]);
+    const professionalAssigned = User.findByIdAndUpdate(professionalId, { $push: { workInProgress: announceId } });
+    await Promise.all([offersAcceptedTrue, announceAssignedTrue, professionalAssigned]);
     res.redirect(`/announcement/${announceId}`);
   } catch (error) {
     next(error);
