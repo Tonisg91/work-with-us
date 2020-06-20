@@ -398,7 +398,7 @@ section {
   padding-bottom: 0.5em;
   text-align: center; }
 
-#my-list {
+#my-list, #my-works {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 10px;

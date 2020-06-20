@@ -44,6 +44,7 @@
   <section id="my-announces">
     <article>
       <h2>Mis anuncios</h2>
+      {{#if currentUser.announcements}}
       <h3>Anuncios pendiente de aceptar</h3>
       <div id="my-list">
         {{#each currentUser.announcements }}
@@ -91,7 +92,31 @@
         {{/if}}
         {{/each}}
       </div>
-      <a href="/addAnnouncement"><button class="btn blue-btn">Añadir anuncio</button></a>
+      {{/if}}
+      <a href="/addAnnouncement">
+        <button class="btn blue-btn">
+          Añadir anuncio
+        </button>
+      </a>
     </article>
   </section>
+  {{#if currentUser.workInProgress}}
+  <section>
+    <article>
+      <h2>Mis trabajos actuales</h2>
+      <div id="my-works">
+        {{#each currentUser.workInProgress }}
+        <div class="announce-card">
+          <img src="{{photos}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </article>
+  </section>
+  {{/if}}
 </main>

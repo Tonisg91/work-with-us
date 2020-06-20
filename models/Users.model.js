@@ -10,8 +10,7 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-    photo:
-    {
+    photo: {
       type: String,
       default: 'https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9'
     },
@@ -25,6 +24,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Announcement",
       },
+    ],
+    workInProgress: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Announcement"
+      }
     ],
     sector: {
       type: String,
