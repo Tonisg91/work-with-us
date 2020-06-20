@@ -35,9 +35,16 @@
       <h3>Reviews</h3>
       {{#if user.reviews}}
       {{#each user.reviews}}
-      <div>
+      <div class="">
         <h4>{{this.title}}</h4>
         <p>{{this.description}}</p>
+        <p>Puntuación: {{this.rating}}/5</p>
+      </div>
+      <hr>
+      <div class="">
+        <h4>{{this.title}}</h4>
+        <p>{{this.description}}</p>
+        <p>Puntuación: {{this.rating}}/5</p>
       </div>
       {{/each}}
       {{else}}

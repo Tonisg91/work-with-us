@@ -11,7 +11,8 @@ const {
   editAnnouncement,
   deleteAnnouncement,
   getAddAnnouncement,
-  postAddAnnouncement
+  postAddAnnouncement,
+  getFinishWork
 } = require('../controllers/announcements.controller');
 
 router
@@ -21,9 +22,11 @@ router
   .get('/declineOffer/:announceId/:offerId', getDeclineOffer)
   .get('/acceptOffer/:announceId/:offerId/:professionalId', getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
+  .get('/finish/:announceId', getFinishWork)
   .post("/addAnnouncement", fileUploader.single('photos'), postAddAnnouncement)
   .post('/edit/:announceId', editAnnouncement)
   .post('/makeOffer/:announcementId', postMakeOffer);
+
 
 
 module.exports = router;

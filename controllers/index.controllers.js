@@ -10,7 +10,7 @@ const postIndex = (req, res, next) => {
 
 const getUserProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id).populate("announcements");
+    const user = await User.findById(req.params.id).populate("announcements").populate('reviews');
     const currentUser = req.session.currentUser;
     res.render("user/user-profile", { user, currentUser });
   } catch (error) {

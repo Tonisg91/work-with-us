@@ -78,7 +78,7 @@ const getAcceptOffer = async (req, res, next) => {
     const { announceId, offerId, professionalId } = req.params;
     //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
     const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });
-    const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId });
+    const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId });
     await Promise.all([offersAcceptedTrue, announceAssignedTrue]);
     res.redirect(`/announcement/${announceId}`);
   } catch (error) {
@@ -136,6 +136,16 @@ const postAddAnnouncement = async (req, res, next) => {
   }
 }
 
+const getFinishWork = async (req, res, next) => {
+  try {
+    const { announceId } = req.params;
+    await Announcements.findByIdAndUpdate(announceId, { finished: true });
+    res.redirect('/myaccount#my-announces');
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   getAnnouncements,
   getOneAnnouncement,
@@ -145,6 +155,7 @@ module.exports = {
   editAnnouncement,
   deleteAnnouncement,
   getAddAnnouncement,
-  postAddAnnouncement
+  postAddAnnouncement,
+  getFinishWork
 };
 

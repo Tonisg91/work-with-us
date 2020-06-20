@@ -50,9 +50,9 @@ const announcementSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Offer'
     }],
-    reviews: {
+    offerAccepted: {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: 'Offer'
     },
     finished: {
       type: Boolean,

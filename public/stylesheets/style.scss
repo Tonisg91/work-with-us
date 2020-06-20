@@ -480,7 +480,15 @@ section {
   display: flex;
   flex-direction: column;
 }
-
+//ADD REVIEW
+#add-review-main {
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+}
+#add-review-section form{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
 
 
 //FOOTER

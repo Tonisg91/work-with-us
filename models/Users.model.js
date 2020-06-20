@@ -46,6 +46,10 @@ const userSchema = new Schema(
     address: String,
     city: String,
     description: String,
+    reviews: [{
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    }],
   },
   {
     timestamps: {

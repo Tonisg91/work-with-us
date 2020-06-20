@@ -6,9 +6,9 @@ const reviewSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
     },
-    announcement: {
+    professionalId: {
       type: Schema.Types.ObjectId,
-      ref: "Announcement",
+      ref: "User",
     },
     description: String,
     rating: {

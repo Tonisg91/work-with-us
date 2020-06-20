@@ -24,6 +24,20 @@
         <br>
         <h6>Contacto</h6>
         <p>{{professional.email}}</p>
+        <br>
+        {{#if ../announcement.finished}}
+        <a href="/addreview/{{professional._id}}">
+          <button class="btn blue-btn">
+            Añadir reseña
+          </button>
+        </a>
+        {{else}}
+        <a href="/finish/{{../announcement._id}}">
+          <button class="btn green-btn">
+            Trabajo finalizado
+          </button>
+        </a>
+        {{/if}}
       </div>
       {{/if}}
       {{/each}}

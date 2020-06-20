@@ -420,6 +420,14 @@ section {
   display: flex;
   flex-direction: column; }
 
+#add-review-main {
+  background-color: rgba(52, 152, 219, 0.2); }
+
+#add-review-section form {
+  background-color: white;
+  display: flex;
+  flex-direction: column; }
+
 footer {
   background-color: #2c3e50;
   color: #ecf0f1;
