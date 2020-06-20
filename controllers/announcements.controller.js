@@ -5,8 +5,8 @@ const User = require('../models/Users.model')
 
 const getAnnouncements = async (req, res, next) => {
   try {
-    const list = await Announcements.find({ assigned: false });
     const user = req.session.currentUser;
+    const list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
     res.render("announcements/announcement-list", { list, currentUser: user });
   } catch (error) {
     next(error);
@@ -38,7 +38,11 @@ const getOneAnnouncement = async (req, res, next) => {
       } else {
         res.render("announcements/announcement-guestUser", {
           announcement,
-          currentUser: user,
+          currentUser: user,// #my-works {
+          //   display: grid;
+          //   grid-template-columns: 50% 50%;
+          //   gap: 10px;
+          // }
         });
       }
     }
