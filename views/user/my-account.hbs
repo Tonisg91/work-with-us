@@ -119,11 +119,11 @@
     </article>
     {{#if offers}}
     <br>
-    <article>
+    <article class="offer-field">
       <h2>Ofertas sin aprobar</h2>
       <ul>
       {{#each offers}}
-      <li><a href="/announcement/{{announcement._id}}">{{announcement.title}}</a></li>
+      <li class="offer"><a href="/announcement/{{announcement._id}}"><b>{{announcement.title}}</b>: {{estimatedPrice}}€</a></li>
       {{/each}}
       </ul>
     </article>

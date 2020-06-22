@@ -6,7 +6,7 @@ const {
   getAnnouncements,
   getOneAnnouncement,
   postMakeOffer,
-  getDeclineOffer,
+  //getDeclineOffer,
   getAcceptOffer,
   editAnnouncement,
   deleteAnnouncement,
@@ -20,7 +20,7 @@ router
   .get("/announcements", getAnnouncements)
   .get("/announcement/:id", getOneAnnouncement)
   .get("/delete/:announceId", deleteAnnouncement)
-  .get("/declineOffer/:announceId/:offerId", getDeclineOffer)
+  .get("/declineOffer/:announceId/:offerId", getDeleteOffer) //cambiada porque son la misma función
   .get("/acceptOffer/:announceId/:offerId/:professionalId", getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
   .get("/finish/:announceId", getFinishWork)

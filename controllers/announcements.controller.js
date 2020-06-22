@@ -62,7 +62,7 @@ const postMakeOffer = async (req, res, next) => {
   }
 }
 
-const getDeclineOffer = async (req, res, next) => {
+/*const getDeclineOffer = async (req, res, next) => {
   try {
     const { announceId, offerId } = req.params
     //Promesas: borrar oferta del anuncio (1) y borrar oferta (2)
@@ -72,6 +72,18 @@ const getDeclineOffer = async (req, res, next) => {
     res.redirect(`/announcement/${announceId}`)
   } catch (error) {
     next(error)
+  }
+}*/
+
+const getDeleteOffer = async (req, res, next) => {
+  try {
+    const { announceId, offerId } = req.params
+    const deleteOffer = Offers.findByIdAndDelete(offerId);
+    const removeOfferInAnnounce = Announcements.findByIdAndUpdate(announceId, {$pullAll: { offers: [offerId]}});
+    await Promise.all([deleteOffer, removeOfferInAnnounce]);
+    res.redirect(`/announcement/${announceId}`);
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -150,23 +162,11 @@ const getFinishWork = async (req, res, next) => {
   }
 }
 
-const getDeleteOffer = async (req, res, next) => {
-  try {
-    const deleteOffer = Offers.findByIdAndDelete(req.params.offerId);
-    //REVISAR, NO BORRA
-    const removeOfferFromAnnounce = Announcements.findByIdAndUpdate(req.params.announceId, {$pull: { offers: { _id: req.params.offerId }}});
-    await Promise.all([deleteOffer, removeOfferFromAnnounce]);
-    res.redirect(`/announcement/${req.params.announceId}`)
-  } catch (error) {
-    next(error);
-  }
-}
-
 module.exports = {
   getAnnouncements,
   getOneAnnouncement,
   postMakeOffer,
-  getDeclineOffer,
+  //getDeclineOffer,
   getAcceptOffer,
   editAnnouncement,
   deleteAnnouncement,

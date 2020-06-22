@@ -11,13 +11,20 @@
     {{#if offersByTheUser}}
     <article class="offer-field">
       <h3>Ofertas previas</h3>
+      <ul>
       {{#each offersByTheUser}}
+      <li class="offer">
         <div>
           <p>{{estimatedPrice}}&euro;</p>
           <p>{{comments}}</p>
         </div>
+        <div>
         <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
+        <a href="#"><button class="btn blue-btn">Editar</button></a>
+        </div>
+      </li>
       {{/each}}
+      </ul>
     </article>
     <br>
     {{/if}}
