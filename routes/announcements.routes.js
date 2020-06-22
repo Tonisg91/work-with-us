@@ -23,7 +23,7 @@ router
   .get('/acceptOffer/:announceId/:offerId/:professionalId', getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
   .get('/finish/:announceId', getFinishWork)
-  .post("/addAnnouncement", fileUploader.single('photos'), postAddAnnouncement)
+  .post("/addAnnouncement", fileUploader.array('photos'), postAddAnnouncement)
   .post('/edit/:announceId', editAnnouncement)
   .post('/makeOffer/:announcementId', postMakeOffer);
 

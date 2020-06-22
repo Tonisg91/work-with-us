@@ -3,7 +3,7 @@
     <article id="my-data">
       <h2>Mi cuenta</h2>
       <div>
-        <img src="{{currentUser.photo}}" alt="Imagen de usuario" id="user-img">
+        <img src="{{currentUser.photoCard}}" alt="Imagen de usuario" id="user-img">
       </div>
       <form action="/editUser" id="edit-info-form" method="POST">
         <label for="name">Nombre</label>
@@ -50,7 +50,7 @@
         {{#each currentUser.announcements }}
         {{#unless this.assigned}}
         <div class="announce-card">
-          <img src="{{photos}}" alt="">
+          <img src="{{photoCard}}" alt="">
           <div class="announce-title">
             <a href="/announcement/{{_id}}">
               <h4>{{title}}</h4>
@@ -66,7 +66,7 @@
         {{#if this.assigned}}
         {{#unless this.finished}}
         <div class="announce-card">
-          <img src="{{photos}}" alt="">
+          <img src="{{photoCard}}" alt="">
           <div class="announce-title">
             <a href="/announcement/{{_id}}">
               <h4>{{title}}</h4>
@@ -82,7 +82,7 @@
         {{#each currentUser.announcements }}
         {{#if this.finished}}
         <div class="announce-card">
-          <img src="{{photos}}" alt="">
+          <img src="{{photoCard}}" alt="">
           <div class="announce-title">
             <a href="/announcement/{{_id}}">
               <h4>{{title}}</h4>
@@ -107,7 +107,7 @@
       <div id="my-works">
         {{#each currentUser.workInProgress }}
         <div class="announce-card">
-          <img src="{{photos}}" alt="">
+          <img src="{{photoCard}}" alt="">
           <div class="announce-title">
             <a href="/announcement/{{_id}}">
               <h4>{{title}}</h4>

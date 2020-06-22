@@ -5,7 +5,17 @@
       <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
     </div>
     <article id="announce-article">
-      <img src="{{announcement.photos}}" alt="">
+      <div id="slideshow-container">
+        {{#each announcement.photos }}
+        <div class="mySlides fade hidden" id="img-{{@index}}">
+          <img src="{{this}}">
+        </div>
+        {{/each}}
+        <div id="slide-controls">
+          <a class="prev" onclick="prevImage()">&#10094;</a>
+          <a class="next" onclick="nextImage()">&#10095;</a>
+        </div>
+      </div>
       <div>
         <h2>{{announcement.title}}</h2>
         <p>{{announcement.description}}</p>

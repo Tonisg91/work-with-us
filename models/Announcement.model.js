@@ -32,7 +32,10 @@ const announcementSchema = new Schema(
     },
     photos: {
       type: Array,
-      default: ['https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png']
+    },
+    photoCard: {
+      type: String,
+      default: 'https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png'
     },
     assigned: {
       type: Boolean,
