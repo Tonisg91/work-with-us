@@ -6,6 +6,7 @@
     </div>
     <article id="announce-article">
       <div id="slideshow-container">
+        {{#if announcement.photos}}
         {{#each announcement.photos }}
         <div class="mySlides fade hidden" id="img-{{@index}}">
           <img src="{{this}}">
@@ -15,6 +16,10 @@
           <a class="prev" onclick="prevImage()">&#10094;</a>
           <a class="next" onclick="nextImage()">&#10095;</a>
         </div>
+        {{else}}
+        <div> <img src="{{this.photoCard}}" alt=""></div>
+        {{/if}}
+
       </div>
       <div>
         <h2>{{announcement.title}}</h2>
@@ -55,3 +60,6 @@
 
   </section>
 </main>
+
+
+<script src="/javascripts/slideShow.js"></script>
