@@ -117,6 +117,17 @@
         {{/each}}
       </div>
     </article>
+    {{#if offers}}
+    <br>
+    <article class="offer-field">
+      <h2>Ofertas sin aprobar</h2>
+      <ul>
+      {{#each offers}}
+      <li class="offer"><a href="/announcement/{{announcement._id}}"><b>{{announcement.title}}</b>: {{estimatedPrice}}€</a></li>
+      {{/each}}
+      </ul>
+    </article>
+    {{/if}}
   </section>
   {{/if}}
 </main>
