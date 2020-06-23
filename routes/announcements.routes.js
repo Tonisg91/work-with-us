@@ -30,5 +30,4 @@ router
   .post("/makeOffer/:announcementId", postMakeOffer);
 
 
-
 module.exports = router;

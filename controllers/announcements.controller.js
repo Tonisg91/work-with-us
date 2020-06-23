@@ -134,13 +134,15 @@ const postAddAnnouncement = async (req, res, next) => {
   try {
     const announcer = req.session.currentUser._id;
     const { title, description } = req.body;
-    let photos;
-    req.file ? photos = req.file.path : photos = undefined;
+    let photos = [];
+    req.files ? req.files.forEach(e => photos.push(e.path)) : photos = undefined;
+    let photoCard = photos[0];
     const newAnnouncement = await Announcements.create({
       title,
       description,
-      photos,
+      photoCard,
       announcer,
+      photos
     });
     const newAnnouncementId = newAnnouncement._id;
     await User.findByIdAndUpdate(announcer, {

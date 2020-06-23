@@ -26,7 +26,42 @@ html {
 .hidden {
   display: none;
 }
+.comment {
+  font-size: 0.6em;
+  color: rgba($color: $general-text, $alpha: 0.5);
+  margin: 0 !important;
+}
+.showImage {
+  display: block;
+}
 //TOOLS END
+
+//SLIDESHOW
+#slideshow-container {
+  background-color: transparent;
+  margin-top: 1em;
+  width: 100%;
+}
+#slideshow-container img{
+  width: 100%;
+  margin: 0 !important;
+}
+.mySlides {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#slide-controls {
+  width: 82%;
+  position: absolute;
+  top: 27%;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.6 ease;
+}
+.prev, .next {
+  color: rgba($color: $btn-text, $alpha: 0.5);
+  font-size: 3em;
+}
 
 // TEXT COLOR
 body {
@@ -322,7 +357,7 @@ section {
   background-color: rgba($color: $blue-btn, $alpha: 0.2); 
   padding: 1em 2em;
 }
-#announce-article > div {
+#announce-article > div:last-child {
   margin: 1em 0;
   box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
   width: 100%;
