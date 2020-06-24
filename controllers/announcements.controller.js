@@ -1,6 +1,7 @@
-const Announcements = require('../models/Announcement.model')
-const Offers = require('../models/Offers.model')
-const User = require('../models/Users.model')
+const Announcements = require('../models/Announcement.model');
+const Offers = require('../models/Offers.model');
+const User = require('../models/Users.model');
+const Chat = require('../models/Chat.model');
 
 
 const getAnnouncements = async (req, res, next) => {
@@ -18,17 +19,21 @@ const getOneAnnouncement = async (req, res, next) => {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
     const offersByTheUser = await Offers.find({professional: user._id, announcement: announcement._id});
+    const chat = await Chat.findById(announcement.chat);
     if (!user) {
       res.redirect("/auth");
     } else {
       //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
       const isUserTheAnnouncer = announcement.announcer == user._id;
+      const isUserTheProfessional = announcement.professional == user._id;
       const isAnnouncementAccepted = announcement.assigned == true;
       if (isUserTheAnnouncer) {
         if (isAnnouncementAccepted) {
           res.render("announcements/announce-accepted", {
             announcement,
-            currentUser: user
+            currentUser: user,
+            isUserTheAnnouncer,
+            chat
           })
         } else {
           res.render("announcements/announce-user", {
@@ -37,11 +42,19 @@ const getOneAnnouncement = async (req, res, next) => {
           });
         }
       } else {
-        res.render("announcements/announcement-guestUser", {
-          announcement,
-          currentUser: user,
-          offersByTheUser
-        });
+        if (isAnnouncementAccepted && isUserTheProfessional) {
+          res.render("announcements/announce-accepted", {
+            announcement,
+            currentUser: user,
+            chat
+          })
+        } else {
+          res.render("announcements/announcement-guestUser", {
+            announcement,
+            currentUser: user,
+            offersByTheUser,
+          });
+        }
       }
     }
   } catch (error) {
@@ -90,9 +103,11 @@ const getDeleteOffer = async (req, res, next) => {
 const getAcceptOffer = async (req, res, next) => {
   try {
     const { announceId, offerId, professionalId } = req.params;
+    const newChat = await Chat.create({announcement: announceId});
+    const chatId = newChat._id;
     //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
     const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });
-    const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId });
+    const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId, chat: chatId });
     const professionalAssigned = User.findByIdAndUpdate(professionalId, { $push: { workInProgress: announceId } });
     await Promise.all([offersAcceptedTrue, announceAssignedTrue, professionalAssigned]);
     await Offers.deleteMany({announcement: announceId, accepted: false});
@@ -136,11 +151,11 @@ const postAddAnnouncement = async (req, res, next) => {
     const { title, description } = req.body;
     let photos = [];
     req.files ? req.files.forEach(e => photos.push(e.path)) : photos = undefined;
-    let photoCard = photos[0];
+    //let photoCard = photos[0];
     const newAnnouncement = await Announcements.create({
       title,
       description,
-      photoCard,
+      //photoCard,
       announcer,
       photos
     });

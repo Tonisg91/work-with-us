@@ -61,6 +61,10 @@ const announcementSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    chat: {
+      type: Schema.Types.ObjectId,
+      ref: 'Chat'
+    }
   },
   {
     timestamps: true,

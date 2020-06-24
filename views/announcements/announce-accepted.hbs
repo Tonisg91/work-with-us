@@ -32,26 +32,41 @@
         <p>{{estimatedPrice}}&euro;</p>
         <p>{{comments}}</p>
         <br>
-        <h6>Contacto</h6>
-        <p>{{professional.email}}</p>
-        <br>
-        {{#if ../announcement.finished}}
-        <a href="/addreview/{{professional._id}}">
-          <button class="btn blue-btn">
-            Añadir reseña
-          </button>
-        </a>
-        {{else}}
-        <a href="/finish/{{../announcement._id}}">
-          <button class="btn green-btn">
-            Trabajo finalizado
-          </button>
-        </a>
+        {{#if ../isUserTheAnnouncer}}
+          <h6>Contacto</h6>
+          <p>{{professional.email}}</p>
+          <br>
+          {{#if ../announcement.finished}}
+          <a href="/addreview/{{professional._id}}">
+            <button class="btn blue-btn">
+              Añadir reseña
+            </button>
+          </a>
+          {{else}}
+          <a href="/finish/{{../announcement._id}}">
+            <button class="btn green-btn">
+              Trabajo finalizado
+            </button>
+          </a>
+          {{/if}}
         {{/if}}
       </div>
       {{/if}}
       {{/each}}
     </article>
-
+    <article class="offer-field">
+      <h2>Chat</h2>
+      <div id="messages">
+        {{#each chat.messages}}
+        <p>{{this}}</p>
+        {{/each}}
+      </div>
+      <div>
+        <input type="text" id="newMessage">
+        <button type="button">Send</button>
+      </div>
+    </article>
   </section>
 </main>
+
+<script src="/javascripts/sockets.js"></script>
