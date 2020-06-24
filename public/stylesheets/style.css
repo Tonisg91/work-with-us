@@ -10,7 +10,7 @@ html {
   padding: 0; }
 
 .hidden {
-  display: none; }
+  display: none !important; }
 
 .comment {
   font-size: 0.6em;
