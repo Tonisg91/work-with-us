@@ -2,9 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const chatSchema = new Schema(
   {
-    title: {
-      type: String,
-    },
     messages: [String],
     announcement: {
       type: Schema.Types.ObjectId,

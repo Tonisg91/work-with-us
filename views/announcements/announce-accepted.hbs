@@ -62,8 +62,10 @@
         {{/each}}
       </div>
       <div>
+        <input type="hidden" id="username" value="{{currentUser.name}}">
+        <input type="hidden" id="chatId" value="{{announcement.chat._id}}">
         <input type="text" id="newMessage">
-        <button type="button">Send</button>
+        <button type="button" id="sendBtn">Send</button>
       </div>
     </article>
   </section>
