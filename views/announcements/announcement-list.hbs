@@ -1,14 +1,14 @@
 <main id="announcements-main">
-  <form action="#" method="POST" id="searchbar-form">
+  <section id="announcements-main-filters">
     <div>
-      <input type="text" placeholder="Busca un anuncio...">
-      <button type="submit"><i class="fas fa-search"></i></button>
+      <input type="text" placeholder="Busca un anuncio..." id="tag-filter">
+      <button id="tag-filter-btn"><i class="fas fa-search"></i></button>
     </div>
     <div>
       <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
     </div>
+  </section>
 
-  </form>
   <section id="announcements-list">
     {{#each list}}
     <div class="announce-card">
@@ -17,9 +17,9 @@
         <div class="announce-title">
           <h4>{{this.title}}</h4>
         </div>
-        <p class="state">{{this.location.state}}</p>
-        <p class="city">{{this.location.city}}</p>
-        <p class="tags">{{this.tags}}</p>
+        <p class="state hidden">{{this.location.state}}</p>
+        <p class="city hidden">{{this.location.city}}</p>
+        <p class="tags hidden">{{this.tags}}</p>
       </a>
     </div>
     {{/each}}

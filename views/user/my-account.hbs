@@ -3,7 +3,7 @@
     <article id="my-data">
       <h2>Mi cuenta</h2>
       <div>
-        <img src="{{currentUser.photoCard}}" alt="Imagen de usuario" id="user-img">
+        <img src="{{currentUser.photo}}" alt="Imagen de usuario" id="user-img">
       </div>
       <form action="/editUser" id="edit-info-form" method="POST">
         <label for="name">Nombre</label>
@@ -122,9 +122,10 @@
     <article class="offer-field">
       <h2>Ofertas sin aprobar</h2>
       <ul>
-      {{#each offers}}
-      <li class="offer"><a href="/announcement/{{announcement._id}}"><b>{{announcement.title}}</b>: {{estimatedPrice}}€</a></li>
-      {{/each}}
+        {{#each offers}}
+        <li class="offer"><a href="/announcement/{{announcement._id}}"><b>{{announcement.title}}</b>:
+            {{estimatedPrice}}€</a></li>
+        {{/each}}
       </ul>
     </article>
     {{/if}}
