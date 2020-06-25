@@ -31,23 +31,6 @@ const userSchema = new Schema(
         ref: "Announcement"
       }
     ],
-    sector: {
-      type: String,
-      enum: [
-        "Fontanería",
-        "Carpintería",
-        "Carpintería de aluminio",
-        "Paletería",
-        "Albañilería",
-        "Electricidad",
-        "Jardinería",
-        "Reparación electrodomésticos",
-        "Pintura",
-        "Cristalería",
-        "Cerrajería",
-        "Otros",
-      ], //AÑADIR LOS DIFERENTES SECTORES
-    },
     address: String,
     city: String,
     description: String,

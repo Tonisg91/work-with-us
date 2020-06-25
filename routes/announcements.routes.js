@@ -6,7 +6,6 @@ const {
   getAnnouncements,
   getOneAnnouncement,
   postMakeOffer,
-  //getDeclineOffer,
   getAcceptOffer,
   editAnnouncement,
   deleteAnnouncement,
@@ -25,7 +24,7 @@ router
   .get("/addAnnouncement", getAddAnnouncement)
   .get("/finish/:announceId", getFinishWork)
   .get("/deleteOffer/:announceId/:offerId", getDeleteOffer)
-  .post("/addAnnouncement", fileUploader.single("photos"), postAddAnnouncement)
+  .post("/addAnnouncement", fileUploader.array("photos"), postAddAnnouncement)
   .post("/edit/:announceId", editAnnouncement)
   .post("/makeOffer/:announcementId", postMakeOffer);
 

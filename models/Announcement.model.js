@@ -6,7 +6,7 @@ const announcementSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
     },
-    sector: {
+    category: {
       type: String,
       enum: [
         "Fontanería",
@@ -32,6 +32,7 @@ const announcementSchema = new Schema(
     },
     photos: {
       type: Array,
+      default: ['https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png']
     },
     photoCard: {
       type: String,
@@ -61,6 +62,13 @@ const announcementSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    location: {
+      state: String,
+      city: String,
+      lat: String,
+      lng: String
+    }
+
   },
   {
     timestamps: true,
