@@ -10,7 +10,7 @@ html {
   padding: 0; }
 
 .hidden {
-  display: none; }
+  display: none !important; }
 
 .comment {
   font-size: 0.6em;
@@ -122,6 +122,19 @@ i {
   top: 0;
   right: 25px;
   font-size: 36px; }
+
+.scrollmenu {
+  width: auto;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 1.5em 0; }
+
+.scrollmenu div {
+  display: inline-block;
+  padding-right: 0.5em; }
+
+.scrollmenu div:first-child {
+  padding-left: 30rem; }
 
 .btn {
   border: none;
@@ -256,19 +269,14 @@ section {
   border: none;
   outline: none; }
 
-#announcements-main form {
+#announcements-main-filters {
   display: flex;
   justify-content: center;
   align-items: center; }
 
-#announcements-main form div {
-  padding-top: 1em;
+#announcements-main-filters div {
   display: flex;
-  justify-content: center;
-  padding-top: 1em; }
-
-#add-button {
-  padding-left: 1em; }
+  justify-content: center; }
 
 #announcements-list {
   display: grid;

@@ -1,6 +1,6 @@
 window.onload = () => {
   showImage(imageToShow())
-}
+};
 let index = 0;
 const imgArrLength = document.querySelectorAll('.mySlides').length - 1;
 

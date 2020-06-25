@@ -2,7 +2,7 @@ const Announcements = require('../models/Announcement.model');
 const Offers = require('../models/Offers.model');
 const User = require('../models/Users.model');
 const Chat = require('../models/Chat.model');
-
+const { capitalize } = require('../tools/stringFn')
 
 const getAnnouncements = async (req, res, next) => {
   try {
@@ -75,24 +75,11 @@ const postMakeOffer = async (req, res, next) => {
   }
 }
 
-/*const getDeclineOffer = async (req, res, next) => {
-  try {
-    const { announceId, offerId } = req.params
-    //Promesas: borrar oferta del anuncio (1) y borrar oferta (2)
-    const removeOfferAnnounce = Announcements.findByIdAndUpdate(announceId, { $pull: { offers: { _id: offerId } } });
-    const removeOffer = Offers.findByIdAndDelete(offerId);
-    await Promise.all([removeOfferAnnounce, removeOffer]);
-    res.redirect(`/announcement/${announceId}`)
-  } catch (error) {
-    next(error)
-  }
-}*/
-
 const getDeleteOffer = async (req, res, next) => {
   try {
     const { announceId, offerId } = req.params
     const deleteOffer = Offers.findByIdAndDelete(offerId);
-    const removeOfferInAnnounce = Announcements.findByIdAndUpdate(announceId, {$pullAll: { offers: [offerId]}});
+    const removeOfferInAnnounce = Announcements.findByIdAndUpdate(announceId, { $pullAll: { offers: [offerId] } });
     await Promise.all([deleteOffer, removeOfferInAnnounce]);
     res.redirect(`/announcement/${announceId}`);
   } catch (error) {
@@ -110,7 +97,7 @@ const getAcceptOffer = async (req, res, next) => {
     const announceAssignedTrue = Announcements.findByIdAndUpdate(announceId, { assigned: true, professional: professionalId, offerAccepted: offerId, chat: chatId });
     const professionalAssigned = User.findByIdAndUpdate(professionalId, { $push: { workInProgress: announceId } });
     await Promise.all([offersAcceptedTrue, announceAssignedTrue, professionalAssigned]);
-    await Offers.deleteMany({announcement: announceId, accepted: false});
+    await Offers.deleteMany({ announcement: announceId, accepted: false });
     res.redirect(`/announcement/${announceId}`);
   } catch (error) {
     next(error);
@@ -148,16 +135,19 @@ const getAddAnnouncement = async (req, res, next) => {
 const postAddAnnouncement = async (req, res, next) => {
   try {
     const announcer = req.session.currentUser._id;
-    const { title, description } = req.body;
-    let photos = [];
-    req.files ? req.files.forEach(e => photos.push(e.path)) : photos = undefined;
-    let photoCard = photos[0];
+    const { title, description, state, city } = req.body;
+    const tags = [...req.body.tags.split(',').map(e => capitalize(e.trim()))]
+    const photos = req.files.length ? Array.from(req.files).map(file => file.path) : undefined;
+    let photoCard = req.files.length ? photos[0] : undefined;
     const newAnnouncement = await Announcements.create({
       title,
       description,
+      tags,
       photoCard,
       announcer,
-      photos
+      photos,
+      'location.state': capitalize(state),
+      'location.city': capitalize(city)
     });
     const newAnnouncementId = newAnnouncement._id;
     await User.findByIdAndUpdate(announcer, {
@@ -183,7 +173,6 @@ module.exports = {
   getAnnouncements,
   getOneAnnouncement,
   postMakeOffer,
-  //getDeclineOffer,
   getAcceptOffer,
   editAnnouncement,
   deleteAnnouncement,
