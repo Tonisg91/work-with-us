@@ -133,7 +133,6 @@ const postAddAnnouncement = async (req, res, next) => {
       'location.state': capitalize(state),
       'location.city': capitalize(city)
     });
-    console.log(newAnnouncement);
     const newAnnouncementId = newAnnouncement._id;
     await User.findByIdAndUpdate(announcer, {
       $push: { announcements: newAnnouncementId },
