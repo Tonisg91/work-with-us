@@ -2,12 +2,42 @@
   <section id="announce-section">
     <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
     <article id="announce-article">
-      <img src="{{announcement.photos}}" alt="">
+      <div id="slideshow-container">
+        {{#each announcement.photos }}
+        <div class="mySlides fade hidden" id="img-{{@index}}">
+          <img src="{{this}}">
+        </div>
+        {{/each}}
+        <div id="slide-controls">
+          <a class="prev" onclick="prevImage()">&#10094;</a>
+          <a class="next" onclick="nextImage()">&#10095;</a>
+        </div>
+      </div>
       <div>
         <h2>{{announcement.title}}</h2>
         <p>{{announcement.description}}</p>
       </div>
     </article>
+    {{#if offersByTheUser}}
+    <article class="offer-field">
+      <h3>Ofertas previas</h3>
+      <ul>
+        {{#each offersByTheUser}}
+        <li class="offer">
+          <div>
+            <p>{{estimatedPrice}}&euro;</p>
+            <p>{{comments}}</p>
+          </div>
+          <div>
+            <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
+            <a href="#"><button class="btn blue-btn">Editar</button></a>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </article>
+    <br>
+    {{/if}}
     <article id="guest-view" class="offer-field">
       <h3>Hacer oferta</h3>
       <form action="/makeOffer/{{announcement._id}}" method="POST">
@@ -18,6 +48,8 @@
         <button type="submit" class="btn blue-btn">Enviar oferta</button>
       </form>
     </article>
-
   </section>
 </main>
+
+
+<script src="/javascripts/slideShow.js"></script>

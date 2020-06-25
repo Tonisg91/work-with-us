@@ -5,7 +5,7 @@ const { getMyAccount, editUser } = require('../controllers/user.controllers')
 
 router
   .get("/myaccount", getMyAccount)
-  .post("/editUser", editUser)
+  .post("/editUser", editUser);
 
 
 module.exports = router;

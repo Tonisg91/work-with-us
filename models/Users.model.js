@@ -10,8 +10,7 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-    photo:
-    {
+    photo: {
       type: String,
       default: 'https://adncultura.org/sites/default/files/styles/mg_user_picture/public/default_images/default-user.png?itok=-m-meRA9'
     },
@@ -26,26 +25,19 @@ const userSchema = new Schema(
         ref: "Announcement",
       },
     ],
-    sector: {
-      type: String,
-      enum: [
-        "Fontanería",
-        "Carpintería",
-        "Carpintería de aluminio",
-        "Paletería",
-        "Albañilería",
-        "Electricidad",
-        "Jardinería",
-        "Reparación electrodomésticos",
-        "Pintura",
-        "Cristalería",
-        "Cerrajería",
-        "Otros",
-      ], //AÑADIR LOS DIFERENTES SECTORES
-    },
+    workInProgress: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Announcement"
+      }
+    ],
     address: String,
     city: String,
     description: String,
+    reviews: [{
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    }],
   },
   {
     timestamps: {

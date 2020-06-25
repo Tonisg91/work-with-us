@@ -44,10 +44,70 @@
   <section id="my-announces">
     <article>
       <h2>Mis anuncios</h2>
+      {{#if currentUser.announcements}}
+      <h3>Anuncios pendiente de aceptar</h3>
       <div id="my-list">
         {{#each currentUser.announcements }}
+        {{#unless this.assigned}}
         <div class="announce-card">
-          <img src="{{photos}}" alt="">
+          <img src="{{photoCard}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/unless}}
+        {{/each}}
+      </div>
+      <h3>Anuncios en proceso</h3>
+      <div id="my-list">
+        {{#each currentUser.announcements }}
+        {{#if this.assigned}}
+        {{#unless this.finished}}
+        <div class="announce-card">
+          <img src="{{photoCard}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/unless}}
+        {{/if}}
+        {{/each}}
+      </div>
+      <h3>Anuncios finalizados</h3>
+      <div id="my-list">
+        {{#each currentUser.announcements }}
+        {{#if this.finished}}
+        <div class="announce-card">
+          <img src="{{photoCard}}" alt="">
+          <div class="announce-title">
+            <a href="/announcement/{{_id}}">
+              <h4>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+      {{/if}}
+      <a href="/addAnnouncement">
+        <button class="btn blue-btn">
+          Añadir anuncio
+        </button>
+      </a>
+    </article>
+  </section>
+  {{#if currentUser.workInProgress}}
+  <section>
+    <article>
+      <h2>Mis trabajos actuales</h2>
+      <div id="my-works">
+        {{#each currentUser.workInProgress }}
+        <div class="announce-card">
+          <img src="{{photoCard}}" alt="">
           <div class="announce-title">
             <a href="/announcement/{{_id}}">
               <h4>{{title}}</h4>
@@ -56,7 +116,19 @@
         </div>
         {{/each}}
       </div>
-      <a href="/addAnnouncement"><button class="btn blue-btn">Añadir anuncio</button></a>
     </article>
+    {{#if offers}}
+    <br>
+    <article class="offer-field">
+      <h2>Ofertas sin aprobar</h2>
+      <ul>
+        {{#each offers}}
+        <li class="offer"><a href="/announcement/{{announcement._id}}"><b>{{announcement.title}}</b>:
+            {{estimatedPrice}}€</a></li>
+        {{/each}}
+      </ul>
+    </article>
+    {{/if}}
   </section>
+  {{/if}}
 </main>

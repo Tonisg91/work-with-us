@@ -16,7 +16,7 @@
       <div id="my-list">
         {{#each user.announcements}}
         <div class="announce-card">
-          <img src="{{this.photos}}" alt="Imagen de anuncio">
+          <img src="{{this.photoCard}}" alt="Imagen de anuncio">
           <div class="announce-title">
             <a href="/announcement/{{this._id}}">
               <h4>{{this.title}}</h4>
@@ -35,10 +35,12 @@
       <h3>Reviews</h3>
       {{#if user.reviews}}
       {{#each user.reviews}}
-      <div>
+      <div class="">
         <h4>{{this.title}}</h4>
         <p>{{this.description}}</p>
+        <p>Puntuación: {{this.rating}}/5</p>
       </div>
+      <hr>
       {{/each}}
       {{else}}
       <p>Este usuario no tiene valoraciones</p>

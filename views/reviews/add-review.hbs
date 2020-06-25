@@ -1,0 +1,19 @@
+<main id="add-review-main">
+  <section id="add-review-section">
+    <form action="/addreview/{{professionalId}}" method="POST">
+      <input type="hidden" name="professionalId" value="{{professionalId}}">
+      <label for="title">Titulo</label>
+      <input type="text" name="title">
+      <label for="description">Descripción</label>
+      <textarea name="description" cols="30" rows="10" placeholder="Describe tu experiencia"></textarea>
+      <select name="rating" id="">
+        <option value="1">Descontento</option>
+        <option value="2">Podria mejorar</option>
+        <option value="3">Bien</option>
+        <option value="4">Muy contento</option>
+        <option value="5">Trabajo perfecto</option>
+      </select>
+      <button type="submit" class="btn blue-btn">Enviar reseña</button>
+    </form>
+  </section>
+</main>

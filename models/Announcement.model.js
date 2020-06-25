@@ -6,7 +6,7 @@ const announcementSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
     },
-    sector: {
+    category: {
       type: String,
       enum: [
         "Fontanería",
@@ -31,8 +31,12 @@ const announcementSchema = new Schema(
       maxlength: 5,
     },
     photos: {
-      type: [String],
+      type: Array,
       default: ['https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png']
+    },
+    photoCard: {
+      type: String,
+      default: 'https://res.cloudinary.com/dkejgwlha/image/upload/v1592555603/friends_amcn0b.png'
     },
     assigned: {
       type: Boolean,
@@ -50,14 +54,24 @@ const announcementSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Offer'
     }],
-    reviews: {
+    offerAccepted: {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: 'Offer'
     },
     finished: {
       type: Boolean,
       default: false,
     },
+    chat: {
+      type: Schema.Types.ObjectId,
+      ref: 'Chat'
+    },
+    location: {
+      state: String,
+      city: String,
+      lat: String,
+      lng: String
+    }
   },
   {
     timestamps: true,

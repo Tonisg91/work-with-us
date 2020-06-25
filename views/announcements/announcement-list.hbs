@@ -1,22 +1,42 @@
 <main id="announcements-main">
-  <form action="#" method="POST" id="searchbar-form">
-    <div>
-      <input type="text" placeholder="Busca un anuncio...">
-      <button type="submit"><i class="fas fa-search"></i></button>
-    </div>
+  <section id="announcements-main-filters" class="scrollmenu">
     <div>
       <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
     </div>
+    <div>
+      <input type="text" placeholder="Provincia" id="state-filter">
+      <button id="state-filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <input type="text" placeholder="Palabras clave" id="tag-filter">
+      <button id="tag-filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <input type="text" placeholder="Ciudad" id="city-filter">
+      <button id="city-filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <i onclick="clearFilters()" class="fas fa-trash-alt"></i>
+    </div>
+  </section>
 
-  </form>
   <section id="announcements-list">
     {{#each list}}
     <div class="announce-card">
-      <img src="{{this.photos}}" alt="Imagen del anuncio">
-      <div class="announce-title">
-        <h4><a href="/announcement/{{this._id}}">{{this.title}}</a></h4>
-      </div>
+      <img src="{{this.photoCard}}" alt="Imagen del anuncio">
+      <a href="/announcement/{{this._id}}">
+        <div class="announce-title">
+          <h4>{{this.title}}</h4>
+        </div>
+        <p class="state hidden">{{this.location.state}}</p>
+        <p class="city hidden">{{this.location.city}}</p>
+        {{#each this.tags }}
+        <p class="tags hidden">{{this}}</p>
+        {{/each}}
+      </a>
     </div>
     {{/each}}
   </section>
 </main>
+
+<script src="/javascripts/filters.js"></script>

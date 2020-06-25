@@ -15,6 +15,10 @@ const offerSchema = new Schema(
     accepted: {
       type: Boolean,
       default: false
+    },
+    finished: {
+      type: Boolean,
+      default: false,
     }
   },
   {
