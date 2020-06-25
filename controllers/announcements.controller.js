@@ -151,11 +151,11 @@ const postAddAnnouncement = async (req, res, next) => {
     const { title, description } = req.body;
     let photos = [];
     req.files ? req.files.forEach(e => photos.push(e.path)) : photos = undefined;
-    //let photoCard = photos[0];
+    let photoCard = photos[0];
     const newAnnouncement = await Announcements.create({
       title,
       description,
-      //photoCard,
+      photoCard,
       announcer,
       photos
     });

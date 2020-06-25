@@ -357,6 +357,9 @@ section {
   background-color: rgba($color: $blue-btn, $alpha: 0.2); 
   padding: 1em 2em;
 }
+#announce-section article {
+  margin-bottom: 1em;
+}
 #announce-article > div:last-child {
   margin: 1em 0;
   box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
@@ -428,11 +431,27 @@ section {
 //MAKE OFFER END
 
 //OFFER ACCEPTED
-#accepted-offer-article h2{
+#accepted-offer-article h2, #chat-box h2{
   padding: 0.6em 0;
 }
 #accepted-offer-article .offer {
   padding: 0.5em 0;
+}
+#messages {
+  overflow: auto;
+  max-height: 250px;
+}
+#input-message-chat {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8em 0;
+  align-items: center;
+}
+#input-message-chat input {
+  padding: 1em 0 1em 1em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.5);
+  outline: none;
 }
 //ANNOUNCEMENT/:ID END
 

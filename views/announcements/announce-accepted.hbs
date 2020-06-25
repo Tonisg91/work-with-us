@@ -2,7 +2,9 @@
   <section id="announce-section">
     <div id="icon-container">
       <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      {{#if isUserTheAnnouncer}}
       <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+      {{/if}}
     </div>
     <article id="announce-article">
       <div id="slideshow-container">
@@ -54,18 +56,18 @@
       {{/if}}
       {{/each}}
     </article>
-    <article class="offer-field">
+    <article class="offer-field" id="chat-box">
       <h2>Chat</h2>
       <div id="messages">
         {{#each chat.messages}}
         <p>{{this}}</p>
         {{/each}}
       </div>
-      <div>
+      <div id="input-message-chat">
         <input type="hidden" id="username" value="{{currentUser.name}}">
         <input type="hidden" id="chatId" value="{{announcement.chat._id}}">
         <input type="text" id="newMessage">
-        <button type="button" id="sendBtn">Send</button>
+        <button type="button" id="sendBtn" class="btn blue-btn">Send</button>
       </div>
     </article>
   </section>
