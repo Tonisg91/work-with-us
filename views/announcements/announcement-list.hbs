@@ -1,11 +1,22 @@
 <main id="announcements-main">
-  <section id="announcements-main-filters">
+  <section id="announcements-main-filters" class="scrollmenu">
     <div>
-      <input type="text" placeholder="Busca un anuncio..." id="tag-filter">
+      <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
+    </div>
+    <div>
+      <input type="text" placeholder="Provincia" id="state-filter">
+      <button id="state-filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <input type="text" placeholder="Palabras clave" id="tag-filter">
       <button id="tag-filter-btn"><i class="fas fa-search"></i></button>
     </div>
     <div>
-      <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
+      <input type="text" placeholder="Ciudad" id="city-filter">
+      <button id="city-filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+    <div>
+      <i onclick="clearFilters()" class="fas fa-trash-alt"></i>
     </div>
   </section>
 
@@ -19,9 +30,13 @@
         </div>
         <p class="state hidden">{{this.location.state}}</p>
         <p class="city hidden">{{this.location.city}}</p>
-        <p class="tags hidden">{{this.tags}}</p>
+        {{#each this.tags }}
+        <p class="tags hidden">{{this}}</p>
+        {{/each}}
       </a>
     </div>
     {{/each}}
   </section>
 </main>
+
+<script src="/javascripts/filters.js"></script>

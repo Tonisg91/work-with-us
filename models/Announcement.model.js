@@ -6,7 +6,7 @@ const announcementSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
     },
-    sector: {
+    category: {
       type: String,
       enum: [
         "Fontanería",

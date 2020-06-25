@@ -120,11 +120,13 @@ const postAddAnnouncement = async (req, res, next) => {
   try {
     const announcer = req.session.currentUser._id;
     const { title, description, state, city } = req.body;
+    const tags = [...req.body.tags.split(',').map(e => capitalize(e.trim()))]
     const photos = req.files.length ? Array.from(req.files).map(file => file.path) : undefined;
     let photoCard = req.files.length ? photos[0] : undefined;
     const newAnnouncement = await Announcements.create({
       title,
       description,
+      tags,
       photoCard,
       announcer,
       photos,

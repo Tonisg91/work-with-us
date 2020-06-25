@@ -151,6 +151,21 @@ i {
 }
 //SIDENAV END
 
+//SCROLLMENU
+.scrollmenu {
+  width: auto;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 1.5em 0;
+}
+.scrollmenu div {
+  display: inline-block;
+  padding-right: 0.5em;
+}
+.scrollmenu div:first-child {
+  padding-left: 30rem;
+}
+//SCROLLMENU END
 //BUTTONS
 .btn {
   border: none;
@@ -307,13 +322,8 @@ section {
   align-items: center;
 }
 #announcements-main-filters div {
-  padding-top: 1em;
   display: flex;
   justify-content: center;
-  padding-top: 1em;
-}
-#add-button {
-  padding-left: 1em;
 }
 #announcements-list {
   display: grid;
