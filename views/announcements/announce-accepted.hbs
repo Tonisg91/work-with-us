@@ -2,7 +2,9 @@
   <section id="announce-section">
     <div id="icon-container">
       <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      {{#if isUserTheAnnouncer}}
       <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+      {{/if}}
     </div>
     <article id="announce-article">
       <div id="slideshow-container">
@@ -37,29 +39,44 @@
         <p>{{estimatedPrice}}&euro;</p>
         <p>{{comments}}</p>
         <br>
-        <h6>Contacto</h6>
-        <p>{{professional.email}}</p>
-        <br>
-        {{#if ../announcement.finished}}
-        <a href="/addreview/{{professional._id}}">
-          <button class="btn blue-btn">
-            Añadir reseña
-          </button>
-        </a>
-        {{else}}
-        <a href="/finish/{{../announcement._id}}">
-          <button class="btn green-btn">
-            Trabajo finalizado
-          </button>
-        </a>
+        {{#if ../isUserTheAnnouncer}}
+          <h6>Contacto</h6>
+          <p>{{professional.email}}</p>
+          <br>
+          {{#if ../announcement.finished}}
+          <a href="/addreview/{{professional._id}}">
+            <button class="btn blue-btn">
+              Añadir reseña
+            </button>
+          </a>
+          {{else}}
+          <a href="/finish/{{../announcement._id}}">
+            <button class="btn green-btn">
+              Trabajo finalizado
+            </button>
+          </a>
+          {{/if}}
         {{/if}}
       </div>
       {{/if}}
       {{/each}}
     </article>
-
+    <article class="offer-field" id="chat-box">
+      <h2>Chat</h2>
+      <div id="messages">
+        {{#each chat.messages}}
+        <p>{{this}}</p>
+        {{/each}}
+      </div>
+      <div id="input-message-chat">
+        <input type="hidden" id="username" value="{{currentUser.name}}">
+        <input type="hidden" id="chatId" value="{{announcement.chat._id}}">
+        <input type="text" id="newMessage">
+        <button type="button" id="sendBtn" class="btn blue-btn">Send</button>
+      </div>
+    </article>
   </section>
 </main>
 
-
+<script src="/javascripts/sockets.js"></script>
 <script src="/javascripts/slideShow.js"></script>

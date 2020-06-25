@@ -62,13 +62,16 @@ const announcementSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    chat: {
+      type: Schema.Types.ObjectId,
+      ref: 'Chat'
+    },
     location: {
       state: String,
       city: String,
       lat: String,
       lng: String
     }
-
   },
   {
     timestamps: true,
