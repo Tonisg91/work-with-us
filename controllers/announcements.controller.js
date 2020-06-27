@@ -7,7 +7,12 @@ const { capitalize } = require('../tools/stringFn')
 const getAnnouncements = async (req, res, next) => {
   try {
     const user = req.session.currentUser;
-    const list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
+    let list;
+    if (user) {
+      list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
+    } else {
+      list = await Announcements.find({ assigned: false });
+    }
     res.render("announcements/announcement-list", { list, currentUser: user });
   } catch (error) {
     next(error);
@@ -18,11 +23,11 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
-    const offersByTheUser = await Offers.find({professional: user._id, announcement: announcement._id});
-    const chat = await Chat.findById(announcement.chat);
     if (!user) {
       res.redirect("/auth");
     } else {
+      const offersByTheUser = await Offers.find({ professional: user._id, announcement: announcement._id });
+      const chat = await Chat.findById(announcement.chat);
       //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
       const isUserTheAnnouncer = announcement.announcer == user._id;
       const isUserTheProfessional = announcement.professional == user._id;
@@ -90,7 +95,7 @@ const getDeleteOffer = async (req, res, next) => {
 const getAcceptOffer = async (req, res, next) => {
   try {
     const { announceId, offerId, professionalId } = req.params;
-    const newChat = await Chat.create({announcement: announceId});
+    const newChat = await Chat.create({ announcement: announceId });
     const chatId = newChat._id;
     //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
     const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });

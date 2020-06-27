@@ -1,19 +1,35 @@
-const socket = io.connect('https://workwithus.herokuapp.com/', { 'forceNew': true });
-
+const socket = io.connect('http://localhost:3000', { 'forceNew': true });
 const chatId = document.getElementById('chatId').value;
+const chat = document.getElementById('messages')
+let scrolled = false;
+
+window.onload = updateScroll(chat);
+
+function updateScroll(chat) {
+  if (!scrolled) {
+    chat.scrollTop = chat.scrollHeight;
+  }
+}
+
+chat.addEventListener('scroll', () => {
+  scrolled = true;
+});
 
 socket.emit('join', { chatId });
 socket.on('joinedChat', (msg) => console.log(msg));
-socket.on('newMessage', ({ msg }) => addNewMessage(msg));
+socket.on('newMessage', ({ msg }) => {
+  addNewMessage(msg)
+  updateScroll(chat)
+});
 
 const sendBtn = document.getElementById('sendBtn');
 sendBtn.addEventListener('click', createNewMessage);
 
 function addNewMessage(msg) {
-  const msgContainer = document.getElementById('messages');
   const msgTag = document.createElement('p');
   msgTag.textContent = msg;
-  msgContainer.appendChild(msgTag);
+  chat.appendChild(msgTag);
+  scrolled = false;
 }
 
 function createNewMessage() {

@@ -39,7 +39,7 @@ html {
 //SLIDESHOW
 #slideshow-container {
   background-color: transparent;
-  margin-top: 1em;
+  margin: 1em 0;
   width: 100%;
 }
 #slideshow-container img{
@@ -57,6 +57,7 @@ html {
   display: flex;
   justify-content: space-between;
   transition: 0.6 ease;
+  display: none;
 }
 .prev, .next {
   color: rgba($color: $btn-text, $alpha: 0.5);
@@ -153,17 +154,15 @@ i {
 
 //SCROLLMENU
 .scrollmenu {
-  width: auto;
-  overflow: auto;
-  white-space: nowrap;
   padding: 1.5em 0;
 }
-.scrollmenu div {
-  display: inline-block;
-  padding-right: 0.5em;
+#filters-controls-section {
+  padding-bottom: 0;
 }
-.scrollmenu div:first-child {
-  padding-left: 30rem;
+#list-controls {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
 }
 //SCROLLMENU END
 //BUTTONS
@@ -216,6 +215,31 @@ i {
 section {
   padding: 1.5em 2em;
 }
+article {
+  background-color: white;
+  padding: 1em;
+  border-radius: 25px;
+  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
+}
+article h2 {
+  text-align: center;
+  padding-bottom: 0.7em;
+}
+input {
+  padding: 0.7em;
+  border: 1px solid rgba(44, 62, 80, 0.3);
+  margin: 1em 0;
+  border-radius: 25px;
+  outline: none;
+  font-size: 1em;
+  font-style: italic;
+}
+textarea {
+  padding: 1em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  outline: none;
+}
 //INDEX
 //SECTION 1 (INTRO)
 #index-section-1 {
@@ -266,7 +290,8 @@ section {
 
 //AUTH
 #auth-main {
-  margin: 1em;
+  background-color: rgba($color: $blue-btn, $alpha: 0.2);
+  padding: 1em;
 }
 #auth-section hr {
   width: 85%;
@@ -277,26 +302,17 @@ section {
   font-size: 1.8em;
 }
 #auth-section {
-  background-color: rgba($color: $blue-btn, $alpha: 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 #auth-section form {
   display: flex;
   flex-direction: column;
   padding-bottom: 2em;
 }
-#auth-section input {
-  margin: 1em 0;
-  padding: 1em 0;
-  border: none;
-  border-radius: 25px;
-  outline: none;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1em;
-}
+
 //AUTH END
 
 //ANNOUNCEMENTS
@@ -308,6 +324,7 @@ section {
   border-radius: 25px 0 0 25px;
   border: none;
   outline: none;
+  margin: 0;
 }
 #announcements-main button {
   border-radius: 0 25px 25px 0;
@@ -318,18 +335,31 @@ section {
 }
 #announcements-main-filters {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 #announcements-main-filters div {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+#announcements-main-filters input {
+  width: inherit;
+}
+#announcements-main-filters div:last-child {
+  justify-content: flex-end;
+}
+#announcements-main-filters div:last-child button{
+  background-color: transparent;
 }
 #announcements-list {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 12px;
 }
+
 //CARDS
 .announce-card {
   background-color: rgba($color: white, $alpha: 1);
@@ -378,8 +408,6 @@ section {
 }
 #announce-article img {
   width: 100%;
-  margin-top: 1em;
-  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
 }
 #announce-article div:nth-child(2) {
   margin-top: 1em;
@@ -387,20 +415,13 @@ section {
 }
 #announce-article p {
   padding-top: 1em;
-  font-size: small;
+  font-size: 0.8em;
 }
 #icon-container {
   display: flex;
   justify-content: space-between;
 }
 //OFFER LIST
-.offer-field {
-  list-style: none;
-  padding: 0.3em 1em;
-  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
-  width: 100%;
-  background-color: white;
-}
 .offer-field li{
   list-style: none;
   margin: 1em 0;
@@ -425,43 +446,39 @@ section {
 #guest-view form > * {
   margin: 0.5em 0;
 }
-#guest-view input {
-  width: 100%;
-  padding: 0.5em;
-  outline: none;
-  border-radius: 5px;
-  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
-}
-#offer-description {
-  padding: 0.5em;
-  outline: none;
-  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
-  border-radius: 5px;
-}
+
 //MAKE OFFER END
 
 //OFFER ACCEPTED
-#accepted-offer-article h2, #chat-box h2{
-  padding: 0.6em 0;
-}
 #accepted-offer-article .offer {
   padding: 0.5em 0;
 }
 #messages {
   overflow: auto;
   max-height: 250px;
+  padding: 0.7em;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  border-radius: 12.5px;
 }
 #input-message-chat {
   display: flex;
-  justify-content: space-between;
   padding: 0.8em 0;
-  align-items: center;
 }
-#input-message-chat input {
-  padding: 1em 0 1em 1em;
-  border-radius: 25px;
-  border: 1px solid rgba($color: $general-text, $alpha: 0.5);
+#newMessage {
+  padding: 1em;
+  border-radius: 25px 0 0 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
   outline: none;
+  margin: 0;
+  border-right: none;
+}
+#sendBtn {
+  border-radius: 0 25px 25px 0;
+  background-color: white;
+  padding: 0 1em;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  outline: none;
+  border-left: none;
 }
 //ANNOUNCEMENT/:ID END
 
@@ -473,16 +490,7 @@ section {
   width: 35%;
   border-radius: 50%;
 }
-#my-account-main article {
-  background-color: white;
-  padding: 1em;
-  border-radius: 25px;
-  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
-}
-#my-account-section h2 {
-  text-align: center;
-  padding-bottom: 1em;
-}
+
 //FORM
 #edit-info-form {
   display: flex;
@@ -493,15 +501,8 @@ section {
   margin: 0.3em 0;
 }
 #edit-info-form input,select,textarea {
-  font-weight: 600;
   font-style: italic;
   color: $general-text;
-}
-#edit-info-form input {
-  margin: 0.5em 0;
-  padding: 0.7em;
-  border-radius: 25px;
-  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
 }
 #edit-info-form select {
   padding: 0.7em;
@@ -509,17 +510,10 @@ section {
   border: 1px solid rgba($color: $general-text, $alpha: 0.3);
   background-color: white;
 }
-#edit-info-form textarea {
-  padding: 1em;
-  border-radius: 25px;
-  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
-}
+
 //MY ANNOUNCE-LIST
-#my-announces h2 {
-  padding-bottom: 0.5em;
-  text-align: center;
-}
-#my-list, #my-works {
+
+.my-list, .my-works {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 10px;
@@ -531,15 +525,7 @@ section {
 #add-announce-section {
   background-color: rgba($color: $blue-btn, $alpha: 0.2);
 }
-#add-announce-section h2 {
-  padding-bottom: 0.7em;
-}
-#add-announce-article {
-  background-color: white;
-  padding: 1em;
-  border-radius: 25px;
-  box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
-}
+
 #add-announce-form {
   display: flex;
   flex-direction: column;
@@ -553,7 +539,17 @@ section {
   display: flex;
   flex-direction: column;
 }
-
+#review-select {
+  margin: 1em 0;
+  padding: 0.7em;
+  border-radius: 25px;
+  border: 1px solid rgba($color: $general-text, $alpha: 0.3);
+  background-color: transparent;
+  outline: none;
+}
+.review {
+  margin: 1em 0;
+}
 
 //FOOTER
 footer {
@@ -582,3 +578,118 @@ footer li {
   padding: 0.8em 0;
 }
 //FOOTER END
+
+@media (min-width: 768px) {
+  p {
+    font-size: 1.5em;
+  }
+  article h2 {
+    font-size: 1.8em;
+  }
+  #home-nav {
+    font-size: 1.5em;
+  }
+  .announce-card img{
+    max-height: 200px;
+  }
+  .announce-card {
+    max-height: 300px;
+  }
+  .announce-card h4 {
+    font-size: 1.3em;
+  }
+  #announce-article p {
+    font-size: 1.5em;
+  }
+  #announcements-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .my-list, .my-works {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #announce-article img {
+    max-height: 500px;
+  }
+  #guest-view form {
+    display: flex;
+    flex-direction: column;
+  }
+  #user-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .offer-field li div:last-child{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .offer-field a {
+    margin-right: 0.5em;
+  }
+  #slide-controls {
+    width: inherit;
+    position: absolute;
+    top: 27%;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.6 ease;
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  #index-data-article {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #index-signup-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #index-signup-article form {
+    align-items: center;
+  }
+  #index-signup-article input {
+    width: 25em;
+  }
+  #index-signup-article button {
+    width: 75%;
+  }
+  #announcements-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .my-list, .my-works {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  #my-data div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #my-data div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+  }
+  #user-img {
+    width: 60%;
+    height: 60%;
+    margin-top: 3em;
+  }
+  #announce-article {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  #announce-article article {
+    margin: 3em 1em;
+  }
+  .mySlides img{
+    border-radius: 25px;
+  }
+  #announcement-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
