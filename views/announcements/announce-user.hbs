@@ -1,8 +1,15 @@
 <main>
   <section id="announce-section">
     <div id="icon-container">
-      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
-      <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+      <a href="{{backURL}}"><i class="fas fa-arrow-left"></i></a>
+      <i class="fas fa-trash-alt" id="delete-button"></i>
+      <div class="modal" id="myModal">
+        <div class="modal-content">
+          <p>Seguro que quieres eliminar el anuncio?</p>
+          <a href="/delete/{{announcement._id}}" class="btn red-btn">Borrar</a>
+          <span class="close">&times;</span>
+        </div>
+      </div>
     </div>
     <div id="announce-info">
       <div id="slideshow-container">

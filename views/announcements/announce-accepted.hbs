@@ -1,7 +1,7 @@
 <main>
   <section id="announce-section">
     <div id="icon-container">
-      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
+      <a href="{{backURL}}"><i class="fas fa-arrow-left"></i></a>
       {{#if isUserTheAnnouncer}}
       <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
       {{/if}}

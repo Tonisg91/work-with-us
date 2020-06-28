@@ -7,6 +7,7 @@ const { capitalize } = require('../tools/stringFn')
 const getAnnouncements = async (req, res, next) => {
   try {
     const user = req.session.currentUser;
+    req.session.current_url = '/announcements'
     let list;
     if (user) {
       list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
@@ -23,6 +24,8 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
+    const backURL = req.session.current_url;
+    console.log(backURL);
     if (!user) {
       res.redirect("/auth");
     } else {
@@ -38,12 +41,14 @@ const getOneAnnouncement = async (req, res, next) => {
             announcement,
             currentUser: user,
             isUserTheAnnouncer,
-            chat
+            chat,
+            backURL
           })
         } else {
           res.render("announcements/announce-user", {
             announcement,
-            currentUser: user
+            currentUser: user,
+            backURL
           });
         }
       } else {
@@ -51,13 +56,15 @@ const getOneAnnouncement = async (req, res, next) => {
           res.render("announcements/announce-accepted", {
             announcement,
             currentUser: user,
-            chat
+            chat,
+            backURL
           })
         } else {
           res.render("announcements/announcement-guestUser", {
             announcement,
             currentUser: user,
             offersByTheUser,
+            backURL
           });
         }
       }
