@@ -63,7 +63,9 @@ html {
   color: rgba($color: $btn-text, $alpha: 0.5);
   font-size: 3em;
 }
-
+.mySlides img{
+  border-radius: 25px;
+}
 // TEXT COLOR
 body {
   color: $general-text;
@@ -400,20 +402,20 @@ textarea {
 #announce-section article {
   margin-bottom: 1em;
 }
-#announce-article > div:last-child {
+#announce-info > div:last-child {
   margin: 1em 0;
   box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);
   width: 100%;
   background-color: white;
 }
-#announce-article img {
+#announce-info img {
   width: 100%;
 }
-#announce-article div:nth-child(2) {
+#announce-info div:nth-child(2) {
   margin-top: 1em;
   padding: 1em;
 }
-#announce-article p {
+#announce-info p {
   padding-top: 1em;
   font-size: 0.8em;
 }
@@ -441,6 +443,9 @@ textarea {
 .offer a{
   text-decoration: none;
 }
+.offer div:first-child{
+  word-break: break-all;
+}
 //OFFER LIST END
 //MAKE OFFER
 #guest-view form > * {
@@ -452,6 +457,10 @@ textarea {
 //OFFER ACCEPTED
 #accepted-offer-article .offer {
   padding: 0.5em 0;
+}
+#new-msg-box {
+  display: flex;
+  width: 100%;
 }
 #messages {
   overflow: auto;
@@ -471,6 +480,7 @@ textarea {
   outline: none;
   margin: 0;
   border-right: none;
+  width: 100%;
 }
 #sendBtn {
   border-radius: 0 25px 25px 0;
@@ -550,6 +560,12 @@ textarea {
 .review {
   margin: 1em 0;
 }
+//MY ACCOUNT END
+
+//USER PROFILE
+#user-info article{
+  margin-bottom: 2.6em;
+}
 
 //FOOTER
 footer {
@@ -579,7 +595,7 @@ footer li {
 }
 //FOOTER END
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   p {
     font-size: 1.5em;
   }
@@ -598,7 +614,7 @@ footer li {
   .announce-card h4 {
     font-size: 1.3em;
   }
-  #announce-article p {
+  #announce-info p {
     font-size: 1.5em;
   }
   #announcements-list {
@@ -607,7 +623,7 @@ footer li {
   .my-list, .my-works {
     grid-template-columns: repeat(3, 1fr);
   }
-  #announce-article img {
+  #announce-info img {
     max-height: 500px;
   }
   #guest-view form {
@@ -637,7 +653,7 @@ footer li {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   #index-data-article {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -657,37 +673,87 @@ footer li {
     width: 75%;
   }
   #announcements-list {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 0.8fr);
+    gap: 10px 15px;
   }
   .my-list, .my-works {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 0.8fr);
   }
-  #my-data div{
+  #user-data div{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  #my-data div:first-child {
+  #user-data div:first-child {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     
   }
   #user-img {
-    width: 60%;
-    height: 60%;
-    margin-top: 3em;
+    width: 50%;
+    height: 55%;
   }
-  #announce-article {
+  #announce-info {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    gap: 12px;
   }
-  #announce-article article {
-    margin: 3em 1em;
+  #announce-info article {
+    margin: 2em 0;
+    height: auto;
   }
-  .mySlides img{
-    border-radius: 25px;
+  #edit-announce-data {
+    display: grid;
+    grid-template-columns: 1fr;
   }
   #announcement-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  #announce-info p {
+    font-size: 1.4em;
+  }
+  .mySlides img {
+    max-height: 600px;
+  }
+  #guest-view {
+    display: grid;
+    grid-template-columns: repeat(2 1fr);
+    width: 45%;
+  }
+  .offer-field form{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 75%;
+  }
+  .offer-field form button {
+    width: 25%;
+  }
+  .offer div:last-child {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .offer div:last-child a {
+    margin-right: 1em;
+  }
+  #new-msg-box {
+    width: 100%;
+  }
+  #newMessage {
+    width: 100%;
+  }
+  #user-profile-data{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-box, .data-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #user-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;

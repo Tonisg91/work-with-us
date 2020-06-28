@@ -24,6 +24,11 @@ socket.on('newMessage', ({ msg }) => {
 
 const sendBtn = document.getElementById('sendBtn');
 sendBtn.addEventListener('click', createNewMessage);
+window.addEventListener('keydown', (e) => {
+  if (e.keyCode == 13) {
+    createNewMessage();
+  }
+})
 
 function addNewMessage(msg) {
   const msgTag = document.createElement('p');

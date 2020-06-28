@@ -6,7 +6,7 @@
       <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
       {{/if}}
     </div>
-    <div id="announce-article">
+    <div id="announce-info">
       <div id="slideshow-container">
         {{#if announcement.photos}}
         {{#each announcement.photos }}
@@ -61,7 +61,7 @@
         {{/if}}
         {{/each}}
       </article>
-      <article class="offer-field" id="chat-box">
+      <article id="chat-box">
         <h2>Chat</h2>
         <div id="messages">
           {{#each chat.messages}}
@@ -71,11 +71,13 @@
         <div id="input-message-chat">
           <input type="hidden" id="username" value="{{currentUser.name}}">
           <input type="hidden" id="chatId" value="{{announcement.chat._id}}">
-          <input type="text" id="newMessage">
-          <button type="button" id="sendBtn">
-            <i class="far fa-paper-plane">
-            </i>
-          </button>
+          <div id="new-msg-box">
+            <input type="text" id="newMessage">
+            <button type="button" id="sendBtn">
+              <i class="far fa-paper-plane">
+              </i>
+            </button>
+          </div>
         </div>
       </article>
     </div>
