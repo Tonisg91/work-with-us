@@ -657,10 +657,6 @@ footer li {
     font-size: 1.4em; }
   .mySlides img {
     max-height: 600px; }
-  #guest-view {
-    display: grid;
-    grid-template-columns: repeat(2 1fr);
-    width: 45%; }
   .offer-field form {
     display: grid;
     grid-template-columns: 1fr;
@@ -689,6 +685,10 @@ footer li {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px; }
   .modal-content {
-    width: 15%; } }
+    width: 15%; }
+  #offer-map {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px; } }
 
 /*# sourceMappingURL=style.css.map */

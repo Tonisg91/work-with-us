@@ -494,7 +494,7 @@ textarea {
 //OFFER LIST END
 //MAKE OFFER
 #guest-view form > * {
-  margin: 0.5em 0;
+margin: 0.5em 0;
 }
 
 //MAKE OFFER END
@@ -762,11 +762,6 @@ footer li {
   .mySlides img {
     max-height: 600px;
   }
-  #guest-view {
-    display: grid;
-    grid-template-columns: repeat(2 1fr);
-    width: 45%;
-  }
   .offer-field form{
     display: grid;
     grid-template-columns: 1fr;
@@ -805,5 +800,10 @@ footer li {
   }
   .modal-content {
     width: 15%;
+  }
+  #offer-map {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }

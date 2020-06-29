@@ -30,57 +30,64 @@ Work With Us is an App for offer jobs.
 
 | Method | URL                                          | Description                                                                   |
 | ------ | -------------------------------------------- | ----------------------------------------------------------------------------- |
-| GET    | '/'                                          | render index Homepage (public)                                                |
-| GET    | '/announcements'                             | render list of announcements (public)                                         |
-| GET    | '/auth'                                      | render Login & signup form (public)                                           |
-| POST   | '/login'                                     | redirect to /user-profile (public)                                            |
-| POST   | '/signup'                                    | redirect to /user-profile && create an instance of user on DB (public)        |
-| GET    | '/myaccount'                                 | render account data (private)                                                 |
-| POST   | '/myaccount'                                 | Update data of user (private)                                                 |
-| GET    | '/announcements'                             | render announcements list                                                     |
-| GET    | '/announcements/:announcement id'            | render announcement details                                                   |
+| GET    | '/'                                          | Render index Homepage (public)                                                |
+| GET    | '/auth'                                      | Render Login & signup form (public)                                           |
+| GET    | '/auth/:email'                               | Render Login & signup form with email added on '/'                            |
+| POST   | '/login'                                     | Redirect to /user-profile (public)                                            |
+| POST   | '/signup'                                    | Redirect to /user-profile && create an instance of user on DB (public)        |
+| GET    | '/logout'                                    | Close Session and redirect to index                                           |
+| GET    | '/myaccount'                                 | Render account data (private)                                                 |
+| POST   | '/editUser/:userid'                          | Update the user data                                                          |
+| GET    | '/announcements'                             | Render announcements list                                                     |
+| GET    | '/announcements/:announcement id'            | Render announcement details                                                   |
 | POST   | '/announcements/:announcement id/make-offer' | Make offer to client (professional user) (button hidden if professional user) |
-| GET    | '/announcements/:announcement id/edit'       | render announcement data form (private) (button on announcement)              |
-| POST   | '/announcements/:announcement id/edit'       | update announcement data (private)                                            |
-| POST   | '/announcements/:announcement id/delete'     | remove announcement from DB (private) (button on announcement)                |
-| GET    | '/new-announcement'                          | render new announcement form                                                  |
-| POST   | '/new-announcement'                          | Create new announcement on DB & redirect to '/announcements/:announcement id' |
-| GET    | '/user/:userid'                              | render user profile (public)                                                  |
+| GET    | '/announcements/:announcement id/edit'       | Render announcement data form (private) (button on announcement)              |
+| POST   | '/announcements/:announcement id/edit'       | Update announcement data (private)                                            |
+| POST   | '/announcements/:announcement id/delete'     | Remove announcement from DB (private) (button on announcement)                |
+| GET    | '/addAnnouncement'                           | Render new announcement form                                                  |
+| POST   | '/addAannouncement'                          | Create new announcement on DB & redirect to '/announcements/:announcement id' |
+| GET    | '/user/:userid'                              | Render user profile (public)                                                  |
+| GET    | '/addreview/:userid'                         | Render form for add a review after finish work                                |
+| POST   | '/addreview/:userid'                         | Create the review at DB                                                       |
 
 ## Models
 
 - User: {
-
-  - Name
-  - LastName
-  - Email
+  - email
+  - photo
+  - name
   - PWD
-  - userType (client or professional)
-  - Reviews => Rating media
   - Announcements => [Model.type('Announcement')]
-  - Description (Professional user): {
-    Sector,
-    Location,
-    Description
-    }
+  - workInProgress: ObjectId
+  - address
+  - city
+  - description
+  - reviews: [ObjectId]
+  
     }
 
 - Announcement: {
-
   - Title
+  - Category
   - Description
   - Tags
   - Photos
+  - PhotoCard
   - Assigned (boolean)
-  - Announcer (Model.type('Client User'))
-  - Professional (Model.type('Professional User'))
+  - Announcer: ObjectId
+  - Professional: ObjectId
   - Offers: [{
-    - Model.type('Professional')
-    - EstimatePrice
-    - Comments
+    - ObjectId
       }]
-  - Reviews => [Model.type('Review')]
+  - Offer Accepted
   - Finished (boolean)
+  - Chat: ObjectId
+  - Location {
+      state
+      city
+      lat
+      lng
+  }
     }
 
 - Review: {
@@ -89,3 +96,16 @@ Work With Us is an App for offer jobs.
   - Description
   - Rating
     }
+
+- Offers: {
+   - professional: ObjectId,
+   - announcement: ObjectId,
+   - estimatedPrice:
+   - accepted:
+   - finished:
+}
+
+- Chat: {
+   - messages: [String],
+   - announcement: ObjectId
+}
