@@ -6,6 +6,22 @@ const clearFilters = () => {
   const inputs = Array.from(document.querySelectorAll('input'))
   inputs.forEach(e => e.value = '')
 }
+
+//SHOW FILTERS
+const openFilters = document.getElementById('open-filters');
+let show = false;
+openFilters.addEventListener('click', () => {
+  if (!show) {
+    document.getElementById('announcements-main-filters').classList.remove('hidden');
+    show = true;
+    console.log(show);
+  } else {
+    document.getElementById('announcements-main-filters').classList.add('hidden');
+    show = false
+    console.log(show);
+  }
+})
+
 //FILTERS
 //FUNCTIONS
 const clearList = arr => arr.forEach(e => e.classList.remove('hidden'));

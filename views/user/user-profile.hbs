@@ -1,19 +1,36 @@
 <main id="my-account-main">
-  <section id="my-account-section">
-    <article id="my-data">
-      <img src="{{user.photo}}" alt="Imagen de usuario" id="user-img">
-      <div>
+  <section id="user-profile-section">
+    <article id="user-profile-data">
+      <div class="image-box">
+        <img src="{{user.photo}}" alt="Imagen de usuario" id="user-img">
+      </div>
+      <div class="data-box">
         <p><strong>Nombre:</strong> {{user.name}}</p>
         <p><strong>Email:</strong> {{user.email}}</p>
         <p><strong>Ciudad:</strong> {{user.city}}</p>
       </div>
     </article>
   </section>
-  <section id="my-announces">
+  <section id="user-info">
+    <article>
+      <h2>Reviews</h2>
+      {{#if user.reviews}}
+      {{#each user.reviews}}
+      <div class="review">
+        <h3>{{this.title}}</h3>
+        <p>{{this.description}}</p>
+        <p>Puntuación: {{this.rating}}/5</p>
+      </div>
+      <hr>
+      {{/each}}
+      {{else}}
+      <p>Este usuario no tiene valoraciones</p>
+      {{/if}}
+    </article>
     <article>
       <h2>Anuncios</h2>
       {{#if user.announcements}}
-      <div id="my-list">
+      <div class="my-list">
         {{#each user.announcements}}
         <div class="announce-card">
           <img src="{{this.photoCard}}" alt="Imagen de anuncio">
@@ -27,23 +44,6 @@
       </div>
       {{else}}
       <p>Este usuario no tiene anuncios</p>
-      {{/if}}
-    </article>
-  </section>
-  <section id="user-reviews">
-    <article>
-      <h3>Reviews</h3>
-      {{#if user.reviews}}
-      {{#each user.reviews}}
-      <div class="">
-        <h4>{{this.title}}</h4>
-        <p>{{this.description}}</p>
-        <p>Puntuación: {{this.rating}}/5</p>
-      </div>
-      <hr>
-      {{/each}}
-      {{else}}
-      <p>Este usuario no tiene valoraciones</p>
       {{/if}}
     </article>
   </section>
