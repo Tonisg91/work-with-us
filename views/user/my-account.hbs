@@ -31,13 +31,14 @@
           <textarea name="description" id="" cols="30" rows="7"
             placeholder="Escribe algo sobre ti">{{currentUser.description}}</textarea>
           <label for="password">Cambiar contraseña</label>
+          <p class="comment">* Solo rellenar si quieres cambiar contraseña</p>
           <input type="password" name="oldPwd" placeholder="Introduce tu antigua contraseña">
           <input type="password" name="newPwd" placeholder="Introduce tu nueva contraseña">
           <button type="submit" class="btn blue-btn">Editar</button>
         </form>
         <br>
         {{#if errorMessage}}
-          <p class="error">{{errorMessage}}</p>
+        <p class="error">{{errorMessage}}</p>
         {{/if}}
       </div>
     </article>

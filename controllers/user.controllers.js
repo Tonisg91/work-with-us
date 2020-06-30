@@ -22,27 +22,14 @@ const getMyAccount = async (req, res, next) => {
 
 const editUser = async (req, res, next) => {
   try {
-    const {currentUser} = req.session;
+    const { currentUser } = req.session;
     const userId = req.session.currentUser._id;
-//<<<<<<< maps
-    const { name, email, city, state, lat, lng, description } = req.body
-    const updatedUser = await User.findByIdAndUpdate(userId, {
-      name,
-      email,
-      description,
-      'location.state': capitalize(state),
-      'location.city': capitalize(city),
-      'location.lat': lat,
-      'location.lng': lng
-    });
-    req.session.currentUser = updatedUser
-//=======
-    const {oldPwd, newPwd} = req.body;
+    const { oldPwd, newPwd, name, email, city, state, lat, lng, description } = req.body;
     if (newPwd && !oldPwd) {
       res.status(400).render("user/my-account", {
         errorMessage:
           "Si introduces una nueva contraseña, debes introducir tu anterior contraseña para modificarla",
-          currentUser
+        currentUser
       });
       return;
     } else if (oldPwd) {
@@ -50,7 +37,7 @@ const editUser = async (req, res, next) => {
         res.status(400).render("user/my-account", {
           errorMessage:
             "Debes introducir una nueva contraseña.",
-            currentUser
+          currentUser
         });
         return;
       } else {
@@ -61,27 +48,46 @@ const editUser = async (req, res, next) => {
           if (await bcryptjs.compare(oldPwd, user.passwordHash)) {
             const salt = await bcryptjs.genSalt(saltRounds);
             const hashedPassword = await bcryptjs.hash(newPwd, salt);
-            req.body.passwordHash = hashedPassword;
+            const updatedUser = await User.findByIdAndUpdate(userId, {
+              name,
+              email,
+              description,
+              passwordHash: hashedPassword,
+              'location.state': capitalize(state),
+              'location.city': capitalize(city),
+              'location.lat': lat,
+              'location.lng': lng
+            }, { new: true });
+            req.session.currentUser = updatedUser;
           } else {
             res.status(400).render("user/my-account", {
               errorMessage:
                 "La contraseña introducida no coincide, inténtalo de nuevo",
-                currentUser
+              currentUser
             });
             return;
-          }    
+          }
         } else {
           res.status(400).render("user/my-account", {
             errorMessage:
               "La nueva contraseña debe tener al menos 6 caracteres, una letra mayúscula, otra minúscula y un número.",
-              currentUser
+            currentUser
           });
           return;
-        }      
+        }
       }
+    } else {
+      const updatedUser = await User.findByIdAndUpdate(userId, {
+        name,
+        email,
+        description,
+        'location.state': capitalize(state),
+        'location.city': capitalize(city),
+        'location.lat': lat,
+        'location.lng': lng
+      }, { new: true });
+      req.session.currentUser = updatedUser;
     }
-    await User.findByIdAndUpdate(userId, req.body);
-//>>>>>>> develop
     res.redirect("/myaccount");
   } catch (error) {
     next(error);
