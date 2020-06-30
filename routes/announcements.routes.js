@@ -22,7 +22,7 @@ router
   .get("/declineOffer/:announceId/:offerId", getDeleteOffer)
   .get("/acceptOffer/:announceId/:offerId/:professionalId", getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
-  .get("/finish/:announceId", getFinishWork)
+  .get("/finish/:announceId/:chatId", getFinishWork)
   .get("/deleteOffer/:announceId/:offerId", getDeleteOffer)
   .post("/addAnnouncement", fileUploader.array("photos"), postAddAnnouncement)
   .post("/edit/:announceId", editAnnouncement)

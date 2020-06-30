@@ -23,7 +23,29 @@
           <button type="submit" class="btn blue-btn">Editar</button>
         </form>
       </div>
-
+      <form action="/editUser" id="edit-info-form" method="POST">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" value="{{currentUser.name}}">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{currentUser.email}}">
+        <br>
+        <h4>Más sobre tí</h4>
+        <label for="city">Ciudad</label>
+        <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
+        <label for="address">Provincia</label>
+        <input type="text" name="state" placeholder="Direccion" value="{{currentUser.location.state}}">
+        <label for="description">Descripción</label>
+        <textarea name="description" id="" cols="30" rows="7"
+          placeholder="Escribe algo sobre ti">{{currentUser.description}}</textarea>
+        <label for="password">Cambiar contraseña</label>
+        <input type="password" name="oldPwd" placeholder="Introduce tu antigua contraseña">
+        <input type="password" name="newPwd" placeholder="Introduce tu nueva contraseña">
+        <button type="submit" class="btn blue-btn">Editar</button>
+      </form>
+      <br>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
     </article>
   </section>
   <section id="my-announces">
