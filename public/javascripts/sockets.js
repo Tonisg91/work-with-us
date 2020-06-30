@@ -20,6 +20,8 @@ function createNewMessage() {
   const newMsgInput = document.getElementById('newMessage');
   const username = document.getElementById('username');
   const newMsg = `${username.value}: ${newMsgInput.value}`;
-  socket.emit('newMessage', {msg: newMsg, chatId});
-  newMsgInput.value = '';
+  if (newMsgInput.value) {
+    socket.emit('newMessage', { msg: newMsg, chatId });
+    newMsgInput.value = '';    
+  }
 }

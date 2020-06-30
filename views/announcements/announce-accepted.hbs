@@ -50,7 +50,7 @@
             </button>
           </a>
           {{else}}
-          <a href="/finish/{{../announcement._id}}">
+          <a href="/finish/{{../announcement._id}}/{{../announcement.chat._id}}">
             <button class="btn green-btn">
               Trabajo finalizado
             </button>
@@ -61,6 +61,7 @@
       {{/if}}
       {{/each}}
     </article>
+    {{#if announcement.chat}}
     <article class="offer-field" id="chat-box">
       <h2>Chat</h2>
       <div id="messages">
@@ -75,8 +76,11 @@
         <button type="button" id="sendBtn" class="btn blue-btn">Send</button>
       </div>
     </article>
+    {{/if}}
   </section>
 </main>
 
+{{#if announcement.chat}}
 <script src="/javascripts/sockets.js"></script>
+{{/if}}
 <script src="/javascripts/slideShow.js"></script>
