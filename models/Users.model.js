@@ -31,8 +31,12 @@ const userSchema = new Schema(
         ref: "Announcement"
       }
     ],
-    address: String,
-    city: String,
+    location: {
+      state: String,
+      city: String,
+      lat: Number,
+      lng: Number,
+    },
     description: String,
     reviews: [{
       type: Schema.Types.ObjectId,

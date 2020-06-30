@@ -86,7 +86,8 @@ nav button {
 
 i {
   color: #1abc9c;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  cursor: pointer; }
 
 #menu-button {
   font-size: 1.9em; }
@@ -594,6 +595,7 @@ footer li {
     flex-direction: column; }
   #user-data {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around; }
   .offer-field li div:last-child {

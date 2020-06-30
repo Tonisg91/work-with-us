@@ -14,16 +14,25 @@
           <br>
           <h4>Más sobre tí</h4>
           <label for="city">Ciudad</label>
-          <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.city}}">
-          <label for="address">Dirección</label>
-          <input type="text" name="address" placeholder="Direccion" value="{{currentUser.address}}">
+          <input type="text" name="city" placeholder="Ciudad" value="{{currentUser.location.city}}">
+          <label for="address">Provincia</label>
+          <input type="text" name="state" placeholder="Direccion" value="{{currentUser.location.state}}">
+          {{#if currentUser.location.lat}}
+          <button class="btn green-btn" id="location-btn" disabled>Ubicacion obtenida</button>
+          {{else}}
+          <button class="btn blue-btn" id="location-btn">Obtener ubicacion</button>
+          {{/if}}
+          <input type="text" name="lat" class="hidden" id="lat-input" value="{{currentUser.location.lat}}">
+          <input type="text" name="lng" class="hidden" id="lng-input" value="{{currentUser.location.lng}}">
+          <p class="comment">
+            * El boton solo toma las coordenadas. No actualiza los campos "Ciudad" y "Provincia"
+          </p>
           <label for="description">Descripción</label>
           <textarea name="description" id="" cols="30" rows="7"
             placeholder="Escribe algo sobre ti">{{currentUser.description}}</textarea>
           <button type="submit" class="btn blue-btn">Editar</button>
         </form>
       </div>
-
     </article>
   </section>
   <section id="my-announces">
@@ -117,3 +126,5 @@
   </section>
   {{/if}}
 </main>
+
+<script src="/javascripts/maps.js"></script>

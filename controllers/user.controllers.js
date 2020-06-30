@@ -1,5 +1,6 @@
 const User = require("../models/Users.model");
 const Offer = require("../models/Offers.model");
+const { capitalize } = require('../tools/stringFn')
 
 const getMyAccount = async (req, res, next) => {
   try {
@@ -17,7 +18,17 @@ const getMyAccount = async (req, res, next) => {
 const editUser = async (req, res, next) => {
   try {
     const userId = req.session.currentUser._id;
-    await User.findByIdAndUpdate(userId, req.body);
+    const { name, email, city, state, lat, lng, description } = req.body
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      name,
+      email,
+      description,
+      'location.state': capitalize(state),
+      'location.city': capitalize(city),
+      'location.lat': lat,
+      'location.lng': lng
+    });
+    req.session.currentUser = updatedUser
     res.redirect("/myaccount");
   } catch (error) {
     next(error);

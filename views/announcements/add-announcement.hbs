@@ -7,8 +7,8 @@
         <input type="text" name="title" placeholder="Añade un título">
         <label for="description">Descripción del anuncio</label>
         <textarea name="description" cols="30" rows="10" placeholder="Describe la tarea a realizar"></textarea>
-        <label for="sector">Categoria</label>
-        <select name="sector" id="details" form="edit">
+        <label for="category">Categoria</label>
+        <select name="category" id="details" form="edit">
           <option value="Fontanería">Fontanería</option>
           <option value="Carpintería">Carpintería</option>
           <option value="Carpintería de aluminio">Carpintería de aluminio</option>
@@ -26,6 +26,9 @@
         <input type="text" name="city" placeholder="Ciudad">
         <label for="state">Provincia:</label>
         <input type="text" name="state" placeholder="Provincia">
+        <button class="btn blue-btn" id="location-btn">Obtener ubicacion</button>
+        <input type="text" name="lat" class="" id="lat-input" value="{{currentUser.lat}}">
+        <input type="text" name="lng" class="" id="lng-input" value="{{currentUser.lng}}">
         <label for="tags">Palabras clave:</label>
         <p class="comment">
           * Palabras clave separadas con coma. (Max. 5 palabras)
@@ -41,3 +44,7 @@
     </article>
   </section>
 </main>
+
+
+
+<script src="/javascripts/maps.js"></script>
