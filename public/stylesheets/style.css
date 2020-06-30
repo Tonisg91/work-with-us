@@ -530,6 +530,9 @@ textarea {
   display: flex;
   flex-direction: column; }
 
+#location-label {
+  font-size: 0.7em; }
+
 #review-select {
   margin: 1em 0;
   padding: 0.7em;

@@ -22,13 +22,21 @@
           <option value="Cerrajería">Cerrajería</option>
           <option value="Otros">Otros</option>
         </select>
+        <label for="checkbox" id="location-label">
+          <input type="checkbox" id="useLocation" checked>
+          Utilizar la ubicacion de mi perfil;
+        </label>
+
         <label for="city">Ciudad:</label>
-        <input type="text" name="city" placeholder="Ciudad">
+        <input type="text" name="city" placeholder="Ciudad" id="city-input" class="loc-field"
+          value="{{currentUser.location.city}}">
         <label for="state">Provincia:</label>
-        <input type="text" name="state" placeholder="Provincia">
-        <button class="btn blue-btn" id="location-btn">Obtener ubicacion</button>
-        <input type="text" name="lat" class="" id="lat-input" value="{{currentUser.lat}}">
-        <input type="text" name="lng" class="" id="lng-input" value="{{currentUser.lng}}">
+        <input type="text" name="state" placeholder="Provincia" id="state-input" class="loc-field"
+          value="{{currentUser.location.state}}">
+        <input type="text" name="lat" class="loc-field hidden" id="lat-input" class="loc-field"
+          value="{{currentUser.location.lat}}">
+        <input type="text" name="lng" class="loc-field hidden" id="lng-input" class="loc-field"
+          value="{{currentUser.location.lng}}">
         <label for="tags">Palabras clave:</label>
         <p class="comment">
           * Palabras clave separadas con coma. (Max. 5 palabras)
