@@ -176,8 +176,10 @@ const postAddAnnouncement = async (req, res, next) => {
 
 const getFinishWork = async (req, res, next) => {
   try {
-    const { announceId } = req.params;
-    await Announcements.findByIdAndUpdate(announceId, { finished: true });
+    const { announceId, chatId } = req.params;
+    const updateAnnouncementFinished = Announcements.findByIdAndUpdate(announceId, { finished: true, chat: null });
+    const deleteChat = Chat.findByIdAndDelete(chatId);
+    await Promise.all([updateAnnouncementFinished, deleteChat]);
     res.redirect('/myaccount#my-announces');
   } catch (error) {
     next(error)
