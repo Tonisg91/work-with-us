@@ -33,6 +33,10 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// HBS HELPERS
+hbs.registerHelper('googleURL', () => {
+  return `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_KEY}&callback=initMap`
+})
 
 // Express View engine setup
 

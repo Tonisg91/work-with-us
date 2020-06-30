@@ -362,7 +362,6 @@ textarea {
 }
 
 //AUTH END
-
 //ANNOUNCEMENTS
 #announcements-main {
   background-color: rgba($color: $blue-btn, $alpha: 0.2);
@@ -499,7 +498,6 @@ margin: 0.5em 0;
 }
 
 //MAKE OFFER END
-
 //OFFER ACCEPTED
 #accepted-offer-article .offer {
   padding: 0.5em 0;
@@ -616,6 +614,15 @@ margin: 0.5em 0;
   margin-bottom: 2.6em;
 }
 
+//GUEST USER VIEW
+#map {
+  height: 30vh;
+}
+#not-map div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 //FOOTER
 footer {
   background-color: $general-text;
@@ -678,6 +685,11 @@ footer li {
   #guest-view form {
     display: flex;
     flex-direction: column;
+  }
+  #not-map div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   #user-data {
     display: flex;
@@ -810,5 +822,13 @@ footer li {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+  #offer-map article {
+    height: 100%;
+  }
+  #not-map div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }

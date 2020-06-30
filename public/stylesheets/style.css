@@ -547,6 +547,14 @@ textarea {
 #user-info article {
   margin-bottom: 2.6em; }
 
+#map {
+  height: 30vh; }
+
+#not-map div {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
 footer {
   background-color: #2c3e50;
   color: #ecf0f1;
@@ -596,6 +604,10 @@ footer li {
   #guest-view form {
     display: flex;
     flex-direction: column; }
+  #not-map div {
+    width: 100%;
+    display: flex;
+    justify-content: center; }
   #user-data {
     display: flex;
     flex-direction: column;
@@ -694,6 +706,12 @@ footer li {
   #offer-map {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px; } }
+    gap: 12px; }
+  #offer-map article {
+    height: 100%; }
+  #not-map div {
+    width: 100%;
+    display: flex;
+    justify-content: center; } }
 
 /*# sourceMappingURL=style.css.map */
