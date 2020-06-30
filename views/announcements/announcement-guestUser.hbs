@@ -1,7 +1,7 @@
 <main>
   <section id="announce-section">
-    <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
-    <article id="announce-article">
+    <a href="{{backURL}}"><i class="fas fa-arrow-left"></i></a>
+    <div id="announce-info">
       <div id="slideshow-container">
         {{#each announcement.photos }}
         <div class="mySlides fade hidden" id="img-{{@index}}">
@@ -13,41 +13,51 @@
           <a class="next" onclick="nextImage()">&#10095;</a>
         </div>
       </div>
-      <div>
+      <article>
         <h2>{{announcement.title}}</h2>
         <p>{{announcement.description}}</p>
-      </div>
-    </article>
+      </article>
+    </div>
     {{#if offersByTheUser}}
-    <article class="offer-field">
-      <h3>Ofertas previas</h3>
-      <ul>
-        {{#each offersByTheUser}}
-        <li class="offer">
-          <div>
-            <p>{{estimatedPrice}}&euro;</p>
-            <p>{{comments}}</p>
-          </div>
-          <div>
-            <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
-            <a href="#"><button class="btn blue-btn">Editar</button></a>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
-    </article>
-    <br>
+    <div id="offer-map">
+      <article class="offer-field">
+        <h2>Ofertas previas</h2>
+        <ul>
+          {{#each offersByTheUser}}
+          <li class="offer">
+            <div>
+              <p>{{estimatedPrice}}&euro;</p>
+              <p>{{comments}}</p>
+            </div>
+            <div>
+              <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
+              <a href="#"><button class="btn blue-btn">Editar</button></a>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+      </article>
+      <article id="map-box">
+        <h2>map box</h2>
+      </article>
+    </div>
+    {{else}}
+    <div id="offer-map">
+      <article id="guest-view" class="offer-field">
+        <h2>Hacer oferta</h2>
+        <form action="/makeOffer/{{announcement._id}}" method="POST">
+          <input type="hidden" name="professional" value="{{currentUser._id}}">
+          <input type="number" name="estimatedPrice" placeholder="Precio estimado en euros" step="any" min="0">
+          <textarea name="comments" id="offer-description" cols="30" rows="10"
+            placeholder="Escribe la descripcion de tu oferta"></textarea>
+          <button type="submit" class="btn blue-btn">Enviar oferta</button>
+        </form>
+      </article>
+      <article id="map-box">
+        <h2>map box</h2>
+      </article>
+    </div>
     {{/if}}
-    <article id="guest-view" class="offer-field">
-      <h3>Hacer oferta</h3>
-      <form action="/makeOffer/{{announcement._id}}" method="POST">
-        <input type="hidden" name="professional" value="{{currentUser._id}}">
-        <input type="number" name="estimatedPrice" placeholder="Precio estimado en euros" step="any" min="0">
-        <textarea name="comments" id="offer-description" cols="32" rows="10"
-          placeholder="Escribe la descripcion de tu oferta"></textarea>
-        <button type="submit" class="btn blue-btn">Enviar oferta</button>
-      </form>
-    </article>
   </section>
 </main>
 
