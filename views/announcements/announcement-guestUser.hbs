@@ -37,9 +37,19 @@
           {{/each}}
         </ul>
       </article>
-      <article id="map-box">
-        <h2>map box</h2>
+      {{#if announcement.location.lat}}
+      <p class="hidden" id="lat">{{announcement.location.lat}}</p>
+      <p class="hidden" id="lng">{{announcement.location.lng}}</p>
+      <article id="map">
       </article>
+      {{else}}
+      <article id="not-map">
+        <h2>Mapa no disponible</h2>
+        <div>
+          <img src="/images/pngwing.com.png" alt="map not found">
+        </div>
+      </article>
+      {{/if}}
     </div>
     {{else}}
     <div id="offer-map">
@@ -53,13 +63,27 @@
           <button type="submit" class="btn blue-btn">Enviar oferta</button>
         </form>
       </article>
-      <article id="map-box">
-        <h2>map box</h2>
+      {{#if announcement.location.lat}}
+      <p class="hidden" id="lat">{{announcement.location.lat}}</p>
+      <p class="hidden" id="lng">{{announcement.location.lng}}</p>
+      <article id="map">
       </article>
+      {{else}}
+      <article id="not-map">
+        <h2>Mapa no disponible</h2>
+        <div>
+          <img src="/images/pngwing.com.png" alt="map not found">
+        </div>
+      </article>
+      {{/if}}
     </div>
     {{/if}}
   </section>
 </main>
 
 
+
+
+
+<script type="text/javascript" src="/javascripts/loadMap.js"></script>
 <script src="/javascripts/slideShow.js"></script>

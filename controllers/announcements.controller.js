@@ -137,8 +137,9 @@ const deleteAnnouncement = async (req, res, next) => {
 
 const getAddAnnouncement = async (req, res, next) => {
   try {
-    const user = req.session.currentUser;
-    res.render("announcements/add-announcement", { currentUser: user });
+    const userId = req.session.currentUser._id;
+    const userData = await User.findById(userId);
+    res.render("announcements/add-announcement", { currentUser: userData });
   } catch (error) {
     next(error);
   }
@@ -147,7 +148,7 @@ const getAddAnnouncement = async (req, res, next) => {
 const postAddAnnouncement = async (req, res, next) => {
   try {
     const announcer = req.session.currentUser._id;
-    const { title, description, state, city } = req.body;
+    const { title, description, state, city, lat, lng } = req.body;
     const tags = [...req.body.tags.split(',').map(e => capitalize(e.trim()))]
     const photos = req.files.length ? Array.from(req.files).map(file => file.path) : undefined;
     let photoCard = req.files.length ? photos[0] : undefined;
@@ -159,7 +160,9 @@ const postAddAnnouncement = async (req, res, next) => {
       announcer,
       photos,
       'location.state': capitalize(state),
-      'location.city': capitalize(city)
+      'location.city': capitalize(city),
+      'location.lat': lat,
+      'location.lng': lng
     });
     const newAnnouncementId = newAnnouncement._id;
     await User.findByIdAndUpdate(announcer, {

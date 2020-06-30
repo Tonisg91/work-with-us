@@ -1,8 +1,11 @@
 const User = require("../models/Users.model");
 const Offer = require("../models/Offers.model");
+const { capitalize } = require('../tools/stringFn')
+
 const bcryptjs = require("bcryptjs");
 
 const saltRounds = 10;
+
 
 const getMyAccount = async (req, res, next) => {
   try {
@@ -21,6 +24,19 @@ const editUser = async (req, res, next) => {
   try {
     const {currentUser} = req.session;
     const userId = req.session.currentUser._id;
+//<<<<<<< maps
+    const { name, email, city, state, lat, lng, description } = req.body
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      name,
+      email,
+      description,
+      'location.state': capitalize(state),
+      'location.city': capitalize(city),
+      'location.lat': lat,
+      'location.lng': lng
+    });
+    req.session.currentUser = updatedUser
+//=======
     const {oldPwd, newPwd} = req.body;
     if (newPwd && !oldPwd) {
       res.status(400).render("user/my-account", {
@@ -65,6 +81,7 @@ const editUser = async (req, res, next) => {
       }
     }
     await User.findByIdAndUpdate(userId, req.body);
+//>>>>>>> develop
     res.redirect("/myaccount");
   } catch (error) {
     next(error);

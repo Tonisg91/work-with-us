@@ -110,6 +110,7 @@ nav button {
 i {
   color: #1abc9c;
   font-size: 1.5em;
+  cursor: pointer;
 }
 #menu-button {
   font-size: 1.9em;
@@ -361,7 +362,6 @@ textarea {
 }
 
 //AUTH END
-
 //ANNOUNCEMENTS
 #announcements-main {
   background-color: rgba($color: $blue-btn, $alpha: 0.2);
@@ -498,7 +498,6 @@ margin: 0.5em 0;
 }
 
 //MAKE OFFER END
-
 //OFFER ACCEPTED
 #accepted-offer-article .offer {
   padding: 0.5em 0;
@@ -594,6 +593,9 @@ margin: 0.5em 0;
   display: flex;
   flex-direction: column;
 }
+#location-label {
+  font-size: 0.7em;
+}
 #review-select {
   margin: 1em 0;
   padding: 0.7em;
@@ -612,6 +614,15 @@ margin: 0.5em 0;
   margin-bottom: 2.6em;
 }
 
+//GUEST USER VIEW
+#map {
+  height: 30vh;
+}
+#not-map div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 //FOOTER
 footer {
   background-color: $general-text;
@@ -675,8 +686,14 @@ footer li {
     display: flex;
     flex-direction: column;
   }
+  #not-map div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   #user-data {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
   }
@@ -805,5 +822,13 @@ footer li {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+  #offer-map article {
+    height: 100%;
+  }
+  #not-map div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
