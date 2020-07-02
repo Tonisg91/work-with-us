@@ -1,11 +1,11 @@
 const User = require("../models/Users.model");
 const Offer = require("../models/Offers.model");
-const { capitalize } = require('../tools/stringFn')
+const { capitalize } = require('../tools/stringFn');
+const { getMyAccountResponse } = require('../tools/getErrorFn');
 
 const bcryptjs = require("bcryptjs");
 
 const saltRounds = 10;
-
 
 const getMyAccount = async (req, res, next) => {
   try {
@@ -13,8 +13,17 @@ const getMyAccount = async (req, res, next) => {
     const user = User.findById(userId).populate('announcements').populate('workInProgress');
     req.session.current_url = '/myaccount'
     const offersByTheUser = Offer.find({ professional: userId, accepted: false }).populate('announcement');
-    const [currentUser, offers] = await Promise.all([user, offersByTheUser])
-    res.render("user/my-account", { currentUser, offers });
+    const [currentUser, offers] = await Promise.all([user, offersByTheUser]);
+    const errorMessage = getMyAccountResponse(req.query.error);
+    if (errorMessage) {
+      res.status(400).render("user/my-account", {
+        errorMessage,
+        currentUser,
+        offers
+      });
+    } else {
+      res.render("user/my-account", { currentUser, offers });
+    }
   } catch (error) {
     next(error);
   }
@@ -22,23 +31,14 @@ const getMyAccount = async (req, res, next) => {
 
 const editUser = async (req, res, next) => {
   try {
-    const { currentUser } = req.session;
     const userId = req.session.currentUser._id;
     const { oldPwd, newPwd, name, email, city, state, lat, lng, description } = req.body;
     if (newPwd && !oldPwd) {
-      res.status(400).render("user/my-account", {
-        errorMessage:
-          "Si introduces una nueva contraseña, debes introducir tu anterior contraseña para modificarla",
-        currentUser
-      });
+      res.redirect("/myaccount?error=notOldPwd");
       return;
     } else if (oldPwd) {
       if (!newPwd) {
-        res.status(400).render("user/my-account", {
-          errorMessage:
-            "Debes introducir una nueva contraseña.",
-          currentUser
-        });
+        res.redirect("/myaccount?error=notNewPwd");
         return;
       } else {
         const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -60,19 +60,11 @@ const editUser = async (req, res, next) => {
             }, { new: true });
             req.session.currentUser = updatedUser;
           } else {
-            res.status(400).render("user/my-account", {
-              errorMessage:
-                "La contraseña introducida no coincide, inténtalo de nuevo",
-              currentUser
-            });
+            res.redirect("/myaccount?error=oldPwdNok");
             return;
           }
         } else {
-          res.status(400).render("user/my-account", {
-            errorMessage:
-              "La nueva contraseña debe tener al menos 6 caracteres, una letra mayúscula, otra minúscula y un número.",
-            currentUser
-          });
+          res.redirect("/myaccount?error=newPwdNok");
           return;
         }
       }
