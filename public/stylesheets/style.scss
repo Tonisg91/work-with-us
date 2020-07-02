@@ -756,10 +756,10 @@ footer li {
     margin: 2em 0;
     height: auto;
   }
-  #edit-announce-data {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+  // #edit-announce-data {
+  //   display: grid !important;
+  //   grid-template-columns: 1fr !important;
+  // }
   #announcement-fields {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

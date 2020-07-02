@@ -59,9 +59,8 @@
           {{/if}}
         </div>
         {{/if}}
-      </div>
-      {{/if}}
-      {{/each}}
+    </div>
+    {{/each}}
     </article>
     {{#if announcement.chat}}
     <article class="offer-field" id="chat-box">
@@ -75,12 +74,12 @@
         <input type="hidden" id="username" value="{{currentUser.name}}">
         <input type="hidden" id="chatId" value="{{announcement.chat._id}}">
         <div id="new-msg-box">
-            <input type="text" id="newMessage">
-            <button type="button" id="sendBtn">
-              <i class="far fa-paper-plane">
-              </i>
-            </button>
-       </div>
+          <input type="text" id="newMessage">
+          <button type="button" id="sendBtn">
+            <i class="far fa-paper-plane">
+            </i>
+          </button>
+        </div>
       </div>
     </article>
     {{/if}}
