@@ -21,6 +21,7 @@ const auth = require("./routes/auth.routes");
 const user = require("./routes/user.routes");
 const announcement = require("./routes/announcements.routes");
 const reviews = require("./routes/review.routes");
+const offers = require('./routes/offers.routes')
 
 const app = express();
 
@@ -33,6 +34,10 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// HBS HELPERS
+hbs.registerHelper('googleURL', () => {
+  return `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_KEY}&callback=initMap`
+})
 
 // Express View engine setup
 
@@ -50,12 +55,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+app.locals.title = "WorkWithUs | Todos los servicios a un solo click";
 
 app.use("/", index);
 app.use("/", auth);
 app.use("/", user);
 app.use("/", announcement);
-app.use('/', reviews);
+app.use("/", reviews);
+app.use("/", offers);
 
 module.exports = app;

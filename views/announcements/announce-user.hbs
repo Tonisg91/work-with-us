@@ -1,22 +1,25 @@
 <main>
   <section id="announce-section">
     <div id="icon-container">
-      <a href="/announcements"><i class="fas fa-arrow-left"></i></a>
-      <a href="/delete/{{announcement._id}}"><i class="fas fa-trash-alt"></i></a>
+      <a href="{{backURL}}"><i class="fas fa-arrow-left"></i></a>
+      <i class="fas fa-trash-alt" id="delete-button"></i>
+      <div class="modal" id="myModal">
+        <div class="modal-content">
+          <p>Seguro que quieres eliminar el anuncio?</p>
+          <a href="/delete/{{announcement._id}}" class="btn red-btn">Borrar</a>
+          <span class="close">&times;</span>
+        </div>
+      </div>
     </div>
-    <article id="announce-article">
+    <div id="announce-info">
       <div id="slideshow-container">
         {{#each announcement.photos }}
         <div class="mySlides fade hidden" id="img-{{@index}}">
           <img src="{{this}}">
         </div>
         {{/each}}
-        <div id="slide-controls">
-          <a class="prev" onclick="prevImage()">&#10094;</a>
-          <a class="next" onclick="nextImage()">&#10095;</a>
-        </div>
       </div>
-      <div>
+      <article>
         <div id="announce-data">
           <h2 id="announce-title">{{announcement.title}}</h2>
           <p id="description">{{announcement.description}}</p>
@@ -26,10 +29,10 @@
           <textarea name="description" id="" cols="30" rows="10">{{announcement.description}}</textarea>
         </form>
         <br>
-        <button id="edit-announcement" class="btn green-btn" onclick="editFunction()">Edit</button>
+        <button id="edit-announcement" class="btn blue-btn" onclick="editAnnounce()">Editar</button>
         <button id="save-button" class="btn blue-btn hidden" form="edit-announce-data">Guardar</button>
-      </div>
-    </article>
+      </article>
+    </div>
     <article class="offer-field">
       <h3>Ofertas</h3>
       <ul>
@@ -59,5 +62,6 @@
   </section>
 </main>
 
-<script src="/javascripts/editAnnounce.js"></script>
+<script src="/javascripts/deleteConfirmation.js"></script>
+<script src="/javascripts/editFunctions.js"></script>
 <script src="/javascripts/slideShow.js"></script>

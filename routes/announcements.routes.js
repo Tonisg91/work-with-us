@@ -19,10 +19,10 @@ router
   .get("/announcements", getAnnouncements)
   .get("/announcement/:id", getOneAnnouncement)
   .get("/delete/:announceId", deleteAnnouncement)
-  .get("/declineOffer/:announceId/:offerId", getDeleteOffer) //cambiada porque son la misma función
+  .get("/declineOffer/:announceId/:offerId", getDeleteOffer)
   .get("/acceptOffer/:announceId/:offerId/:professionalId", getAcceptOffer)
   .get("/addAnnouncement", getAddAnnouncement)
-  .get("/finish/:announceId", getFinishWork)
+  .get("/finish/:announceId/:chatId", getFinishWork)
   .get("/deleteOffer/:announceId/:offerId", getDeleteOffer)
   .post("/addAnnouncement", fileUploader.array("photos"), postAddAnnouncement)
   .post("/edit/:announceId", editAnnouncement)

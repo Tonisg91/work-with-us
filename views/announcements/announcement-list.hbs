@@ -1,25 +1,34 @@
 <main id="announcements-main">
-  <section id="announcements-main-filters" class="scrollmenu">
-    <div>
-      <a href="/addAnnouncement" id="add-button"><i class="fas fa-plus-circle"></i></a>
+  <section id="filters-controls-section">
+    <div id="list-controls">
+      <a href="/addAnnouncement" id="add-button">
+        <i class="fas fa-plus-circle">
+        </i>
+      </a>
+      <i class="fas fa-search" id="open-filters"></i>
     </div>
-    <div>
-      <input type="text" placeholder="Provincia" id="state-filter">
-      <button id="state-filter-btn"><i class="fas fa-search"></i></button>
-    </div>
-    <div>
-      <input type="text" placeholder="Palabras clave" id="tag-filter">
-      <button id="tag-filter-btn"><i class="fas fa-search"></i></button>
-    </div>
-    <div>
-      <input type="text" placeholder="Ciudad" id="city-filter">
-      <button id="city-filter-btn"><i class="fas fa-search"></i></button>
-    </div>
-    <div>
-      <i onclick="clearFilters()" class="fas fa-trash-alt"></i>
+
+    <div id="announcements-main-filters" class="scrollmenu hidden">
+      <div>
+        <input type="text" placeholder="Provincia" id="state-filter">
+        <button id="state-filter-btn"><i class="fas fa-search"></i></button>
+      </div>
+      <div>
+        <input type="text" placeholder="Palabras clave" id="tag-filter">
+        <button id="tag-filter-btn"><i class="fas fa-search"></i></button>
+      </div>
+      <div>
+        <input type="text" placeholder="Ciudad" id="city-filter">
+        <button id="city-filter-btn"><i class="fas fa-search"></i></button>
+      </div>
+      <div>
+        <button>
+          <i onclick="clearFilters()" class="fas fa-trash-alt"></i>
+        </button>
+
+      </div>
     </div>
   </section>
-
   <section id="announcements-list">
     {{#each list}}
     <div class="announce-card">

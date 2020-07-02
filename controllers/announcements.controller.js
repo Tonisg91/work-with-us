@@ -7,7 +7,13 @@ const { capitalize } = require('../tools/stringFn')
 const getAnnouncements = async (req, res, next) => {
   try {
     const user = req.session.currentUser;
-    const list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
+    req.session.current_url = '/announcements'
+    let list;
+    if (user) {
+      list = await Announcements.find({ assigned: false, announcer: { $ne: user._id } });
+    } else {
+      list = await Announcements.find({ assigned: false });
+    }
     res.render("announcements/announcement-list", { list, currentUser: user });
   } catch (error) {
     next(error);
@@ -18,11 +24,13 @@ const getOneAnnouncement = async (req, res, next) => {
   try {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
-    const offersByTheUser = await Offers.find({professional: user._id, announcement: announcement._id});
-    const chat = await Chat.findById(announcement.chat);
+    const backURL = req.session.current_url;
+    console.log(backURL);
     if (!user) {
       res.redirect("/auth");
     } else {
+      const offersByTheUser = await Offers.find({ professional: user._id, announcement: announcement._id });
+      const chat = await Chat.findById(announcement.chat);
       //Definición de las condiciones de los diferentes casos: el anunciante es el currentUser (1) y el anuncio tiene una oferta aceptada (2)
       const isUserTheAnnouncer = announcement.announcer == user._id;
       const isUserTheProfessional = announcement.professional == user._id;
@@ -33,12 +41,14 @@ const getOneAnnouncement = async (req, res, next) => {
             announcement,
             currentUser: user,
             isUserTheAnnouncer,
-            chat
+            chat,
+            backURL
           })
         } else {
           res.render("announcements/announce-user", {
             announcement,
-            currentUser: user
+            currentUser: user,
+            backURL
           });
         }
       } else {
@@ -46,13 +56,15 @@ const getOneAnnouncement = async (req, res, next) => {
           res.render("announcements/announce-accepted", {
             announcement,
             currentUser: user,
-            chat
+            chat,
+            backURL
           })
         } else {
           res.render("announcements/announcement-guestUser", {
             announcement,
             currentUser: user,
             offersByTheUser,
+            backURL
           });
         }
       }
@@ -90,7 +102,7 @@ const getDeleteOffer = async (req, res, next) => {
 const getAcceptOffer = async (req, res, next) => {
   try {
     const { announceId, offerId, professionalId } = req.params;
-    const newChat = await Chat.create({announcement: announceId});
+    const newChat = await Chat.create({ announcement: announceId });
     const chatId = newChat._id;
     //Promesas: editar oferta aceptada (1) y asignar nuevos valores al anuncio (2)
     const offersAcceptedTrue = Offers.findByIdAndUpdate(offerId, { accepted: true });
@@ -125,8 +137,9 @@ const deleteAnnouncement = async (req, res, next) => {
 
 const getAddAnnouncement = async (req, res, next) => {
   try {
-    const user = req.session.currentUser;
-    res.render("announcements/add-announcement", { currentUser: user });
+    const userId = req.session.currentUser._id;
+    const userData = await User.findById(userId);
+    res.render("announcements/add-announcement", { currentUser: userData });
   } catch (error) {
     next(error);
   }
@@ -135,7 +148,7 @@ const getAddAnnouncement = async (req, res, next) => {
 const postAddAnnouncement = async (req, res, next) => {
   try {
     const announcer = req.session.currentUser._id;
-    const { title, description, state, city } = req.body;
+    const { title, description, state, city, lat, lng } = req.body;
     const tags = [...req.body.tags.split(',').map(e => capitalize(e.trim()))]
     const photos = req.files.length ? Array.from(req.files).map(file => file.path) : undefined;
     let photoCard = req.files.length ? photos[0] : undefined;
@@ -147,7 +160,9 @@ const postAddAnnouncement = async (req, res, next) => {
       announcer,
       photos,
       'location.state': capitalize(state),
-      'location.city': capitalize(city)
+      'location.city': capitalize(city),
+      'location.lat': lat,
+      'location.lng': lng
     });
     const newAnnouncementId = newAnnouncement._id;
     await User.findByIdAndUpdate(announcer, {
@@ -161,8 +176,10 @@ const postAddAnnouncement = async (req, res, next) => {
 
 const getFinishWork = async (req, res, next) => {
   try {
-    const { announceId } = req.params;
-    await Announcements.findByIdAndUpdate(announceId, { finished: true });
+    const { announceId, chatId } = req.params;
+    const updateAnnouncementFinished = Announcements.findByIdAndUpdate(announceId, { finished: true, chat: null });
+    const deleteChat = Chat.findByIdAndDelete(chatId);
+    await Promise.all([updateAnnouncementFinished, deleteChat]);
     res.redirect('/myaccount#my-announces');
   } catch (error) {
     next(error)
