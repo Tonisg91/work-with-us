@@ -12,6 +12,10 @@ const showImage = (img) => {
   img.classList.remove('hidden')
 }
 
+const intervalNext = () => {
+  setInterval(nextImage, 8000);
+}
+//cONTROLES PREPARADOS PARA FUTUROS BOTONES
 const nextImage = () => {
   imageToShow().classList.add('hidden');
   index != imgArrLength ? index++ : index = 0;
@@ -21,8 +25,4 @@ const prevImage = () => {
   imageToShow().classList.add('hidden');
   index <= 0 ? index = imgArrLength : index--;
   imageToShow().classList.remove('hidden');
-}
-
-const intervalNext = () => {
-  setInterval(nextImage, 8000);
 }

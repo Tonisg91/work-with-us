@@ -31,20 +31,9 @@ html {
 
 .mySlides {
   margin: 0 !important;
-  padding: 0 !important; }
-
-#slide-controls {
-  width: 82%;
-  position: absolute;
-  top: 27%;
+  padding: 0 !important;
   display: flex;
-  justify-content: space-between;
-  transition: 0.6 ease;
-  display: none; }
-
-.prev, .next {
-  color: rgba(236, 240, 241, 0.5);
-  font-size: 3em; }
+  width: 100%; }
 
 .mySlides img {
   border-radius: 25px; }
@@ -412,10 +401,6 @@ textarea {
 #announce-info img {
   width: 100%; }
 
-#announce-info div:nth-child(2) {
-  margin-top: 1em;
-  padding: 1em; }
-
 #announce-info p {
   padding-top: 1em;
   font-size: 0.8em; }
@@ -423,6 +408,9 @@ textarea {
 #icon-container {
   display: flex;
   justify-content: space-between; }
+
+#not-map img {
+  width: 100%; }
 
 .offer-field li {
   list-style: none;
@@ -713,7 +701,7 @@ footer li {
     display: flex;
     justify-content: center; }
   #not-map img {
-    width: 45%; } }
+    width: 60%; } }
 
 @media (min-width: 1550px) {
   #not-map img {
