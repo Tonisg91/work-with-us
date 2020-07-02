@@ -676,10 +676,9 @@ footer li {
     max-height: 600px; }
   .offer-field form {
     display: grid;
-    grid-template-columns: 1fr;
-    width: 75%; }
+    grid-template-columns: 1fr; }
   .offer-field form button {
-    width: 25%; }
+    width: 50%; }
   .offer div:last-child {
     display: flex;
     justify-content: flex-start; }
@@ -712,6 +711,12 @@ footer li {
   #not-map div {
     width: 100%;
     display: flex;
-    justify-content: center; } }
+    justify-content: center; }
+  #not-map img {
+    width: 45%; } }
+
+@media (min-width: 1550px) {
+  #not-map img {
+    width: 40%; } }
 
 /*# sourceMappingURL=style.css.map */

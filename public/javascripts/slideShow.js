@@ -1,5 +1,6 @@
 window.onload = () => {
   showImage(imageToShow())
+  intervalNext();
 };
 let index = 0;
 const imgArrLength = document.querySelectorAll('.mySlides').length - 1;
@@ -20,4 +21,8 @@ const prevImage = () => {
   imageToShow().classList.add('hidden');
   index <= 0 ? index = imgArrLength : index--;
   imageToShow().classList.remove('hidden');
+}
+
+const intervalNext = () => {
+  setInterval(nextImage, 8000);
 }

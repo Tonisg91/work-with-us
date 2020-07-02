@@ -650,7 +650,7 @@ footer li {
   padding: 0.8em 0;
 }
 //FOOTER END
-
+// TABLETS
 @media (min-width: 768px) and (max-width: 1023px) {
   p {
     font-size: 1.5em;
@@ -714,7 +714,7 @@ footer li {
     display: none;
   }
 }
-
+//DESKTOP
 @media (min-width: 1024px) {
   #index-data-article {
     display: grid;
@@ -782,10 +782,9 @@ footer li {
   .offer-field form{
     display: grid;
     grid-template-columns: 1fr;
-    width: 75%;
   }
   .offer-field form button {
-    width: 25%;
+    width: 50%;
   }
   .offer div:last-child {
     display: flex;
@@ -830,5 +829,13 @@ footer li {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  #not-map img {
+    width: 45%;
+  }
+}
+@media (min-width: 1550px){
+  #not-map img {
+    width: 40%;
   }
 }
