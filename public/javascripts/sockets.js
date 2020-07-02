@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:3000', { 'forceNew': true });
+const socket = io.connect('https://workwithus.herokuapp.com/', { 'forceNew': true });
 const chatId = document.getElementById('chatId').value;
 const chat = document.getElementById('messages')
 let scrolled = false;
@@ -44,6 +44,6 @@ function createNewMessage() {
 
   if (newMsgInput.value) {
     socket.emit('newMessage', { msg: newMsg, chatId });
-    newMsgInput.value = '';    
+    newMsgInput.value = '';
   }
 }
