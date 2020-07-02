@@ -449,7 +449,9 @@ textarea {
   max-height: 250px;
   padding: 0.7em;
   border: 1px solid rgba(44, 62, 80, 0.3);
-  border-radius: 12.5px; }
+  border-radius: 12.5px;
+  min-height: 200px;
+  background-image: url("../images/bg-chat.jpg"); }
 
 #input-message-chat {
   display: flex;
