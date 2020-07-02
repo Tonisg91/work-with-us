@@ -21,6 +21,7 @@ const auth = require("./routes/auth.routes");
 const user = require("./routes/user.routes");
 const announcement = require("./routes/announcements.routes");
 const reviews = require("./routes/review.routes");
+const offers = require('./routes/offers.routes')
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use("/", index);
 app.use("/", auth);
 app.use("/", user);
 app.use("/", announcement);
-app.use('/', reviews);
+app.use("/", reviews);
+app.use("/", offers);
 
 module.exports = app;

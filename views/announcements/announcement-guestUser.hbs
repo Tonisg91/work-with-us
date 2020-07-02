@@ -21,13 +21,24 @@
         <ul>
           {{#each offersByTheUser}}
           <li class="offer">
-            <div>
+            <div id="offer-data">
               <p>{{estimatedPrice}}&euro;</p>
               <p>{{comments}}</p>
             </div>
+            <form action="/edit/{{this._id}}/{{../announcement._id}}" id="edit-offer-data" method="POST" class="hidden">
+              <input type="text" name="estimatedPrice" value="{{this.estimatedPrice}}">
+              <textarea name="comments" cols="30" rows="10">{{this.comments}}</textarea>
+            </form>
             <div>
-              <a href="/deleteOffer/{{announcement._id}}/{{_id}}"><button class="btn red-btn">Eliminar</button></a>
-              <a href="#"><button class="btn blue-btn">Editar</button></a>
+              <a href="/deleteOffer/{{announcement._id}}/{{_id}}" id="delete-btn">
+                <button class="btn red-btn">Eliminar</button>
+              </a>
+              <button class="btn blue-btn" id="edit-offer-btn" onclick="editOffer()">
+                Editar
+              </button>
+              <button id="save-button" class="btn blue-btn hidden" form="edit-offer-data">
+                Guardar
+              </button>
             </div>
           </li>
           {{/each}}
@@ -80,6 +91,6 @@
 
 
 
-
+<script src="/javascripts/editFunctions.js"></script>
 <script type="text/javascript" src="/javascripts/loadMap.js"></script>
 <script src="/javascripts/slideShow.js"></script>
