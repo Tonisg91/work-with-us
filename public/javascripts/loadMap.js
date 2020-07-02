@@ -15,15 +15,24 @@ const coordinates = {
 
 window.initMap = function () {
   const map = new google.maps.Map(mapDiv, {
-    zoom: 15,
+    zoom: 13,
     center: coordinates,
+    disableDefaultUI: true
   });
 
   const marker = new google.maps.Marker({
     position: coordinates,
     map: map,
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 100,
+      fillColor: "lightblue",
+      fillOpacity: 0.2,
+      strokeWeight: 0.2
+    },
   });
 };
+
 
 // Append the 'script' element to 'head'
 document.head.appendChild(script);

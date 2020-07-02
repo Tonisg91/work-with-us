@@ -18,10 +18,6 @@
           <img src="{{this}}">
         </div>
         {{/each}}
-        <div id="slide-controls">
-          <a class="prev" onclick="prevImage()">&#10094;</a>
-          <a class="next" onclick="nextImage()">&#10095;</a>
-        </div>
       </div>
       <article>
         <div id="announce-data">
@@ -33,7 +29,7 @@
           <textarea name="description" id="" cols="30" rows="10">{{announcement.description}}</textarea>
         </form>
         <br>
-        <button id="edit-announcement" class="btn green-btn" onclick="editFunction()">Edit</button>
+        <button id="edit-announcement" class="btn blue-btn" onclick="editAnnounce()">Editar</button>
         <button id="save-button" class="btn blue-btn hidden" form="edit-announce-data">Guardar</button>
       </article>
     </div>
@@ -67,5 +63,5 @@
 </main>
 
 <script src="/javascripts/deleteConfirmation.js"></script>
-<script src="/javascripts/editAnnounce.js"></script>
+<script src="/javascripts/editFunctions.js"></script>
 <script src="/javascripts/slideShow.js"></script>

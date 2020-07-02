@@ -49,19 +49,8 @@ html {
 .mySlides {
   margin: 0 !important;
   padding: 0 !important;
-}
-#slide-controls {
-  width: 82%;
-  position: absolute;
-  top: 27%;
   display: flex;
-  justify-content: space-between;
-  transition: 0.6 ease;
-  display: none;
-}
-.prev, .next {
-  color: rgba($color: $btn-text, $alpha: 0.5);
-  font-size: 3em;
+  width: 100%;
 }
 .mySlides img{
   border-radius: 25px;
@@ -456,10 +445,10 @@ textarea {
 #announce-info img {
   width: 100%;
 }
-#announce-info div:nth-child(2) {
-  margin-top: 1em;
-  padding: 1em;
-}
+// #announce-info div:nth-child(2) {
+//   margin-top: 1em;
+//   padding: 1em;
+// }
 #announce-info p {
   padding-top: 1em;
   font-size: 0.8em;
@@ -467,6 +456,9 @@ textarea {
 #icon-container {
   display: flex;
   justify-content: space-between;
+}
+#not-map img {
+  width: 100%;
 }
 //OFFER LIST
 .offer-field li{
@@ -512,6 +504,8 @@ margin: 0.5em 0;
   padding: 0.7em;
   border: 1px solid rgba($color: $general-text, $alpha: 0.3);
   border-radius: 12.5px;
+  min-height: 200px;
+  background-image: url('../images/bg-chat.jpg');
 }
 #input-message-chat {
   display: flex;
@@ -650,7 +644,7 @@ footer li {
   padding: 0.8em 0;
 }
 //FOOTER END
-
+// TABLETS
 @media (min-width: 768px) and (max-width: 1023px) {
   p {
     font-size: 1.5em;
@@ -714,7 +708,7 @@ footer li {
     display: none;
   }
 }
-
+//DESKTOP
 @media (min-width: 1024px) {
   #index-data-article {
     display: grid;
@@ -764,10 +758,6 @@ footer li {
     margin: 2em 0;
     height: auto;
   }
-  #edit-announce-data {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
   #announcement-fields {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -782,10 +772,9 @@ footer li {
   .offer-field form{
     display: grid;
     grid-template-columns: 1fr;
-    width: 75%;
   }
   .offer-field form button {
-    width: 25%;
+    width: 50%;
   }
   .offer div:last-child {
     display: flex;
@@ -830,5 +819,13 @@ footer li {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  #not-map img {
+    width: 60%;
+  }
+}
+@media (min-width: 1550px){
+  #not-map img {
+    width: 40%;
   }
 }

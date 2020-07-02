@@ -1,5 +1,6 @@
 window.onload = () => {
   showImage(imageToShow())
+  intervalNext();
 };
 let index = 0;
 const imgArrLength = document.querySelectorAll('.mySlides').length - 1;
@@ -11,6 +12,10 @@ const showImage = (img) => {
   img.classList.remove('hidden')
 }
 
+const intervalNext = () => {
+  setInterval(nextImage, 8000);
+}
+//cONTROLES PREPARADOS PARA FUTUROS BOTONES
 const nextImage = () => {
   imageToShow().classList.add('hidden');
   index != imgArrLength ? index++ : index = 0;
