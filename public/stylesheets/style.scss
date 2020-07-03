@@ -329,6 +329,7 @@ textarea {
 #auth-main {
   background-color: rgba($color: $blue-btn, $alpha: 0.2);
   padding: 1em;
+
 }
 #auth-section hr {
   width: 85%;
@@ -445,10 +446,6 @@ textarea {
 #announce-info img {
   width: 100%;
 }
-// #announce-info div:nth-child(2) {
-//   margin-top: 1em;
-//   padding: 1em;
-// }
 #announce-info p {
   padding-top: 1em;
   font-size: 0.8em;
@@ -652,6 +649,9 @@ footer li {
   article h2 {
     font-size: 1.8em;
   }
+  #auth-main {
+    height: 70vh;
+  }
   #home-nav {
     font-size: 1.5em;
   }
@@ -710,6 +710,9 @@ footer li {
 }
 //DESKTOP
 @media (min-width: 1024px) {
+  #auth-main {
+    height: 63vh;
+  }
   #index-data-article {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
