@@ -25,9 +25,8 @@ const getOneAnnouncement = async (req, res, next) => {
     const announcement = await Announcements.findById(req.params.id).populate({ path: 'offers', populate: { path: 'professional', model: 'User' } });
     const user = req.session.currentUser;
     const backURL = req.session.current_url;
-    console.log(backURL);
     if (!user) {
-      res.redirect("/auth");
+      res.render("announcements/announcement-guestUser", { announcement, backURL });
     } else {
       const offersByTheUser = await Offers.find({ professional: user._id, announcement: announcement._id });
       const chat = await Chat.findById(announcement.chat);

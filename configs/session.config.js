@@ -3,7 +3,6 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const sessionTime = 60 * 60 * 24 * 1000; // 60sec * 60min * 24h => 1 day
 
-// vamos a utilizar este middleware en app.js,por lo tanto lo tenemos que exportar
 module.exports = (app) => {
   app.use(
     session({

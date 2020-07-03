@@ -1,18 +1,16 @@
-// Create the script tag, set the appropriate attributes
+// Se define aqui los atributos para que sea mas dificl acceder a la API key
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyClx6Jd_0jVGXYLS-s7Ya4XiBrPVoLe7i0&callback=initMap';
 script.defer = true;
 script.async = true;
 
-// Attach your callback function to the `window` object
-
-
 const mapDiv = document.getElementById('map');
+//Toma las coordenadas de los dos <p> ocultos.
 const coordinates = {
   lat: Number(document.getElementById('lat').innerHTML),
   lng: Number(document.getElementById('lng').innerHTML)
 }
-
+//Carga el mapa.
 window.initMap = function () {
   const map = new google.maps.Map(mapDiv, {
     zoom: 13,
@@ -34,7 +32,7 @@ window.initMap = function () {
 };
 
 
-// Append the 'script' element to 'head'
+// Carga el script
 document.head.appendChild(script);
 
 

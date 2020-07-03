@@ -1,4 +1,5 @@
-//GET POSITION AND SAVE ON USER DATA
+//Funcionamiento general: Toma posicion y lo introduce en dos <p> ocultos
+//Luego el server toma los datos de esos campos
 const locBtn = document.getElementById('location-btn');
 locBtn.addEventListener('click', (event) => {
   event.preventDefault();
