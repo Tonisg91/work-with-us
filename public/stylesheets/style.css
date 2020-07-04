@@ -575,6 +575,8 @@ footer li {
     font-size: 1.5em; }
   article h2 {
     font-size: 1.8em; }
+  #auth-main {
+    height: 70vh; }
   #home-nav {
     font-size: 1.5em; }
   .announce-card img {
@@ -618,6 +620,8 @@ footer li {
     display: none; } }
 
 @media (min-width: 1024px) {
+  #auth-main {
+    height: 63vh; }
   #index-data-article {
     display: grid;
     grid-template-columns: repeat(2, 1fr); }

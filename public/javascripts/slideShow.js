@@ -1,3 +1,4 @@
+//Carga de imagenes en anuncios. Por ahora cambian a intervalos.
 window.onload = () => {
   showImage(imageToShow())
   intervalNext();
@@ -15,7 +16,7 @@ const showImage = (img) => {
 const intervalNext = () => {
   setInterval(nextImage, 8000);
 }
-//cONTROLES PREPARADOS PARA FUTUROS BOTONES
+//CONTROLES PREPARADOS PARA FUTUROS BOTONES
 const nextImage = () => {
   imageToShow().classList.add('hidden');
   index != imgArrLength ? index++ : index = 0;

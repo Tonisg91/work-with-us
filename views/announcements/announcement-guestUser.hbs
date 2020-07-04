@@ -15,11 +15,13 @@
       </article>
     </div>
     {{#if offersByTheUser}}
+    {{!-- Ofertas enviadas --}}
     <div id="offer-map">
       <article class="offer-field">
         <h2>Ofertas previas</h2>
         <ul>
           {{#each offersByTheUser}}
+          {{!-- Muestra cada oferta--}}
           <li class="offer">
             <div id="offer-data">
               <p>{{estimatedPrice}}&euro;</p>
@@ -45,11 +47,13 @@
         </ul>
       </article>
       {{#if announcement.location.lat}}
+      {{!-- Si hay coordenadas en el anuncio, muestra el mapa --}}
       <p class="hidden" id="lat">{{announcement.location.lat}}</p>
       <p class="hidden" id="lng">{{announcement.location.lng}}</p>
       <article id="map">
       </article>
       {{else}}
+      {{!-- De no haberlas, muestra imagen de mapa no disponible --}}
       <article id="not-map">
         <h2>Mapa no disponible</h2>
         <div>
@@ -62,6 +66,8 @@
     <div id="offer-map">
       <article id="guest-view" class="offer-field">
         <h2>Hacer oferta</h2>
+        {{#if currentUser}}
+        {{!-- Formulario para enviar oferta --}}
         <form action="/makeOffer/{{announcement._id}}" method="POST">
           <input type="hidden" name="professional" value="{{currentUser._id}}">
           <input type="number" name="estimatedPrice" placeholder="Precio estimado en euros" step="any" min="0">
@@ -69,6 +75,14 @@
             placeholder="Escribe la descripcion de tu oferta"></textarea>
           <button type="submit" class="btn blue-btn">Enviar oferta</button>
         </form>
+        {{else}}
+        {{!-- Redireccion a auth si no hay una session --}}
+        <p>Necesitas tener una cuenta para enviar una oferta.</p>
+        <br>
+        <a href="/auth">
+          <button class="btn blue-btn">Login / Signup</button>
+        </a>
+        {{/if}}
       </article>
       {{#if announcement.location.lat}}
       <p class="hidden" id="lat">{{announcement.location.lat}}</p>

@@ -33,6 +33,7 @@ const editUser = async (req, res, next) => {
   try {
     const userId = req.session.currentUser._id;
     const { oldPwd, newPwd, name, email, city, state, lat, lng, description } = req.body;
+    //Mapeo de errores cuando cambiamos password.
     if (newPwd && !oldPwd) {
       res.redirect("/myaccount?error=notOldPwd");
       return;
@@ -48,6 +49,7 @@ const editUser = async (req, res, next) => {
           if (await bcryptjs.compare(oldPwd, user.passwordHash)) {
             const salt = await bcryptjs.genSalt(saltRounds);
             const hashedPassword = await bcryptjs.hash(newPwd, salt);
+            // Update de todos los datos actuales en el formulario.
             const updatedUser = await User.findByIdAndUpdate(userId, {
               name,
               email,
@@ -69,6 +71,7 @@ const editUser = async (req, res, next) => {
         }
       }
     } else {
+      // Update de datos sin password.
       const updatedUser = await User.findByIdAndUpdate(userId, {
         name,
         email,

@@ -1,4 +1,4 @@
-//SIDENAV
+//Funcionalidad sidenav
 function openNav() {
   const sidenav = document.getElementById("sidenav");
   if (screen.width >= 768 && screen.width < 900) {

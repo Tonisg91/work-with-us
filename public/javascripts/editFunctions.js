@@ -1,5 +1,6 @@
 const hdn = 'hidden'
 const style = 'display: flex; flex-direction: column;'
+
 const editAnnounce = () => {
   const form = document.getElementById('edit-announce-data');
   const editBtn = document.getElementById('edit-announcement');
