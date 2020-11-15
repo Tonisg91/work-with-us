@@ -4,7 +4,7 @@
 
 David de Lamo & Toni Sanchez
 
-# [Link to heroku](https://workwithus.herokuapp.com/)
+# [Link to heroku](https://workwithus.herokuapp.com/) Offline. Updating Backend & passing front to React.
 
 ## Description
 
