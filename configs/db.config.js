@@ -3,7 +3,7 @@ const app_name = require("../package.json").name;
 require('dotenv').config();
 const MONGODB_URI =
   process.env.MONGODB_URI || `mongodb://localhost/${app_name}`;
-  console.log(MONGODB_URI)
+  console.log('MONGODBURI',MONGODB_URI)
 
 mongoose
   .connect(process.env.MONGODB_URI, {
