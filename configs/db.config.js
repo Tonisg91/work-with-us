@@ -3,9 +3,10 @@ const app_name = require("../package.json").name;
 require('dotenv').config();
 const MONGODB_URI =
   process.env.MONGODB_URI || `mongodb://localhost/${app_name}`;
+  console.log(MONGODB_URI)
 
 mongoose
-  .connect(MONGODB_URI, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
